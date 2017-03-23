@@ -48,14 +48,14 @@ class Tile{//start Tile class
     /**
      * Returns row as an int.
      */
-    public int getRow(){
+    public int getRow(){//start getRow method
         return row;
-    }
+    }//end getRow method
     
     /**
      * Returns column as an int.
      */
-    public int getCol(){
+    public int getCol(){//start getCol method
         return col;
-    }
+    }//end getCol method
 }//end Tile class
