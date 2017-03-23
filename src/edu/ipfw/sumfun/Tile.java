@@ -11,6 +11,8 @@ class Tile{//start Tile class
     private int row, col;//Row and column location of Tile
     private int x, y;//Physical coordinates of Tile
     private Color tileOutlineColor;//Color outline of Tile
+    private int value;//Int value of Tile
+    private boolean isEmpty;//Indicates whether the Tile is empty
     
     /*
      * Constructor method of Tile class
@@ -21,6 +23,8 @@ class Tile{//start Tile class
         y = col * Tile.SIZE;
         this.row = row;
         this.col = col;
+        value = -1;//value set to -1 to start with.
+        isEmpty = true;
     }//end Tile constructor
     
     /*
@@ -30,6 +34,10 @@ class Tile{//start Tile class
         g2.setPaint(tileOutlineColor);
         Rectangle2D r = new Rectangle2D.Double(x, y, SIZE, SIZE);
         g2.draw(r);  
+        //If tile is not empty, draw the String value of value into Tile.
+        if(!isEmpty){
+        	g2.drawString(String.valueOf(value), x, y);
+        }
     }//end draw method
     
     /**
@@ -58,4 +66,33 @@ class Tile{//start Tile class
     public int getCol(){//start getCol method
         return col;
     }//end getCol method
+    
+    /*
+     * Gets value.
+     */
+    public int getValue(){//start getValue method
+    	return value;
+    }//end getValue method
+    
+    /*
+     * Returns whether or not the tile is empty.
+     */
+    public boolean getIsEmpty(){//start getIsEmpty method
+    	return isEmpty;
+    }//end getIsEmpty method
+    
+    /*
+     * Sets value to given value
+     */
+    public void setValue(int newValue){//start setValue method
+    	this.value = newValue;
+    }//end setValue method
+    
+    /*
+     * Sets isEmpty to given value
+     */
+    public void setIsEmpty(boolean newIsEmpty){//start setIsEmpty method
+    	this.isEmpty = newIsEmpty;
+    }//end setIsEmpty method
+    
 }//end Tile class
