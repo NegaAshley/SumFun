@@ -48,9 +48,7 @@ class SumFunPanel extends JPanel{//start SumFunPanel class
 
 //                       }
 //                    }
-//                    
 //                });
- 
             }
         } 
     }//end SumFunPanel constructor
