@@ -82,14 +82,14 @@ class Tile{//start Tile class
     }//end getIsEmpty method
     
     /*
-     * Sets value.
+     * Sets value to given value
      */
     public void setValue(int newValue){//start setValue method
     	this.value = newValue;
     }//end setValue method
     
     /*
-     * Sets isEmpty
+     * Sets isEmpty to given value
      */
     public void setIsEmpty(boolean newIsEmpty){//start setIsEmpty method
     	this.isEmpty = newIsEmpty;
