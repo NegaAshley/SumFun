@@ -2,6 +2,7 @@
  * The SumFunFrame class is the frame of Sum Fun game where panels and menus are
  * located.
  */
+//
 package edu.ipfw.sumfun;
 import java.awt.BorderLayout;
 import java.awt.Color;
