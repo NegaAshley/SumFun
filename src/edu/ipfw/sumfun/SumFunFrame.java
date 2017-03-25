@@ -47,14 +47,25 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         //Creates and adds SumFunPanel 
         SumFunPanel panel = new SumFunPanel();
         add(panel);
-        JPanel scoreBoardPanel = new JPanel();
-        scoreBoardPanel.setLayout(new GridLayout());
         
-        JLabel scoreBoardLabel = new JLabel("Score");
+        //Creates scoreBoardPanel
+        JPanel scoreBoardPanel = new JPanel();
+        scoreBoardPanel.setLayout(new GridLayout(2, 2));
+        
+       
+
+        
         JTextField scoreTextField = new JTextField(3);
-        scoreBoardPanel.add(scoreBoardLabel);
+        JTextField movesRemainingTextField = new JTextField(3);
+        
+        scoreBoardPanel.add(new JLabel("Score:"));
+      
+  
         scoreBoardPanel.add(scoreTextField);
+        scoreBoardPanel.add(new JLabel("Moves Remaining: "));
+        scoreBoardPanel.add(movesRemainingTextField);
         add(scoreBoardPanel);
+        
         //Resets board when new game is selected
         newGame.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
