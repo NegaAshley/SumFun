@@ -10,22 +10,17 @@ public class SumFunGame {//start SumFunGame class
 
 	public static void main(String[] args) {//start main method
 		
-		final int WIDTH = 1000;
-		final int HEIGHT = 500;
-		final boolean RESIZABLE = false;
-		final boolean VISIBLE = false;
-		
 		//Creates new SumFunFrame
 		SumFunFrame frame = new SumFunFrame();
 		
 		//Sets size of frame -- TODO adjust here to add queue later
-        frame.setSize(WIDTH, HEIGHT);
+        frame.setSize(1000,500);
         
         //Makes frame unable to be resized
-        frame.setResizable(RESIZABLE);
+        frame.setResizable(false);
         
         //Makes frame visible
-        frame.setVisible(VISIBLE);
+        frame.setVisible(true);
 
 	}//end main method
 

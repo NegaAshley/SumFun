@@ -7,9 +7,9 @@ import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.SpringLayout;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
-
 public class SumFunFrame extends JFrame{//start SumFunFrame
 	
 	public SumFunFrame(){//start SumFunFrame constructor
@@ -62,8 +62,6 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         
         JTextField scoreTextField = new JTextField(3);
         JTextField movesRemainingTextField = new JTextField(3);
-        scoreTextField.setEnabled(false);
-        movesRemainingTextField.setEnabled(false);
         
         scoreBoardPanel.add(new JLabel("Score:"));
       
