@@ -2,12 +2,7 @@
  * The SumFunFrame class is the frame of Sum Fun game where panels and menus are
  * located.
  */
-//
 package edu.ipfw.sumfun;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-
 import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
@@ -58,8 +53,8 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         initialPanel.setLayout(new BorderLayout());
         
         //Creates and adds SumFunPanel 
-       SumFunPanel panel = new SumFunPanel();
-       add(panel, BorderLayout.CENTER);
+        SumFunPanel panel = new SumFunPanel();
+        add(panel);
         
         //Creates scoreBoardPanel
         JPanel scoreBoardPanel = new JPanel();
@@ -86,7 +81,7 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
 //                panel.resetBoard(getBackground());
             }
         });
-
+        //test commment
+        //changes
 	}//end SumFunFrame constructor
-	
 }//end SumFunFrame
