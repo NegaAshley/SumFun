@@ -21,10 +21,12 @@ public class SumFunGame {//start SumFunGame class
 		SumFunFrame frame = new SumFunFrame();
 		
 		//Sets size of frame -- TODO adjust here to add queue later
+
         frame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
         
         //Sets location of frame on screen
         frame.setLocation(FRAME_LOCATION_X, FRAME_LOCATION_Y);
+
         
         //Makes frame unable to be resized
         frame.setResizable(RESIZABLE);
