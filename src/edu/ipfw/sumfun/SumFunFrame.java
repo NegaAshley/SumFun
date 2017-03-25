@@ -3,6 +3,9 @@
  * located.
  */
 package edu.ipfw.sumfun;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -42,9 +45,16 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
             }
         });
         
+        //JPanel panel1 = new JPanel();
+       // panel1.setLayout(new GridLayout(2, 1));
+        
+     //   SumFunPanel panel = new SumFunPanel();
+   //     panel1.add(panel);
+ //       add(panel1);
+        
         //Creates and adds SumFunPanel 
-        SumFunPanel panel = new SumFunPanel();
-        add(panel);
+       SumFunPanel panel = new SumFunPanel();
+       add(panel, BorderLayout.CENTER);
         
         //Resets board when new game is selected
         newGame.addActionListener(new ActionListener(){
@@ -53,5 +63,8 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
             }
         });
         
+        
+        
 	}//end SumFunFrame constructor
+	
 }//end SumFunFrame

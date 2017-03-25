@@ -3,6 +3,8 @@
  */
 package edu.ipfw.sumfun;
 import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 import java.awt.event.*;//Save this for action listener
 import java.util.*;
 import javax.swing.*;
@@ -29,8 +31,15 @@ class SumFunPanel extends JPanel{//start SumFunPanel class
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
         for (int row = 0; row < GRID_ROWS; row++) {
             for (int col = 0; col < GRID_COLS; col++) {
-                Tile newTile = new Tile(row, col, Color.GRAY);
-                tiles.add(newTile);
+            
+               // Tile newTile = new Tile(row, col, Color.GRAY);
+                //tiles.add(newTile);
+            	
+            	JPanel panel = new JPanel();
+            	Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
+            	panel.setBackground(Color.LIGHT_GRAY);
+            	panel.setBorder(blackBorder);
+            	add(panel);
                 
                 //TODO Put code here for random tile numbers
                 
