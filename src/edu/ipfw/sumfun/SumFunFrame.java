@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.SpringLayout;
+
+import java.awt.BorderLayout;
 import java.awt.Container;
 public class SumFunFrame extends JFrame{//start SumFunFrame
 	
@@ -44,6 +46,12 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
             }
         });
         
+        //Initial panel to be added to frame
+        //This panel is intermediate, so we can add another panel
+        //on the right side of the frame but only in the north space
+        JPanel initialPanel = new JPanel();
+        initialPanel.setLayout(new BorderLayout());
+        
         //Creates and adds SumFunPanel 
         SumFunPanel panel = new SumFunPanel();
         add(panel);
@@ -51,9 +59,6 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         //Creates scoreBoardPanel
         JPanel scoreBoardPanel = new JPanel();
         scoreBoardPanel.setLayout(new GridLayout(2, 2));
-        
-       
-
         
         JTextField scoreTextField = new JTextField(3);
         JTextField movesRemainingTextField = new JTextField(3);
@@ -64,7 +69,11 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         scoreBoardPanel.add(scoreTextField);
         scoreBoardPanel.add(new JLabel("Moves Remaining: "));
         scoreBoardPanel.add(movesRemainingTextField);
-        add(scoreBoardPanel);
+        
+        initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
+        
+        //Add initial panel
+        add(initialPanel);
         
         //Resets board when new game is selected
         newGame.addActionListener(new ActionListener(){
