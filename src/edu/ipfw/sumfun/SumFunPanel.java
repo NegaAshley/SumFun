@@ -7,7 +7,7 @@ import java.awt.event.*;//Save this for action listener
 import java.util.*;
 import javax.swing.*;
 
-class SumFunPanel extends JPanel{//start SumFunPanel class
+public class SumFunPanel extends JPanel{//start SumFunPanel class
 	//Number of rows and columns in the grid
     public static final int GRID_ROWS = 9;
     public static final int GRID_COLS = 9;
