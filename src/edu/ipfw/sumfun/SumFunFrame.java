@@ -52,6 +52,6 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
 //                panel.resetBoard(getBackground());
             }
         });
-        
+        //test commments
 	}//end SumFunFrame constructor
 }//end SumFunFrame
