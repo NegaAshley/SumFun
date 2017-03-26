@@ -73,11 +73,16 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         scoreTextField.setEnabled(false);
         movesRemainingTextField.setEnabled(false);
         
+        //Temporary values
+        scoreTextField.setText("0");
+        movesRemainingTextField.setText("100");
+        
         //Adds JLabels and text fields for Score and Moves Remaining
         scoreBoardPanel.add(new JLabel("Score:"));
         scoreBoardPanel.add(scoreTextField);
         scoreBoardPanel.add(new JLabel("Moves Remaining: "));
         scoreBoardPanel.add(movesRemainingTextField);
+        
         
         //Add scoreboard panel to the north of initialPanel
         initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);

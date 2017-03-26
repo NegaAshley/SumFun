@@ -37,13 +37,19 @@ public class GameBoardModel {
 		return true;
 	}
 	
-	public void resetBoard(){//clears gameBoard to all NULL references
+	public void resetBoard(){//clears gameBoard to all NULL references (or zeros?)
 		
 	}
 	
 	private boolean isValid(int i, int j){//determines if a move at given coordinates is valid
 		return true;
 	}
+	/*
+	 * Getter for tileGrid
+	 */
+	public TileModel [][] getTileGrid(){//start getTileGrid method
+		return tileGrid;
+	}//end getTileGrid method
 }
 
 //end of GameBoard class

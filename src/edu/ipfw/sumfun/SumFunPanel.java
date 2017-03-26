@@ -32,10 +32,9 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
                 TileView newTile = new TileView(row, col, Color.GRAY);
                 tiles.add(newTile);
                 
-                //TODO Put code here for random tile numbers
                 
                 //Adds MouseListener to SumFunPanel
-                //TODO Put code here for interacting with tiles
+                //TODO Put code here when tiles are interacted with
 //                addMouseListener(new MouseAdapter() {
 //
 //                    //Event occurs when mouse is clicked on panel
@@ -45,7 +44,7 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
 //                         * contains the x,y coordinates
 //                         */
 //                        if(e.getButton() == 1 && newTile.contains(e.getX(), e.getY())){
-
+                				//code here for action
 //                       }
 //                    }
 //                });
@@ -59,10 +58,16 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        
+        //TODO figure out how to show value of actual tile
+//        for(int i = 0; i < GRID_ROWS; i++){
+//        	for(int j = 0; j < GRID_COLS; j++){
+//        		tile.draw()
+//        	}
+//        }
         //Draws tiles onto panel
+        //Temporarily drew random tiles, but these are not the actual TileModels
         for(TileView tile: tiles){
-            tile.draw(g2, new TileModel(2));
+            tile.draw(g2, TileModel.createRandomTile());
         }
     }
     
