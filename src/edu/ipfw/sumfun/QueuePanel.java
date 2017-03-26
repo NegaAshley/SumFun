@@ -37,7 +37,7 @@ public class QueuePanel extends JPanel{
         
         //Draws tiles onto panel
         for(TileView tile: queueTiles){
-            tile.draw(g2);
+            tile.draw(g2, new TileModel(2));
         }
     }
 

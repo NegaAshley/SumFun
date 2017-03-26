@@ -29,7 +29,6 @@ class TileView{//start Tile class
         g2.setPaint(tileOutlineColor);
         Rectangle2D r = new Rectangle2D.Double(x, y, SIZE, SIZE);
         g2.draw(r);  
-        //TODO figure out how to get TileModel value here
         g2.drawString(String.valueOf(tile.getValue()), x + (SIZE / 2), y + (SIZE / 2));
         
     }//end draw method
