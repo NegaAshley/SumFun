@@ -7,7 +7,7 @@ package edu.ipfw.sumfun;
 import java.util.*;
 
 public class GameBoard {
-	private ArrayList<ArrayList<Tile>> gameBoard;//2D ArrayList of Tiles representing the game board. 
+	private ArrayList<ArrayList<TileView>> gameBoard;//2D ArrayList of Tiles representing the game board. 
 	
 	
 	public GameBoard(){
@@ -18,7 +18,7 @@ public class GameBoard {
 		
 	}
 	
-	public boolean addTile(int i, int j, Tile t){//takes coordinates and a tile, and attempts to place the tile at that place
+	public boolean addTile(int i, int j, TileView t){//takes coordinates and a tile, and attempts to place the tile at that place
 		return true;
 	}
 	
