@@ -16,7 +16,8 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
     public static final int HEIGHT = 50;
     public static final int WIDTH = 50;
     
-    ArrayList <TileView> tiles = new ArrayList<>();//ArrayList where tiles are located
+   
+    private TileView [][] tiles=new TileView[GRID_ROWS][GRID_COLS];//2D Array where tiles are located
     
     /**
      * SumFunPanel constructor
@@ -30,7 +31,8 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
         for (int row = 0; row < GRID_ROWS; row++) {
             for (int col = 0; col < GRID_COLS; col++) {
                 TileView newTile = new TileView(row, col, Color.GRAY);
-                tiles.add(newTile);
+                tiles[row][col]=newTile;
+                //tiles.add(newTile);
                 
                 
                 //Adds MouseListener to SumFunPanel
@@ -64,11 +66,24 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
 //        		tile.draw()
 //        	}
 //        }
+//        TileView tile=new TileView(0, 0, Color.black);
+//        for(int i = 0; i < GRID_ROWS; i++){
+//        	for(int j = 0; j < GRID_COLS; j++){
+//        		tile.draw(g2, board.getTileGrid()[i][j]);
+//        	}
+//        }
+        
         //Draws tiles onto panel
         //Temporarily drew random tiles, but these are not the actual TileModels
-        for(TileView tile: tiles){
-            tile.draw(g2, TileModel.createRandomTile());
+       int j=0;
+        for(int i = 0; i < GRID_ROWS; i++){
+        	for(TileView tile: tiles[i]){
+        		tile.draw(g2, GameBoardView.getGameBoard().getTileGrid()[i][j]);
+        		j++;
+        	}
+        	j=0;
         }
+       
     }
     
 }//end SumFunPanel class

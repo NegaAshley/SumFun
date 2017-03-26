@@ -20,6 +20,7 @@ public class UntimedGame {
 	
 	public void start(){//initializes the game
 		populateQueue();
+		gameBoard=new GameBoardModel();
 		//do other things
 	}
 	
@@ -56,6 +57,10 @@ public class UntimedGame {
 	
 	private boolean calculateSum(int mod){//not actually implemented, only has a return statement to get rid of the errors
 		return true;
+	}
+	
+	public GameBoardModel getGameBoard(){
+		return gameBoard;
 	}
 	
 }
