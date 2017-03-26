@@ -6,7 +6,7 @@
  */
 package edu.ipfw.sumfun;
 
-public class SumFunGameView {//start SumFunGame class
+public class GameBoardView {//start SumFunGame class
 
 	public static void main(String[] args) {//start main method
 		final int FRAME_WIDTH = 1000;
