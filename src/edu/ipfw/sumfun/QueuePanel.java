@@ -1,5 +1,6 @@
 package edu.ipfw.sumfun;
 
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 public class QueuePanel extends JPanel{
@@ -16,6 +17,8 @@ public class QueuePanel extends JPanel{
 	 * Constructor
 	 */
 	public QueuePanel() {
+		
+		setLayout(new GridLayout(5, 1, 4, 4));
 		
 	}// end Constructor
 

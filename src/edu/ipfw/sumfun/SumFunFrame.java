@@ -77,32 +77,17 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         JPanel queuePanel = new JPanel();
         queuePanel.setLayout(new GridLayout(5, 1, 4, 4));
         
-        Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
-        JPanel qPanel = new JPanel();
-        qPanel.setBackground(Color.LIGHT_GRAY);
-        qPanel.setBorder(blackBorder);
+        Tile queueTile = new Tile(-1, -1, Color.GRAY);
+        Tile queueTile1 = new Tile(-1, -1, Color.GRAY);
+        Tile queueTile2 = new Tile(-1, -1, Color.GRAY);
+        Tile queueTile3 = new Tile(-1, -1, Color.GRAY);
+        Tile queueTile4 = new Tile(-1, -1, Color.GRAY);
         
-        JPanel qPanel1 = new JPanel();
-        qPanel1.setBackground(Color.LIGHT_GRAY);
-        qPanel1.setBorder(blackBorder);
-        
-        JPanel qPanel2 = new JPanel();
-        qPanel2.setBackground(Color.LIGHT_GRAY);
-        qPanel2.setBorder(blackBorder);
-        
-        JPanel qPanel3 = new JPanel();
-        qPanel3.setBackground(Color.LIGHT_GRAY);
-        qPanel3.setBorder(blackBorder);
-        
-        JPanel qPanel4 = new JPanel();
-        qPanel4.setBackground(Color.LIGHT_GRAY);
-        qPanel4.setBorder(blackBorder);
-        
-        queuePanel.add(qPanel);
-        queuePanel.add(qPanel1);
-        queuePanel.add(qPanel2);
-        queuePanel.add(qPanel3);
-        queuePanel.add(qPanel4);
+        queuePanel.add(queueTile);
+        queuePanel.add(queueTile1);
+        queuePanel.add(queueTile2);
+        queuePanel.add(queueTile3);
+        queuePanel.add(queueTile4);
         
         initialPanel.add(queuePanel, BorderLayout.CENTER);
         
