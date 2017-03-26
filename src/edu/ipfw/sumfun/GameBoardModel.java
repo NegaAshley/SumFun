@@ -16,12 +16,13 @@ public class GameBoardModel {
 	}
 	
 	public void populateBoard(){//populate the gameBoard with Tiles
+		tileGrid=new TileModel[TILE_GRID_WIDTH][TILE_GRID_LENGTH];
 		for(int i = 0; i < TILE_GRID_WIDTH; i++){
 			for(int j = 0; j < TILE_GRID_LENGTH; j++){
-				if(i == 0 || i == 8 || j == 1 || j == 8){
+				if(i == 0 || i == TILE_GRID_WIDTH-1 || j == 0 || j == TILE_GRID_WIDTH-1){
 					//Then this is the surrounding part of the grid
 					//Make the value of the TileModel zero
-					tileGrid[i][j] = new TileModel(0);
+					tileGrid[i][j] = new TileModel(-1);
 					continue;
 				}
 				tileGrid[i][j] = TileModel.createRandomTile();

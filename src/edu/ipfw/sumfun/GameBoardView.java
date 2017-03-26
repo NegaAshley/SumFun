@@ -7,12 +7,14 @@
 package edu.ipfw.sumfun;
 
 public class GameBoardView {//start SumFunGame class
-
+	private static UntimedGame untimedGame;
+	
 	public static void main(String[] args) {//start main method
 		final int FRAME_WIDTH = 1000;
 		final int FRAME_LENGTH = 500;
 		final boolean FRAME_RESIZABLE = false;
 		final boolean FRAME_VISIBLE = true;
+		untimedGame=new UntimedGame();
 		
 		//Creates new SumFunFrame
 		SumFunFrame frame = new SumFunFrame();
@@ -27,5 +29,9 @@ public class GameBoardView {//start SumFunGame class
         frame.setVisible(FRAME_VISIBLE);
 
 	}//end main method
+	
+	public static GameBoardModel getGameBoard(){
+		return untimedGame.getGameBoard();
+	}
 
 }//end SumFunGame class
