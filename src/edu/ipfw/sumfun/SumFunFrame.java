@@ -58,10 +58,14 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         SumFunPanel panel = new SumFunPanel();
         add(panel);
         
+        //Add initial panel to right of SumFunPanel
+        add(initialPanel);
+        
         //Creates scoreBoardPanel
         JPanel scoreBoardPanel = new JPanel();
         scoreBoardPanel.setLayout(new GridLayout(2, 2));
         
+        //Instantiate new TextFields for score and moves
         JTextField scoreTextField = new JTextField(3);
         JTextField movesRemainingTextField = new JTextField(3);
         
@@ -75,30 +79,13 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         scoreBoardPanel.add(new JLabel("Moves Remaining: "));
         scoreBoardPanel.add(movesRemainingTextField);
         
-        
         //Add scoreboard panel to the north of initialPanel
         initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
         
-        //Queue
-        JPanel queuePanel = new JPanel();
-        queuePanel.setLayout(new GridLayout(5, 1, 4, 4));
-        
-        TileView queueTile = new TileView(-1, -1, Color.GRAY);
-        TileView queueTile1 = new TileView(-1, -1, Color.GRAY);
-        TileView queueTile2 = new TileView(-1, -1, Color.GRAY);
-        TileView queueTile3 = new TileView(-1, -1, Color.GRAY);
-        TileView queueTile4 = new TileView(-1, -1, Color.GRAY);
-        
-//        queuePanel.add(queueTile);
-//        queuePanel.add(queueTile1);
-//        queuePanel.add(queueTile2);
-//        queuePanel.add(queueTile3);
-//        queuePanel.add(queueTile4);
-        
-        initialPanel.add(queuePanel, BorderLayout.CENTER);
-        
-        //Add initial panel 
-        add(initialPanel);
+        //Instantiate a new QueuePanel
+        QueuePanel qp = new QueuePanel();
+
+        initialPanel.add(qp);
         
         //Resets board when new game is selected
         newGame.addActionListener(new ActionListener(){

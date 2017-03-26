@@ -29,7 +29,7 @@ class TileView{//start Tile class
         g2.setPaint(tileOutlineColor);
         Rectangle2D r = new Rectangle2D.Double(x, y, SIZE, SIZE);
         g2.draw(r);  
-        g2.drawString(String.valueOf(tile.getValue()), x + (SIZE / 2), y + (SIZE / 2));
+        g2.drawString(String.valueOf(tile.getValue()), x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
         
     }//end draw method
     
