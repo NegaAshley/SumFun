@@ -61,11 +61,6 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         //Creates scoreBoardPanel
         JPanel scoreBoardPanel = new JPanel();
         scoreBoardPanel.setLayout(new GridLayout(2, 2));
-        
-
-        //Text fields for score and moves
-
-        //Creates scoreTextField and movesRemainingTextField
 
         JTextField scoreTextField = new JTextField(3);
         JTextField movesRemainingTextField = new JTextField(3);
@@ -85,10 +80,23 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
         
         //Queue
-        QueuePanel qp = new QueuePanel();
-        initialPanel.add(qp);
+
+        JPanel queuePanel = new JPanel();
+        queuePanel.setLayout(new GridLayout(5, 1, 4, 4));
         
-        initialPanel.add(qp, BorderLayout.CENTER);
+        TileView queueTile = new TileView(-1, -1, Color.GRAY);
+        TileView queueTile1 = new TileView(-1, -1, Color.GRAY);
+        TileView queueTile2 = new TileView(-1, -1, Color.GRAY);
+        TileView queueTile3 = new TileView(-1, -1, Color.GRAY);
+        TileView queueTile4 = new TileView(-1, -1, Color.GRAY);
+        
+//        queuePanel.add(queueTile);
+//        queuePanel.add(queueTile1);
+//        queuePanel.add(queueTile2);
+//        queuePanel.add(queueTile3);
+//        queuePanel.add(queueTile4);
+        
+        initialPanel.add(queuePanel, BorderLayout.CENTER);
         
         //Add initial panel
         add(initialPanel);
