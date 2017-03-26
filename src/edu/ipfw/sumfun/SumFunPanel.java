@@ -16,7 +16,7 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
     public static final int HEIGHT = 50;
     public static final int WIDTH = 50;
     
-    ArrayList <Tile> tiles = new ArrayList<>();//ArrayList where tiles are located
+    ArrayList <TileView> tiles = new ArrayList<>();//ArrayList where tiles are located
     
     /**
      * SumFunPanel constructor
@@ -29,7 +29,7 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
         for (int row = 0; row < GRID_ROWS; row++) {
             for (int col = 0; col < GRID_COLS; col++) {
-                Tile newTile = new Tile(row, col, Color.GRAY);
+                TileView newTile = new TileView(row, col, Color.GRAY);
                 tiles.add(newTile);
                 
                 //TODO Put code here for random tile numbers
@@ -61,7 +61,7 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
         Graphics2D g2 = (Graphics2D) g;
         
         //Draws tiles onto panel
-        for(Tile tile: tiles){
+        for(TileView tile: tiles){
             tile.draw(g2);
         }
     }
