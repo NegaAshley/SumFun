@@ -62,7 +62,7 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
         
         //Draws tiles onto panel
         for(TileView tile: tiles){
-            tile.draw(g2);
+            tile.draw(g2, new TileModel(2));
         }
     }
     
