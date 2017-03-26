@@ -62,15 +62,26 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         JPanel scoreBoardPanel = new JPanel();
         scoreBoardPanel.setLayout(new GridLayout(2, 2));
         
+<<<<<<< HEAD
         //Text fields for score and moves
+=======
+        //Creates scoreTextField and movesRemainingTextField
+>>>>>>> branch 'master' of https://github.com/NegaAshley/SumFun.git
         JTextField scoreTextField = new JTextField(3);
         JTextField movesRemainingTextField = new JTextField(3);
         
+        //Makes text fields uneditable
+        scoreTextField.setEnabled(false);
+        movesRemainingTextField.setEnabled(false);
+        
+        //Adds JLabels and text fields for Score and Moves Remaining
         scoreBoardPanel.add(new JLabel("Score:"));
         scoreBoardPanel.add(scoreTextField);
         scoreBoardPanel.add(new JLabel("Moves Remaining: "));
         scoreBoardPanel.add(movesRemainingTextField);
         
+        
+        //Add scoreboard panel to the north of initialPanel
         initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
         
         //Queue
@@ -100,7 +111,7 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
 //                panel.resetBoard(getBackground());
             }
         });
-        //test commment
+        //test comment
         //changes
 	}//end SumFunFrame constructor
 }//end SumFunFrame
