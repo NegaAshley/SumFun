@@ -1,5 +1,7 @@
 /*
- * The TileModel class represents the physical version of the tile.
+ * The TileModel class represents the physical version of the tile.  It keeps track of
+ * the value of the TileModel as well as the references to the TileModels surrounding
+ * this TileModel.
  */
 package edu.ipfw.sumfun;
 
