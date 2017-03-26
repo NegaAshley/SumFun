@@ -8,7 +8,7 @@ import java.util.*;
 
 public class UntimedGame {
 	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
-	private AbstractQueue<Tile> tileQueue;//holds the queue of tiles
+	private ArrayList<Tile> tileQueue=new ArrayList<>();//holds the queue of tiles
 	private GameBoard gameBoard;//handles details of board state
 	private int points;//holds the player's score
 	private int low=0;//the lowest number that be randomly generated
@@ -25,7 +25,7 @@ public class UntimedGame {
 	}
 	
 	public Tile selectQueueTile(){//returns the head of the queue
-		return tileQueue.peek();
+		return tileQueue.get(0);
 	}
 	
 	public boolean placeTile(){//not actually implemented, only has a return statement to get rid of the errors
@@ -47,11 +47,12 @@ public class UntimedGame {
 	}
 	
 	private void pushQueue(){//adds a new tile to the queue after one has been removed
+		tileQueue.remove(0);
 		int num=low + (int)(Math.random() * ((high - low) + 1));
 		Tile t=new Tile(4, 0, Color.gray);
 		t.setValue(num);
 		tileQueue.add(t);
-		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust.
+		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}
 	
 	private boolean calculateSum(int mod){//not actually implemented, only has a return statement to get rid of the errors
