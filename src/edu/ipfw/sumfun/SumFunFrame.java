@@ -61,7 +61,7 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         //Creates scoreBoardPanel
         JPanel scoreBoardPanel = new JPanel();
         scoreBoardPanel.setLayout(new GridLayout(2, 2));
-        
+
         JTextField scoreTextField = new JTextField(3);
         JTextField movesRemainingTextField = new JTextField(3);
         
@@ -80,6 +80,7 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
         
         //Queue
+
         JPanel queuePanel = new JPanel();
         queuePanel.setLayout(new GridLayout(5, 1, 4, 4));
         
