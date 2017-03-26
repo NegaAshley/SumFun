@@ -8,16 +8,22 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.SpringLayout;
 import javax.swing.border.Border;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+
+/**
+ * 
+ * @author Jake
+ *
+ */
 public class SumFunFrame extends JFrame{//start SumFunFrame
 	
 	public SumFunFrame(){//start SumFunFrame constructor
 		
 		super("Sum Fun");//sets title of window
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		setLayout(new GridLayout(1, 1));//TODO maybe remove
 		//Creates and sets the menu bar
         JMenuBar bar = new JMenuBar();
@@ -65,25 +71,10 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         JPanel scoreBoardPanel = new JPanel();
         scoreBoardPanel.setLayout(new GridLayout(2, 2));
         
-        //Instantiate new TextFields for score and moves
-        JTextField scoreTextField = new JTextField(3);
-        JTextField movesRemainingTextField = new JTextField(3);
-        
-        //Makes text fields uneditable
-        scoreTextField.setEnabled(false);
-        movesRemainingTextField.setEnabled(false);
-        
-        //Temporary values
-        scoreTextField.setText("0");
-        movesRemainingTextField.setText("100");
-        
         //Adds JLabels and text fields for Score and Moves Remaining
         scoreBoardPanel.add(new JLabel("Score:"));
-        scoreBoardPanel.add(scoreTextField);
         scoreBoardPanel.add(new JLabel("Moves Remaining: "));
-        scoreBoardPanel.add(movesRemainingTextField);
-        
-        
+             
         //Add scoreboard panel to the north of initialPanel
         initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
         

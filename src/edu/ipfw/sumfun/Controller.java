@@ -6,12 +6,23 @@
  */
 package edu.ipfw.sumfun;
 
-public class GameBoardView {//start SumFunGame class
+/**
+ * 
+ * @author Jake
+ *
+ */
+public class Controller {//start SumFunGame class
+	
 	private static UntimedGame untimedGame;
 	
+	/**
+	 * 
+	 * @param args, the command line arguments
+	 */
 	public static void main(String[] args) {//start main method
+		
 		final int FRAME_WIDTH = 1000;
-		final int FRAME_LENGTH = 500;
+		final int FRAME_LENGTH = 525;
 		final boolean FRAME_RESIZABLE = false;
 		final boolean FRAME_VISIBLE = true;
 		untimedGame=new UntimedGame();
@@ -30,8 +41,12 @@ public class GameBoardView {//start SumFunGame class
 
 	}//end main method
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public static GameBoardModel getGameBoard(){
 		return untimedGame.getGameBoard();
-	}
+	}//end getGameBoard
 
 }//end SumFunGame class

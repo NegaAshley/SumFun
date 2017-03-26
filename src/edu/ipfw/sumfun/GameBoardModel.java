@@ -6,15 +6,26 @@ package edu.ipfw.sumfun;
 
 import java.util.*;
 
+/**
+ * 
+ * @author Ashley
+ *
+ */
 public class GameBoardModel {
 	private TileModel [][] tileGrid;//2D array of TileModels
 	final int TILE_GRID_WIDTH = 9;
 	final int TILE_GRID_LENGTH = 9;
 	
+	/**
+	 * 
+	 */
 	public GameBoardModel(){
 		populateBoard();
-	}
+	}//end Constructor
 	
+	/**
+	 * 
+	 */
 	public void populateBoard(){//populate the gameBoard with Tiles
 		tileGrid=new TileModel[TILE_GRID_WIDTH][TILE_GRID_LENGTH];
 		for(int i = 0; i < TILE_GRID_WIDTH; i++){
@@ -28,29 +39,51 @@ public class GameBoardModel {
 				tileGrid[i][j] = TileModel.createRandomTile();
 			}
 		}
-	}
+	}//end populateBoard
 	
+	/**
+	 * 
+	 * @param i
+	 * @param j
+	 * @param t
+	 * @return
+	 */
 	public boolean addTile(int i, int j, TileModel t){//takes coordinates and a tile, and attempts to place the tile at that place
 		return true;
-	}
+	}//addTile
 	
+	/**
+	 * 
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	public boolean removeTile( int i, int j){//takes coordinates and attempts to remove the tile at that place if one exists
 		return true;
-	}
+	}//end removeTile
 	
+	/**
+	 * 
+	 */
 	public void resetBoard(){//clears gameBoard to all NULL references (or zeros?)
 		
-	}
+	}//end resetBoard
 	
+	/**
+	 * 
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	private boolean isValid(int i, int j){//determines if a move at given coordinates is valid
 		return true;
-	}
+	}//end isValid}
+	
 	/*
 	 * Getter for tileGrid
 	 */
 	public TileModel [][] getTileGrid(){//start getTileGrid method
 		return tileGrid;
 	}//end getTileGrid method
-}
-
-//end of GameBoard class
+	
+}//end class GameBoardModel
