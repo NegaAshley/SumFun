@@ -7,8 +7,9 @@ package edu.ipfw.sumfun;
 import java.util.*;
 
 public class GameBoardModel {
-	private ArrayList<ArrayList<TileModel>> gameBoard;//2D ArrayList of Tiles representing the game board. 
-	
+	private ArrayList<ArrayList<TileModel>> tileGrid;//2D ArrayList of Tiles representing the game board. 
+	final int TILE_GRID_WIDTH = 9;
+	final int TILE_GRID_LENGTH = 9;
 	
 	public GameBoardModel(){
 		

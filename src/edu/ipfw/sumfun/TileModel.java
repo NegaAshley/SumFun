@@ -15,6 +15,14 @@ public class TileModel {//start ConceptualTile class
 		this.value = givenValue;
 	}//end ConceptualTile constructor
 	/*
+	 * Creates a tile with a number between 1 and 9
+	 */
+	public static TileModel createRandomTile(){//start createRandomTile method
+		TileModel randomTile;//random tile created
+		randomTile = new TileModel((int)(Math.random() * 10 + 1));
+		return randomTile;
+	}//end createRandomTile method
+	/*
 	 * Getter for value
 	 */
 	public int getValue(){//start getValue method
