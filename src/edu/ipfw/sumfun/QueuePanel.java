@@ -5,16 +5,20 @@ import java.awt.event.*;//Save this for action listener
 import java.util.*;
 import javax.swing.*;
 
-public class QueuePanel extends JPanel{//start SumFunPanel class
+/**
+ * QueuePanel is a JPanel designed to show the visual queue
+ * @author Jake
+ *
+ */
+public class QueuePanel extends JPanel{
+	
 	//Number of rows and columns in the grid
+	//Queue grid is simply one column of squares
     public static final int GRID_ROWS = 1;
     public static final int GRID_COLS = 5;
-    
-    //Height and width of tiles
-    public static final int HEIGHT = 50;
-    public static final int WIDTH = 50;
-    
-    ArrayList <TileView> queueTiles = new ArrayList<>();//ArrayList where tiles are located
+
+    //
+    ArrayList<TileView> queueTiles = new ArrayList<>();//ArrayList where tiles are located
     
     /**
      * SumFunPanel constructor
@@ -34,12 +38,13 @@ public class QueuePanel extends JPanel{//start SumFunPanel class
                 
             }
         } 
+        
     }//end SumFunPanel constructor
      
     /*
      * Paints components
      */
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         

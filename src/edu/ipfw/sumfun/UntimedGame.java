@@ -5,7 +5,13 @@
 package edu.ipfw.sumfun;
 import java.util.*;
 
+/**
+ * 
+ * @author Jake
+ *
+ */
 public class UntimedGame {
+	
 	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
 	private ArrayList<TileModel> tileQueue=new ArrayList<>();//holds the queue of tiles
 	private GameBoardModel gameBoard;//handles details of board state

@@ -22,14 +22,23 @@ class TileView{//start Tile class
         this.col = col;
     }//end Tile constructor
     
-    /*
-     * Draws the tile
+    /**
+     * 
+     * @param g2
+     * @param tile
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
-        g2.setPaint(tileOutlineColor);
+    	
+        g2.setPaint(Color.GRAY);
         Rectangle2D r = new Rectangle2D.Double(x, y, SIZE, SIZE);
-        g2.draw(r);  
-        g2.drawString(String.valueOf(tile.getValue()), x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
+        g2.draw(r);
+        
+        g2.setPaint(Color.BLACK);
+        if(tile.getValue() == -1) {
+        	g2.drawString("", x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
+        } else {
+        	g2.drawString(String.valueOf(tile.getValue()), x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
+        }
         
     }//end draw method
     
