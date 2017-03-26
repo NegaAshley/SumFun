@@ -8,7 +8,7 @@ import java.util.*;
 public class UntimedGame {
 	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
 	private ArrayList<TileModel> tileQueue=new ArrayList<>();//holds the queue of tiles
-	private GameBoard gameBoard;//handles details of board state
+	private GameBoardModel gameBoard;//handles details of board state
 	private int points;//holds the player's score
 	private int low=0;//the lowest number that be randomly generated
 	private int high=9;//the highest number that be randomly generated
