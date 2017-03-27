@@ -25,7 +25,7 @@ public class Controller {//start SumFunGame class
 		final int FRAME_LENGTH = 525;
 		final boolean FRAME_RESIZABLE = false;
 		final boolean FRAME_VISIBLE = true;
-		untimedGame=new UntimedGame();
+		untimedGame = new UntimedGame();
 		
 		//Creates new SumFunFrame
 		SumFunFrame frame = new SumFunFrame();
@@ -45,8 +45,20 @@ public class Controller {//start SumFunGame class
 	 * 
 	 * @return
 	 */
-	public static GameBoardModel getGameBoard(){
+	public static GameBoard getGameBoard(){
 		return untimedGame.getGameBoard();
 	}//end getGameBoard
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static TileModel getTileModel(int i, int j) {
+		return untimedGame.getGameBoard().getTile(i, j);
+	}//end getTileModel
+	
+	public static TileModel getQueueTileModel(int i) {
+		return untimedGame.selectQueueTile(i);
+	}
 
 }//end SumFunGame class

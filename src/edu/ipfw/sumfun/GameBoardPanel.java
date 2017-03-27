@@ -12,7 +12,7 @@ import javax.swing.*;
  * @author Ashley
  *
  */
-public class SumFunPanel extends JPanel{//start SumFunPanel class
+public class GameBoardPanel extends JPanel{//start SumFunPanel class
 	
 	//Number of rows and columns in the grid
     public static final int GRID_ROWS = 9;
@@ -24,7 +24,7 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
     /**
      * SumFunPanel constructor
      */
-    public SumFunPanel() {//start SumFunPanel constructor
+    public GameBoardPanel() {//start SumFunPanel constructor
     	
         //Creates grid of size GRID_ROWS by GRID_COLS
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
@@ -42,12 +42,31 @@ public class SumFunPanel extends JPanel{//start SumFunPanel class
 
                     //Event occurs when mouse is clicked on panel
                     public void mouseClicked(MouseEvent e){
+                    	
                         /**
                          * Checks to see left mouse button was clicked and tile 
                          * contains the x,y coordinates
                          */
                         if(e.getButton() == 1 && newTile.contains(e.getX(), e.getY())){
-                				//code here for action
+                				
+                        	//Query back-end here to get the value of the selected tile
+                        	int placementValue = Controller.getTileModel(newTile.getRow(), newTile.getCol()).getValue();
+                        	
+                        	//If the tile is empty (value is -1), then the placement is valid
+                        	if(placementValue == -1) {
+                        		
+                        		//Get the value of the first item in the queue
+                        		int queueValue = Controller.getQueueTileModel(0).getValue();
+                        		
+                        		//TEST 
+                        		//REMOVE LATER
+                        		JOptionPane.showMessageDialog(null, queueValue);
+                        		
+                        	} else {
+                        		JOptionPane.showMessageDialog(null, "Cannot place tile here!");
+                        		return;
+                        	}
+                        	
                         }
                     }
                     

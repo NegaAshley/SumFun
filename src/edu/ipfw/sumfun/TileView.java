@@ -47,11 +47,14 @@ class TileView{//start Tile class
      * contains given coordinates and false if not.
      */
     public boolean contains(int newx, int newy){//start contains method
+    	
         if(newx >= x && newx <= x+ SIZE){
+        	
             if(newy >= y && newy <= y + SIZE){
                 return true;
             }
         }
+        
         return false;
     }//end contains method
     
@@ -68,4 +71,5 @@ class TileView{//start Tile class
     public int getCol(){//start getCol method
         return col;
     }//end getCol method
+    
 }//end Tile class

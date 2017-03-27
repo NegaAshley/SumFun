@@ -11,7 +11,8 @@ import java.util.*;
  * @author Ashley
  *
  */
-public class GameBoardModel {
+public class GameBoard {
+	
 	private TileModel [][] tileGrid;//2D array of TileModels
 	final int TILE_GRID_WIDTH = 9;
 	final int TILE_GRID_LENGTH = 9;
@@ -19,7 +20,7 @@ public class GameBoardModel {
 	/**
 	 * 
 	 */
-	public GameBoardModel(){
+	public GameBoard(){
 		populateBoard();
 	}//end Constructor
 	
@@ -77,12 +78,22 @@ public class GameBoardModel {
 	 */
 	private boolean isValid(int i, int j){//determines if a move at given coordinates is valid
 		return true;
-	}//end isValid}
+	}//end isValid
+	
+	/**
+	 * 
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	public TileModel getTile(int i, int j) {
+		return tileGrid[i][j];
+	}// getTile
 	
 	/*
 	 * Getter for tileGrid
 	 */
-	public TileModel [][] getTileGrid(){//start getTileGrid method
+	public TileModel[][] getTileGrid(){//start getTileGrid method
 		return tileGrid;
 	}//end getTileGrid method
 	

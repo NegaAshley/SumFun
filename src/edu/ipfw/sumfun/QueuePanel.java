@@ -10,7 +10,7 @@ import javax.swing.*;
  * @author Jake
  *
  */
-public class QueuePanel extends JPanel{
+public class QueuePanel extends JPanel {
 	
 	//Number of rows and columns in the grid
 	//Queue grid is simply one column of squares
@@ -18,7 +18,7 @@ public class QueuePanel extends JPanel{
     public static final int GRID_COLS = 5;
 
     //
-    ArrayList<TileView> queueTiles = new ArrayList<>();//ArrayList where tiles are located
+    ArrayList<QueueTileView> queueTiles = new ArrayList<>();//ArrayList where tiles are located
     
     /**
      * SumFunPanel constructor
@@ -28,12 +28,12 @@ public class QueuePanel extends JPanel{
         //Create 5 queue tiles
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
         
-        TileView tile = new TileView(0, 0, Color.GRAY);
+        QueueTileView tile = new QueueTileView(0, 0, Color.GRAY);
         queueTiles.add(tile);
         
         for (int row = 0; row < GRID_ROWS; row++) {
             for (int col = 1; col < GRID_COLS; col++) {
-                TileView newTile = new TileView(row, col, Color.GRAY);
+                QueueTileView newTile = new QueueTileView(row, col, Color.GRAY);
                 queueTiles.add(newTile);
                 
             }
@@ -49,9 +49,11 @@ public class QueuePanel extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
         
         //Draws tiles onto panel
-        for(TileView tile: queueTiles){
-            tile.draw(g2, TileModel.createRandomTile());
+        for(int i = 0; i < queueTiles.size(); i++) {
+        	QueueTileView tile = queueTiles.get(i);
+        	tile.draw(g2, Controller.getQueueTileModel(i));
         }
+        
     }
     
 }//end SumFunPanel class

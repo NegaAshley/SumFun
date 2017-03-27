@@ -61,7 +61,7 @@ public class SumFunFrame extends JFrame{//start SumFunFrame
         initialPanel.setLayout(new BorderLayout());
         
         //Creates and adds SumFunPanel 
-        SumFunPanel panel = new SumFunPanel();
+        GameBoardPanel panel = new GameBoardPanel();
         add(panel);
         
         //Add initial panel to right of SumFunPanel
