@@ -24,8 +24,8 @@ class TileView{//start Tile class
     
     /**
      * Draws the tiles onto the grid.
-     * @param g2
-     * @param tile
+     * @param g2, the brush
+     * @param tile, the backend tile
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
     	
@@ -45,6 +45,8 @@ class TileView{//start Tile class
     /**
      * Checks to see if a tile contains given coordinates.  Returns true if tile 
      * contains given coordinates and false if not.
+     * @param newx, the x-coordinate
+     * @param newy, the y-coordinate
      */
     public boolean contains(int newx, int newy){//start contains method
     	
