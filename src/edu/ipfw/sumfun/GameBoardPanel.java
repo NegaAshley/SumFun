@@ -57,6 +57,9 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
                         		
                         		//Get the value of the first item in the queue
                         		int queueValue = Controller.getQueueTileModel(0).getValue();
+                        		Controller.setTileValue(queueValue, newTile.getRow(), newTile.getCol());
+                        		Controller.pushQueue();
+                        		Controller.repaintFrame();
                         		
                         		//TEST 
                         		//REMOVE LATER
