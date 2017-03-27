@@ -39,8 +39,22 @@ public class UntimedGame {
 		return true;
 	}
 	
-	private boolean processCornerMove(){//not actually implemented, only has a return statement to get rid of the errors
-		return true;
+	private boolean processCornerMove(TileView tile){//not actually implemented, only has a return statement to get rid of the errors
+		
+		int row = tile.getRow();
+		int column = tile.getCol();
+
+		// check for interior tile
+		if ((row >= 1 && row <= 7) && (column >= 1 && column <= 7)) {
+			// TODO add logic for scoring interior tile move
+			return false;
+		}
+		// check for corner move
+		else if ((row == 0 || row == 8) && (column == 0 || column == 8)) {
+			
+			return true;
+		}
+		
 	}
 	
 	private void populateQueue(){//initializes tileQueue with random values in the allowed range (inclusive)
@@ -66,15 +80,6 @@ public class UntimedGame {
 		// takes input tile and calculates neighboring tiles for scoring
 					int row = tile.getRow();
 					int column = tile.getCol();
-
-					// check for interior tile
-					if ((row >= 1 && row <= 7) && (column >= 1 && column <= 7)) {
-						// TODO add logic for scoring interior tile move
-
-					}
-					// check for corner move
-					if ((row == 0 || row == 8) && (column == 0 || column == 8)) {
-
 						if (row == 0) {
 							// check for top left
 							if (column == 0) {
@@ -137,7 +142,7 @@ public class UntimedGame {
 								}
 							}
 						}
-					}
+					
 	
 	
 	public GameBoard getGameBoard(){
