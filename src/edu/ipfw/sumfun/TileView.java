@@ -23,7 +23,7 @@ class TileView{//start Tile class
     }//end Tile constructor
     
     /**
-     * 
+     * Draws the tiles onto the grid.
      * @param g2
      * @param tile
      */
