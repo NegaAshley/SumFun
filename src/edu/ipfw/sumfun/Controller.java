@@ -14,6 +14,7 @@ package edu.ipfw.sumfun;
 public class Controller {//start SumFunGame class
 	
 	private static UntimedGame untimedGame;
+	private static SumFunFrame frame;
 	
 	/**
 	 * 
@@ -28,7 +29,7 @@ public class Controller {//start SumFunGame class
 		untimedGame = new UntimedGame();
 		
 		//Creates new SumFunFrame
-		SumFunFrame frame = new SumFunFrame();
+		 frame = new SumFunFrame();
 		
 		//Sets size of frame -- TODO adjust here to add queue later
         frame.setSize(FRAME_WIDTH,FRAME_LENGTH);
@@ -53,12 +54,24 @@ public class Controller {//start SumFunGame class
 	 * 
 	 * @return
 	 */
-	public static TileModel getTileModel(int i, int j) {
-		return untimedGame.getGameBoard().getTile(i, j);
+	public static TileModel getTileModel(int row, int col) {
+		return untimedGame.getGameBoard().getTile(row, col);
 	}//end getTileModel
 	
 	public static TileModel getQueueTileModel(int i) {
 		return untimedGame.selectQueueTile(i);
+	}
+	
+	public static void setTileValue(int value, int row, int col){
+		untimedGame.getGameBoard().getTile(row, col).setValue(value);
+	}
+	
+	public static void pushQueue(){
+		untimedGame.pushQueue();
+	}
+	
+	public static void repaintFrame(){
+		frame.repaint();
 	}
 
 }//end SumFunGame class

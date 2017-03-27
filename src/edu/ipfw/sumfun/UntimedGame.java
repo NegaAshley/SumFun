@@ -53,7 +53,7 @@ public class UntimedGame {
 		}
 	}
 	
-	private void pushQueue(){//adds a new tile to the queue after one has been removed
+	public void pushQueue(){//adds a new tile to the queue after one has been removed
 		tileQueue.remove(0);
 		int num=low + (int)(Math.random() * ((high - low) + 1));
 		TileModel t=new TileModel(4);
