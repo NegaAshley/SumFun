@@ -52,7 +52,13 @@ public class GameBoard {
 	 * @return
 	 */
 	public boolean addTile(int i, int j, TileModel t){//takes coordinates and a tile, and attempts to place the tile at that place
-		return true;
+		
+		if(tileGrid[i][j].getValue() == -1){
+			tileGrid[i][j] = t;
+			return true;
+		}else{
+			return false;
+		}
 	}//addTile
 	
 	/**
@@ -62,6 +68,7 @@ public class GameBoard {
 	 * @return
 	 */
 	public boolean removeTile( int i, int j){//takes coordinates and attempts to remove the tile at that place if one exists
+		tileGrid[i][j] = new TileModel(-1);
 		return true;
 	}//end removeTile
 	

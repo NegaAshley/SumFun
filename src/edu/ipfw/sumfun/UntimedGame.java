@@ -73,13 +73,17 @@ public class UntimedGame {
 		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}
 	
-	private boolean calculateSum(int i, int j, int mod){//not actually implemented, only has a return statement to get rid of the errors
+	private boolean calculateSum(int i, int j, int mod){
 		
+		//Retrieval of tile refenced by i and j
 		TileModel t = Controller.getGameBoard().getTile(i, j);
 		
+		//running total of neighboring tile values
 		int total = 0;
+		//running count of neighboring tiles for poitn value (x10)
 		int neighbors = 0;
 		
+		//checking all potential neighbors
 		if(t.getEast()!=null){
 			total += t.getEast().getValue();
 			neighbors++;
@@ -113,14 +117,22 @@ public class UntimedGame {
 			neighbors++;
 		}
 		
-		
+		//Check if value of placed tile = total neighboring tile values modulo 10
 		if((total%10) == mod){
 			
+			//Retrieves current score from scor label
 			int currentScore = Integer.parseInt(Controller.getFrame().getScoreLabel().getText());
+			
+			//Sets value to previous + (number of neighbors * 10)
 			currentScore += neighbors*10;
+			
+			//Retrieves score label and updates text to new score value
 			Controller.getFrame().getScoreLabel().setText(Integer.toString(currentScore));
+			
+			//Removes placed tile
 			Controller.getGameBoard().removeTile(i, j);
 			
+			//Running check to remove all neighboring tiles if used to score
 			if(t.getEast()!=null){
 				Controller.getGameBoard().removeTile(i+1, j);
 			}
