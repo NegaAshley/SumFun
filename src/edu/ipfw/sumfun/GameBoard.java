@@ -6,6 +6,8 @@ package edu.ipfw.sumfun;
 
 import java.util.*;
 
+import javax.swing.JPanel;
+
 /**
  * 
  * @author Ashley
@@ -96,5 +98,6 @@ public class GameBoard {
 	public TileModel[][] getTileGrid(){//start getTileGrid method
 		return tileGrid;
 	}//end getTileGrid method
+	
 	
 }//end class GameBoardModel

@@ -15,7 +15,7 @@ public class Controller {//start SumFunGame class
 	
 	private static UntimedGame untimedGame;
 	private static SumFunFrame frame;
-	
+	//test
 	/**
 	 * 
 	 * @param args, the command line arguments
@@ -72,6 +72,10 @@ public class Controller {//start SumFunGame class
 	
 	public static void repaintFrame(){
 		frame.repaint();
+	}
+	public static SumFunFrame getFrame(){
+		
+		return frame;
 	}
 
 }//end SumFunGame class

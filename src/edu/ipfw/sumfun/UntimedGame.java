@@ -39,18 +39,15 @@ public class UntimedGame {
 		return true;
 	}
 	
-	private boolean processCornerMove(TileView tile){//not actually implemented, only has a return statement to get rid of the errors
-		
-		int row = tile.getRow();
-		int column = tile.getCol();
+	private boolean processCornerMove(int i, int j){//not actually implemented, only has a return statement to get rid of the errors
 
 		// check for interior tile
-		if ((row >= 1 && row <= 7) && (column >= 1 && column <= 7)) {
-			// TODO add logic for scoring interior tile move
+		if ((i >= 1 && i <= 7) && (j >= 1 && j <= 7)) {
+			
 			return false;
 		}
 		// check for corner move
-		else if ((row == 0 || row == 8) && (column == 0 || column == 8)) {
+		else if ((i == 0 || i == 8) && (j == 0 || j == 8)) {
 			
 			return true;
 		}
@@ -76,72 +73,82 @@ public class UntimedGame {
 		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}
 	
-	private boolean calculateSum(TileView tile){//not actually implemented, only has a return statement to get rid of the errors
-		// takes input tile and calculates neighboring tiles for scoring
-					int row = tile.getRow();
-					int column = tile.getCol();
-						if (row == 0) {
-							// check for top left
-							if (column == 0) {
-
-								TileModel south = Controller.getGameBoard().getTile(row + 1,column);
-								TileModel southeast = Controller.getGameBoard().getTile(row + 1,column + 1);
-								TileModel east = Controller.getGameBoard().getTile(row,column + 1);
-								int total = (south.getValue() + southeast.getValue() + east
-										.getValue());
-								if (Controller.getGameBoard().getTile(row, column).getValue() == total % 10) {
-
-									PointBoardView pbv = new PointBoardView();
-									pbv.setScore(pbv.getScore() + Controller.getGameBoard().getTile(row, column).getValue());
-									
-								}
-							}
-							// check for top right
-							if (column == 8) {
-								TileModel south = Controller.getGameBoard().getTile(row + 1,column);
-								TileModel southwest = Controller.getGameBoard().getTile(row - 1,column - 1);
-								TileModel west = Controller.getGameBoard().getTile(row,column - 1);
-								int total = (south.getValue() + southwest.getValue() + west
-										.getValue());
-								if (Controller.getGameBoard().getTile(row, column).getValue() == total % 10) {
-
-									PointBoardView pbv = new PointBoardView();
-									pbv.setScore(pbv.getScore() + Controller.getGameBoard().getTile(row, column).getValue());
-								}
-							}
-
-							if (row == 8) {
-								// check for bottom left
-								if (column == 0) {
-									TileModel north = Controller.getGameBoard().getTile(row - 1,column);
-									TileModel northeast = Controller.getGameBoard().getTile(row - 1,column + 1);
-									TileModel east = Controller.getGameBoard().getTile(row,column + 1);
-									int total = (north.getValue() + northeast.getValue() + east
-											.getValue());
-									if (Controller.getGameBoard().getTile(row, column).getValue() == total % 10) {
-
-										PointBoardView pbv = new PointBoardView();
-										pbv.setScore(pbv.getScore() + Controller.getGameBoard().getTile(row, column).getValue());
-									}
-								}
-								
-									// check for bottom right
-									if (column == 8) {
-										TileModel north = Controller.getGameBoard().getTile(row - 1,column);
-										TileModel northwest = Controller.getGameBoard().getTile(row - 1,column - 1);
-										TileModel west = Controller.getGameBoard().getTile(row,column - 1);
-										int total = (north.getValue()
-												+ northwest.getValue() + west.getValue());
-										if (Controller.getGameBoard().getTile(row, column).getValue() == total % 10) {
-
-											PointBoardView pbv = new PointBoardView();
-											pbv.setScore(pbv.getScore() + Controller.getGameBoard().getTile(row, column).getValue());
-											
-										}
-									}
-								}
-							}
-						}
+	private boolean calculateSum(int i, int j, int mod){//not actually implemented, only has a return statement to get rid of the errors
+		
+		TileModel t = Controller.getGameBoard().getTile(i, j);
+		
+		int total = 0;
+		int neighbors = 0;
+		
+		if(t.getEast()!=null){
+			total += t.getEast().getValue();
+			neighbors++;
+		}
+		if(t.getWest()!=null){
+			total += t.getWest().getValue();
+			neighbors++;
+		}
+		if(t.getNorth()!=null){
+			total += t.getNorth().getValue();
+			neighbors++;
+		}
+		if(t.getSouth()!=null){
+			total += t.getSouth().getValue();
+			neighbors++;
+		}
+		if(t.getNorthEast()!=null){
+			total += t.getNorthEast().getValue();
+			neighbors++;
+		}
+		if(t.getSouthEast()!=null){
+			total += t.getSouthEast().getValue();
+			neighbors++;
+		}
+		if(t.getNorthWest()!=null){
+			total += t.getNorthWest().getValue();
+			neighbors++;
+		}
+		if(t.getSouthWest()!=null){
+			total += t.getSouthWest().getValue();
+			neighbors++;
+		}
+		
+		
+		if((total%10) == mod){
+			
+			int currentScore = Integer.parseInt(Controller.getFrame().getScoreLabel().getText());
+			currentScore += neighbors*10;
+			Controller.getFrame().getScoreLabel().setText(Integer.toString(currentScore));
+			Controller.getGameBoard().removeTile(i, j);
+			
+			if(t.getEast()!=null){
+				Controller.getGameBoard().removeTile(i+1, j);
+			}
+			if(t.getWest()!=null){
+				Controller.getGameBoard().removeTile(i-1, j);
+			}
+			if(t.getNorth()!=null){
+				Controller.getGameBoard().removeTile(i, j+1);
+			}
+			if(t.getSouth()!=null){
+				Controller.getGameBoard().removeTile(i, j-1);
+			}
+			if(t.getNorthEast()!=null){
+				Controller.getGameBoard().removeTile(i+1, j+1);
+			}
+			if(t.getSouthEast()!=null){
+				Controller.getGameBoard().removeTile(i+1, j-1);
+			}
+			if(t.getNorthWest()!=null){
+				Controller.getGameBoard().removeTile(i-1, j+1);
+			}
+			if(t.getSouthWest()!=null){
+				Controller.getGameBoard().removeTile(i-1, j-1);
+			}
+		}
+		
+	}
+	
 					
 	
 	
