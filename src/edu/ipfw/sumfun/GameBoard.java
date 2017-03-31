@@ -109,6 +109,40 @@ public class GameBoard {
 	public void setTile(int i, int j, int value) {
 		tileGrid[i][j].setValue(value);
 	}
+	/*
+	 * Sets the directional references of the tileGrid
+	 */
+	public void setDirectionalReferences(){//start setDirectionalReferences method
+		for(int i = 0; i < TILE_GRID_WIDTH; i++){
+			for(int j = 0; j < TILE_GRID_LENGTH; j++){
+				if(i == 0 && j == 8){//then tile is northeastern corner tile and northeast reference is null
+					tileGrid[i][j].setNorthEast(null);
+				}
+				if(i == 8 && j == 8){//then tile is southeastern corner tile and southeast reference is null
+					tileGrid[i][j].setSouthEast(null);
+				}
+				if(i == 8 && j == 0){//then tile is southwestern corner tile and southwest reference is null
+					tileGrid[i][j].setSouthWest(null);
+				}
+				if(i == 0 && j == 0){//then tile is northwestern corner tile and northwest reference is null
+					tileGrid[i][j].setNorthWest(null);
+				}
+				if(i == 0){//then tile is on top row of grid and north reference is null
+					tileGrid[i][j].setNorth(null);
+				}
+				if(i == 8){//then tile is on bottom row of grid and south reference is null
+					tileGrid[i][j].setSouth(null);
+				}
+				if(j == 8){//then tile is on right column of grid and east reference is null
+					tileGrid[i][j].setEast(null);
+				}
+				if(j == 0){//then tile is on left column of grid and west reference is null
+					tileGrid[i][j].setWest(null);
+				}
+				
+			}
+		}
+	}//end setDirectionalReferences method
 	
 	
 }//end class GameBoardModel
