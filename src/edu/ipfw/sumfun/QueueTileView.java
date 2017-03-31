@@ -32,7 +32,7 @@ class QueueTileView {//start QueueTileView class
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
     	
-        g2.setPaint(Color.GRAY);
+        g2.setPaint(tileOutlineColor);
         Rectangle2D r = new Rectangle2D.Double(x, y, SIZE, SIZE);
         g2.draw(r);
         
