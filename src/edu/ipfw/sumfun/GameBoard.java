@@ -30,7 +30,7 @@ public class GameBoard {
 	 * 
 	 */
 	public void populateBoard(){//populate the gameBoard with Tiles
-		tileGrid=new TileModel[TILE_GRID_WIDTH][TILE_GRID_LENGTH];
+		tileGrid = new TileModel[TILE_GRID_WIDTH][TILE_GRID_LENGTH];
 		for(int i = 0; i < TILE_GRID_WIDTH; i++){
 			for(int j = 0; j < TILE_GRID_LENGTH; j++){
 				if(i == 0 || i == TILE_GRID_WIDTH-1 || j == 0 || j == TILE_GRID_WIDTH-1){
@@ -105,6 +105,10 @@ public class GameBoard {
 	public TileModel[][] getTileGrid(){//start getTileGrid method
 		return tileGrid;
 	}//end getTileGrid method
+	
+	public void setTile(int i, int j, int value) {
+		tileGrid[i][j].setValue(value);
+	}
 	
 	
 }//end class GameBoardModel

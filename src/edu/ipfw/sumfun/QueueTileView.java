@@ -3,7 +3,12 @@ package edu.ipfw.sumfun;
 import java.awt.*;
 import java.awt.geom.*;
 
-class QueueTileView {//start Tile class
+/**
+ * 
+ * @author Jake
+ *
+ */
+class QueueTileView {
 	
     public static final int SIZE = 50;//Size of Tile
     private int row, col;//Row and column location of Tile
