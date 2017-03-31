@@ -154,6 +154,9 @@ public class GameBoard {//start GameBoard class
 				System.out.print(tileGrid[row][col].getValue() + " ");
 			}
 		}
+		
+		System.out.println("");
+		
 	}//end printArray method
 	
 }//end class GameBoardModel

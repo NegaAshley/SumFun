@@ -4,24 +4,43 @@ import java.util.*;
 /**
  * The UntimedGame class controls the untimed version of the game
  * @author Jake
- *
  */
 public class UntimedGame {//start UntimedGame class
 	
-	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
+	public int movesRemaining;//counter of number of moves remaining, decrements with each successful move
 	private ArrayList<TileModel> tileQueue = new ArrayList<>();//holds the queue of tiles
 	private GameBoard gameBoard;//handles details of board state
 	private int points;//holds the player's score
-	private int low = 0;//the lowest number that be randomly generated
-	private int high = 9;//the highest number that be randomly generated
+	private int lowThreshold;//the lowest number that be randomly generated
+	private int highThreshold;//the highest number that be randomly generated
 	
 	/**
 	 * Constructor method for UntimedGame class
 	 */
-	public UntimedGame(){//start UntimedGame constructor method
-		gameBoard = new GameBoard();//create new GameBoard
-		populateQueue();//populates the queue
+	public UntimedGame() {
+		movesRemaining = 50;
+		points = 0;
+		lowThreshold = 0;
+		highThreshold = 9;
+		gameBoard = new GameBoard();
+		populateQueue();
 	}//end UntimedGame constructor method
+	
+	/**
+	 * Access method for field points
+	 * @return points, a member field containing the user's score
+	 */
+	public int getPoints() {
+		return points;
+	}//end getPoints
+	
+	/**
+	 * Access method for field movesRemaining
+	 * @return movesRemaining, a member field 
+	 */
+	public int getMovesRemaining() {
+		return movesRemaining;
+	}//end getMovesRemaining
 	
 	/*
 	 * Returns the head of the queue
@@ -39,8 +58,11 @@ public class UntimedGame {//start UntimedGame class
 	 */
 	public void placeTile(int i, int j){//start placeTile method
 		gameBoard.setTile(i, j, tileQueue.get(0).getValue());
+		movesRemaining--;
 		calculateSum(i, j, tileQueue.get(0).getValue());
 	}//end placeTile method
+	
+	//COMMENT
 	
 	/**
 	 * Populates the tileQueue with some values
@@ -48,7 +70,7 @@ public class UntimedGame {//start UntimedGame class
 	private void populateQueue(){//initializes tileQueue with random values in the allowed range (inclusive)
 		int num;
 		for(int i=1; i<=5; i++){
-			num=low + (int)(Math.random() * ((high - low) + 1));
+			num=lowThreshold + (int)(Math.random() * ((highThreshold - lowThreshold) + 1));
 			TileModel t=new TileModel(i-1);
 			t.setValue(num);
 			tileQueue.add(t);
@@ -59,7 +81,7 @@ public class UntimedGame {//start UntimedGame class
 	 */
 	public void pushQueue(){//start pushQueue start
 		tileQueue.remove(0);
-		int num=low + (int)(Math.random() * ((high - low) + 1));
+		int num=lowThreshold + (int)(Math.random() * ((highThreshold - lowThreshold) + 1));
 		TileModel t=new TileModel(4);
 		t.setValue(num);
 		tileQueue.add(t);
@@ -77,7 +99,7 @@ public class UntimedGame {//start UntimedGame class
 		//Uncomment this to test whether the calculateSum method was reached
 		//For testing
 		//TODO remove later
-		//System.out.println("Calculate sum reached");
+		System.out.println("Calculate sum reached");
 		
 		//Retrieval of tile referenced by i and j
 		TileModel t = gameBoard.getTile(i, j);
@@ -122,8 +144,13 @@ public class UntimedGame {//start UntimedGame class
 			score++;
 		}
 		
-		//Update score (10 points per tile)
-		score = score * 10;
+		//If 3 or more tiles have been removed, calculate score
+		//Otherwise, no score awarded
+		if(score >= 3) {
+			score = score * 10;
+		} else {
+			score = 0;
+		}
 		
 		//Check if value of placed tile = total neighboring tile values modulo 10
 		if((total % 10) == mod){
@@ -134,6 +161,7 @@ public class UntimedGame {//start UntimedGame class
 			//Update tile and adjacent tiles
 			removeAdjacentTiles(t);
 			
+			//Test print statement
 			System.out.println("move successful");
 			
 			//Make calls to notifyObservers, etc
@@ -183,5 +211,13 @@ public class UntimedGame {//start UntimedGame class
 	public GameBoard getGameBoard(){//start getGameBoard method
 		return gameBoard;
 	}//end getGameBoard method
+	
+	/**
+	 * Decrement movesRemaining by 1
+	 */
+	public void decrementMoves() {
+		System.out.println("decrementMoves called");
+		movesRemaining--;
+	}//end decrementMoves
 	
 }//end UntimedGame class

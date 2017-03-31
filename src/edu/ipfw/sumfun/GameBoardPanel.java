@@ -73,6 +73,15 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
                         		//Process the move, update the queue, and refresh the GUI
                         		Controller.processMove(tile.getRow(), tile.getCol(), queueValue);
                         		Controller.pushQueue();
+                        		
+                        		int score = Controller.getPoints();
+                        		String scoreString = "Score: " + score;
+                        		Controller.getFrame().getScoreLabel().setText(scoreString);
+                        		
+                        		int moves = Controller.getMoves();
+                        		String movesString = "Moves Remaining: " + moves;
+                        		Controller.getFrame().getMoveLabel().setText(movesString);
+                        		
                         		Controller.repaintFrame();
                         		
                         		//Uncomment to see the value of the tile placed in a popup window

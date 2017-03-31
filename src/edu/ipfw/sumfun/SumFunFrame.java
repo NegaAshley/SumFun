@@ -90,8 +90,12 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 		scoreBoardPanel.setLayout(new GridLayout(2, 2));
 
 		//Adds JLabels and text fields for Score and Moves Remaining
-		scoreLabel = new JLabel("Score: ");
-		moveLabel = new JLabel("Moves Remaining: ");
+		int score = Controller.getPoints();
+		String scoreString = "Score: " + score;
+		int moves = Controller.getMoves();
+		String movesString = "Moves Remaining: " + moves;
+		scoreLabel = new JLabel(scoreString);
+		moveLabel = new JLabel(movesString);
 		scoreBoardPanel.add(scoreLabel);
 		scoreBoardPanel.add(moveLabel);
 		
