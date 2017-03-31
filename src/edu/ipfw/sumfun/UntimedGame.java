@@ -58,7 +58,7 @@ public class UntimedGame {//start UntimedGame class
 	 */
 	public void placeTile(int i, int j){//start placeTile method
 		gameBoard.setTile(i, j, tileQueue.get(0).getValue());
-		movesRemaining--;
+		System.out.println("TEST");
 		calculateSum(i, j, tileQueue.get(0).getValue());
 	}//end placeTile method
 	
@@ -100,6 +100,9 @@ public class UntimedGame {//start UntimedGame class
 		//For testing
 		//TODO remove later
 		System.out.println("Calculate sum reached");
+		
+		//decrement movesRemaining
+		movesRemaining--;
 		
 		//Retrieval of tile referenced by i and j
 		TileModel t = gameBoard.getTile(i, j);
