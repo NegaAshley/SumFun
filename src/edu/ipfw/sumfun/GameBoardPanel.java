@@ -1,5 +1,5 @@
 /*
- * The SumFunPanel class is the panel where the grid is located.
+ * The GameBoardPanel is the panel which holds the 9x9 game grid
  */
 package edu.ipfw.sumfun;
 import java.awt.*;
@@ -8,11 +8,11 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- * 
+ * GameBoardPanel is the panel which holds the 9x9 game grid
  * @author Ashley
  *
  */
-public class GameBoardPanel extends JPanel{//start SumFunPanel class
+public class GameBoardPanel extends JPanel{//start GameBoardPanel class
 	
 	//Number of rows and columns in the grid
     public static final int GRID_ROWS = 9;
@@ -22,9 +22,9 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
     private TileView[][] tiles = new TileView[GRID_ROWS][GRID_COLS];//2D Array where tiles are located
     
     /**
-     * SumFunPanel constructor
+     * GameBoardPanel constructor
      */
-    public GameBoardPanel() {//start SumFunPanel constructor
+    public GameBoardPanel() {//start GameBoardPanel constructor
     	
         //Creates grid of size GRID_ROWS by GRID_COLS
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
@@ -59,7 +59,7 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
                         	TileModel t = Controller.getTileModel(placementRow, placementCol);
                         	int placementValue = t.getValue();
                         	
-                        	JOptionPane.showMessageDialog(null, tile.getRow() + " " + tile.getCol());
+                        	//JOptionPane.showMessageDialog(null, tile.getRow() + " " + tile.getCol());
                         	
                         	//If the tile is empty (value is -1), then the placement is valid
                         	//TODO: remove convoluted boolean logic on subsequent sprints
@@ -82,7 +82,7 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
                         		
                         		//TEST 
                         		//REMOVE LATER
-                        		JOptionPane.showMessageDialog(null, queueValue);
+                        		//JOptionPane.showMessageDialog(null, queueValue);
                         		
                         	} else {
                         		JOptionPane.showMessageDialog(null, "Cannot place tile here!");

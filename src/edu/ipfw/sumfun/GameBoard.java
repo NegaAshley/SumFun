@@ -20,7 +20,7 @@ public class GameBoard {
 	final int TILE_GRID_LENGTH = 9;
 	
 	/**
-	 * 
+	 * constructor that populates the board and sets directional references via helper methods
 	 */
 	public GameBoard(){
 		populateBoard();
@@ -28,7 +28,7 @@ public class GameBoard {
 	}//end Constructor
 	
 	/**
-	 * 
+	 * populates the board with -1s around the edges and random values in the middle
 	 */
 	public void populateBoard(){//populate the gameBoard with Tiles
 		
@@ -51,22 +51,22 @@ public class GameBoard {
 	}//end populateBoard
 	
 	/**
-	 * 
-	 * @param row
-	 * @param col
-	 * @return
+	 * takes coordinates and removes the tile at that place
+	 * @param row the row desired
+	 * @param col the column desired
+	 * @return true, since the method will always wipe the tile at the give place
 	 */
-	public boolean removeTile(int row, int col){//takes coordinates and attempts to remove the tile at that place if one exists
+	public boolean removeTile(int row, int col){
 		tileGrid[row][col] = new TileModel(-1);
 		return true;
 	}//end removeTile
 	
 	
 	/**
-	 * 
-	 * @param row
-	 * @param col
-	 * @return
+	 * gets the TileModel at the given coordinates 
+	 * @param row the row desired
+	 * @param col the column desired
+	 * @return the TileModel found at the coordinates
 	 */
 	public TileModel getTile(int row, int col) {
 		return tileGrid[row][col];
@@ -79,6 +79,12 @@ public class GameBoard {
 		return tileGrid;
 	}//end getTileGrid method
 	
+	/**
+	 * sets the tile at the given coordinates to the given value
+	 * @param row the row desired
+	 * @param col the column desired
+	 * @param value the new value
+	 */
 	public void setTile(int row, int col, int value) {
 		tileGrid[row][col].setValue(value);
 	}
@@ -140,6 +146,9 @@ public class GameBoard {
 		}
 	}//end setDirectionalReferences method
 	
+	/**
+	 * prints the gameBoard to the console, for testing
+	 */
 	public void printArray() {
 		
 		for(int row = 0; row < tileGrid.length; row++) {
