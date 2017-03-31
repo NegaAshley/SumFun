@@ -4,19 +4,20 @@
  * this TileModel.
  */
 package edu.ipfw.sumfun;
-
 /**
- * 
+ * TileModel is the conceptual model for the tile.
  * @author Jake
  *
  */
-public class TileModel {
+public class TileModel {//start TileModel class
 	
 	private int value;//the value of the Tile
+	//Directional references for the tiles around this TileModel
 	private TileModel north, northEast, east, southEast, south, southWest, west, northWest;
 	
 	/*
 	 * The constructor for the ConceptualTile class.  Sets value to given value.
+	 * @param givenValue 
 	 */
 	public TileModel(int givenValue){//start ConceptualTile constructor
 		this.value = givenValue;
@@ -24,6 +25,7 @@ public class TileModel {
 	
 	/*
 	 * Creates a tile with a value between 0 and 9
+	 * @returns TileModel - the TileModel created
 	 */
 	public static TileModel createRandomTile(){//start createRandomTile method
 		TileModel randomTile;//random tile created
@@ -34,6 +36,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for value
+	 * @returns value
 	 */
 	public int getValue(){//start getValue method
 		return this.value;
@@ -41,6 +44,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for value
+	 * @param givenValue
 	 */
 	public void setValue(int givenValue){//start setValue method
 		this.value = givenValue;
@@ -55,6 +59,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for north tile reference
+	 * @returns north
 	 */
 	public TileModel getNorth(){//start getNorth method
 		return this.north;
@@ -62,6 +67,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for northEast tile reference
+	 * @returns northEast
 	 */
 	public TileModel getNorthEast(){//start getNorthEast method
 		return this.northEast;
@@ -69,6 +75,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for east tile reference
+	 * @returns east
 	 */
 	public TileModel getEast(){//start getEast method
 		return this.east;
@@ -76,6 +83,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for southEast tile reference
+	 * @returns southEast
 	 */
 	public TileModel getSouthEast(){//start getSouthEast method
 		return this.southEast;
@@ -83,6 +91,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for south tile reference
+	 * @returns south
 	 */
 	public TileModel getSouth(){//start getSouth method
 		return this.south;
@@ -90,6 +99,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for southWest tile reference
+	 * @returns southWest
 	 */
 	public TileModel getSouthWest(){//start getSouthWest method
 		return this.southWest;
@@ -97,6 +107,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for west tile reference
+	 * @returns west
 	 */
 	public TileModel getWest(){//start getWest method
 		return this.west;
@@ -104,6 +115,7 @@ public class TileModel {
 	
 	/*
 	 * Getter for northWest tile reference
+	 * @returns northWest
 	 */
 	public TileModel getNorthWest(){//start getNorthWest method
 		return this.northWest;
@@ -111,6 +123,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for north tile reference
+	 * @param givenTile
 	 */
 	public void setNorth(TileModel givenTile){//start setNorth method
 		this.north = givenTile;
@@ -118,6 +131,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for northEast tile reference
+	 * @param givenTile
 	 */
 	public void setNorthEast(TileModel givenTile){//start setNorthEast method
 		this.northEast = givenTile;
@@ -125,6 +139,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for east tile reference
+	 * @param givenTile
 	 */
 	public void setEast(TileModel givenTile){//start setEast method
 		this.east = givenTile;
@@ -132,6 +147,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for southEast tile reference
+	 * @param givenTile
 	 */
 	public void setSouthEast(TileModel givenTile){//start setSouthEast method
 		this.southEast = givenTile;
@@ -139,6 +155,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for south tile reference
+	 * @param givenTile
 	 */
 	public void setSouth(TileModel givenTile){//start setSouth method
 		this.south = givenTile;
@@ -146,6 +163,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for southWest tile reference
+	 * @param givenTile
 	 */
 	public void setSouthWest(TileModel givenTile){//start setSouthWest method
 		this.southWest = givenTile;
@@ -153,6 +171,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for west tile reference
+	 * @param givenTile
 	 */
 	public void setWest(TileModel givenTile){//start setWest method
 		this.west = givenTile;
@@ -160,6 +179,7 @@ public class TileModel {
 	
 	/*
 	 * Setter for northWest tile reference
+	 * @param givenTile
 	 */
 	public void setNorthWest(TileModel givenTile){//start setNorthWest method
 		this.northWest = givenTile;

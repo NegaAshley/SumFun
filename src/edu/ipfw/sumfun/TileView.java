@@ -62,7 +62,6 @@ class TileView{//start Tile class
                 return true;
             }
         }
-        
         return false;
     }//end contains method
     

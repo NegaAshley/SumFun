@@ -1,6 +1,3 @@
-/*
- * The GameBoardPanel is the panel which holds the 9x9 game grid
- */
 package edu.ipfw.sumfun;
 import java.awt.*;
 import java.awt.event.*;//Save this for action listener
@@ -8,7 +5,7 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- * GameBoardPanel is the panel which holds the 9x9 game grid
+ * GameBoardPanel is the panel which holds the game grid
  * @author Ashley
  *
  */
@@ -29,6 +26,7 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
         //Creates grid of size GRID_ROWS by GRID_COLS
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
         
+        //Iterates through the tileView 2D array
         for (int row = 0; row < GRID_ROWS; row++) {
             for (int col = 0; col < GRID_COLS; col++) {
             	
@@ -37,11 +35,10 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
                 tiles[row][col] = tile;
 
                 //Adds MouseListener to SumFunPanel
-                //TODO Put code here when tiles are interacted with
                 addMouseListener(new MouseAdapter() {
 
                     //Event occurs when mouse is clicked on panel
-                    public void mouseClicked(MouseEvent e){
+                    public void mouseClicked(MouseEvent e){//start mouseClicked method
                     	
                         /**
                          * Checks to see left mouse button was clicked and tile 
@@ -49,8 +46,8 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
                          */
                         if(e.getButton() == 1 && tile.contains(e.getX(), e.getY())){
                         	
-                        	//print contents of back-end array of TileModel objects
-                        	//used to match with GUI representation
+                        	//Print contents of back-end array of TileModel objects
+                        	//Used to match with GUI representation
                         	Controller.test();
                 				
                         	//Query back-end here to get the value of the selected tile
@@ -59,11 +56,12 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
                         	TileModel t = Controller.getTileModel(placementRow, placementCol);
                         	int placementValue = t.getValue();
                         	
+                        	//TODO remove later
+                        	//Uncomment this to see the coordinates of the tile
+                        	//Used for testing
                         	//JOptionPane.showMessageDialog(null, tile.getRow() + " " + tile.getCol());
                         	
                         	//If the tile is empty (value is -1), then the placement is valid
-                        	//TODO: remove convoluted boolean logic on subsequent sprints
-                        	//It only allows for selection of corner tiles
                         	if(placementValue == -1 ) {
                         		
                         		//Get the value of the first item in the queue
@@ -77,38 +75,34 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
                         		Controller.pushQueue();
                         		Controller.repaintFrame();
                         		
-                        		//TEST 
-                        		//REMOVE LATER
+                        		//Uncomment to see the value of the tile placed in a popup window
+                        		//TODO remove later
                         		//JOptionPane.showMessageDialog(null, queueValue);
                         		
                         	} else {
+                        		//Lets the user know that they are unable to place a tile in a particular location
                         		JOptionPane.showMessageDialog(null, "Cannot place tile here!");
                         		return;
                         	}
-                        	
                         }
-                    }
-                    
+                    }//end mouseClicked method
                 });//end addMouseListner
             }//end nested for
         }//end for 
-        
     }//end SumFunPanel constructor
      
     /*
      * Paints components
      */
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g){//start paintComponent method
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         
-        //Draws tiles onto panel
+        //Iterates through tiles and draws tiles onto panel
         for(int row = 0; row < GRID_ROWS; row++) {
         	for(int col = 0; col < GRID_COLS; col++) {
         		tiles[row][col].draw(g2, Controller.getGameBoard().getTileGrid()[row][col]);
         	}
         }
-       
-    }//end paintComponent
-    
+    }//end paintComponent method
 }//end SumFunPanel class

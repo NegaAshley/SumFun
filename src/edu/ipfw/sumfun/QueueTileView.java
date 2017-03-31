@@ -8,7 +8,7 @@ import java.awt.geom.*;
  * @author Jake
  *
  */
-class QueueTileView {
+class QueueTileView {//start QueueTileView class
 	
     public static final int SIZE = 50;//Size of Tile
     private int row, col;//Row and column location of Tile
@@ -26,7 +26,7 @@ class QueueTileView {
     }//end Tile constructor
     
     /**
-     * draw method for QueueTileView
+     * Draw method for QueueTileView
      * @param g2 the Graphics2D object
      * @param tile the TileModel desired
      */
@@ -42,7 +42,6 @@ class QueueTileView {
         } else {
         	g2.drawString(String.valueOf(tile.getValue()), x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
         }
-        
     }//end draw method
     
     /**

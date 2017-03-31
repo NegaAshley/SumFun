@@ -19,7 +19,6 @@ import java.awt.Container;
  * @author Jake
  * 
  */
-
 public class SumFunFrame extends JFrame {// start SumFunFrame
 
 	JMenuBar bar;//main menu bar
@@ -35,237 +34,233 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 	JLabel moveLabel;//label for the moves remaining
 	
 	/**
-	 * getter for scoreLabel
-	 * @return scoreLabel
+	 * Constructor for the SumFunFrame
 	 */
-	public JLabel getScoreLabel() {
-		return scoreLabel;
-	}
-	
-	/**
-	 * setter for scoreLabel
-	 * @param scoreLabel
-	 */
-	public void setScoreLabel(JLabel scoreLabel) {
-		this.scoreLabel = scoreLabel;
-	}
-	
-	/**
-	 * getter for moveLabel
-	 * @return moveLabel
-	 */
-	public JLabel getMoveLabel() {
-		return moveLabel;
-	}
-
-	/**
-	 * setter for moveLabel
-	 * @param moveLabel
-	 */
-	public void setMoveLabel(JLabel moveLabel) {
-		this.moveLabel = moveLabel;
-	}
-
-	/**
-	 * builds the frame
-	 */
-	public SumFunFrame() {// start SumFunFrame constructor
+	public SumFunFrame() {//start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);//exits game on close
 
-		setLayout(new GridLayout(1, 1));// TODO maybe remove
+		setLayout(new GridLayout(1, 1));//sets the layout of the frame to GridLayout
+		
 		// Creates and sets the menu bar
 		bar = new JMenuBar();
 		setJMenuBar(bar);
 
-		// Creates menus
+		//Creates menus
 		gameMenu = new JMenu("Game");
 		helpMenu = new JMenu("Help");
 
-		// Adds menus to menu bar
+		//Adds menus to menu bar
 		bar.add(gameMenu);
 		bar.add(helpMenu);
 
-		// Creates menu items for menus
+		//Creates menu items for menus
 		newGame = new JMenuItem("New Game");
 		exit = new JMenuItem("Exit");
 		help = new JMenuItem("Help");
 
-		// Adds menu items to menus
+		//Adds menu items to menus
 		gameMenu.add(newGame);
 		gameMenu.add(exit);
 		helpMenu.add(help);
 
-		// Closes game when exit menu option is selected
+		//Closes game when exit menu option is selected
 		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {//start actionPerformed method
 				dispose();
-			}
+			}//end actionPerformed method
 		});
 
-		// Initial panel to be added to frame
-		// This panel is intermediate, so we can add another panel
-		// on the right side of the frame but only in the north space
+		//Initial panel to be added to frame
+		//This panel is intermediate, so we can add another panel
+		//on the right side of the frame but only in the north space
 		initialPanel = new JPanel();
 		initialPanel.setLayout(new BorderLayout());
 
-		// Creates and adds SumFunPanel
+		//Creates and adds SumFunPanel
 		GameBoardPanel panel = new GameBoardPanel();
 		add(panel);
 
-		// Add initial panel to right of SumFunPanel
+		//Add initial panel to right of SumFunPanel
 		add(initialPanel);
 
-		// Creates scoreBoardPanel
+		//Creates scoreBoardPanel
 		scoreBoardPanel = new JPanel();
 		scoreBoardPanel.setLayout(new GridLayout(2, 2));
 
-		// Adds JLabels and text fields for Score and Moves Remaining
+		//Adds JLabels and text fields for Score and Moves Remaining
 		scoreLabel = new JLabel("Score: ");
 		moveLabel = new JLabel("Moves Remaining: ");
 		scoreBoardPanel.add(scoreLabel);
 		scoreBoardPanel.add(moveLabel);
 		
-		// Add scoreboard panel to the north of initialPanel
+		//Add score board panel to the north of initialPanel
 		initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
 
 		// Instantiate a new QueuePanel
 		qp = new QueuePanel();
 
+		//Ad qp to the panel
 		initialPanel.add(qp);
 
-		// Resets board when new game is selected
+		//Resets board when new game is selected
 		newGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {//start actionPerformed method
 				// panel.resetBoard(getBackground());
-			}
+			}//end actionPerformed method
 		});
-		
-		// test comment
-		// changes
-	}
+	}//end SumFunFrame constructor
+	/**
+	 * Getter for scoreLabel
+	 * @return scoreLabel
+	 */
+	public JLabel getScoreLabel() {//start getScoreLabel method
+		return scoreLabel;
+	}//end getScoreLabel method
+	
+	/**
+	 * Setter for scoreLabel
+	 * @param scoreLabel
+	 */
+	public void setScoreLabel(JLabel scoreLabel) {//start setScoreLabel method
+		this.scoreLabel = scoreLabel;
+	}//end setScoreLabel method
+	
+	/**
+	 * Getter for moveLabel
+	 * @return moveLabel
+	 */
+	public JLabel getMoveLabel() {//start getMoveLabel method
+		return moveLabel;
+	}//end getMoveLabel method
 
 	/**
-	 * getter for bar
+	 * Setter for moveLabel
+	 * @param moveLabel
+	 */
+	public void setMoveLabel(JLabel moveLabel) {//start setMoveLabel method
+		this.moveLabel = moveLabel;
+	}//end setMoveLabel method
+
+	/**
+	 * Getter for bar
 	 * @return bar
 	 */
-	public JMenuBar getBar() {
+	public JMenuBar getBar() {//start getBar method
 		return bar;
-	}
+	}//start getBar method
 
 	/**
-	 * setter for bar
+	 * Setter for bar
 	 * @param bar
 	 */
-	public void setBar(JMenuBar bar) {
+	public void setBar(JMenuBar bar) {//start setBar method
 		this.bar = bar;
-	}
+	}//end setBar method
 
 	/**
-	 * getter for gameMenu
+	 * Getter for gameMenu
 	 * @return gameMenu
 	 */
-	public JMenu getGameMenu() {
+	public JMenu getGameMenu() {//start getGameMenu method
 		return gameMenu;
-	}
+	}//end getGameMenu method
 
 	/**
-	 * setter for gameMenu
+	 * Setter for gameMenu
 	 * @param gameMenu
 	 */
-	public void setGameMenu(JMenu gameMenu) {
+	public void setGameMenu(JMenu gameMenu) {//start setGameMenu method
 		this.gameMenu = gameMenu;
-	}
+	}//end setGameMenu method
 
 	/**
-	 * getter for helpMenu
+	 * Getter for helpMenu
 	 * @return helpMenu
 	 */
-	public JMenu getHelpMenu() {
+	public JMenu getHelpMenu() {//start getHelpMenu method
 		return helpMenu;
-	}
+	}//end getHelpMenu method
 
 	/**
-	 * setter for helpMenu
+	 * Setter for helpMenu
 	 * @param helpMenu
 	 */
-	public void setHelpMenu(JMenu helpMenu) {
+	public void setHelpMenu(JMenu helpMenu) {//start setHelpMenu method
 		this.helpMenu = helpMenu;
-	}
+	}//end setHelpMenu method
 
 	/**
-	 * getter for initialPanel
+	 * Getter for initialPanel
 	 * @return initialPanel
 	 */
-	public JPanel getInitialPanel() {
+	public JPanel getInitialPanel() {//start getInitialPanel method
 		return initialPanel;
-	}
+	}//end getInitialPanel method
 
 	/**
-	 * setter for initialPanel
+	 * Setter for initialPanel
 	 * @param initialPanel
 	 */
-	public void setInitialPanel(JPanel initialPanel) {
+	public void setInitialPanel(JPanel initialPanel) {//start setInitialPanel method
 		this.initialPanel = initialPanel;
-	}
+	}//end setInitialPanel method
 
 	/**
-	 * getter for scoreBoardPanel
+	 * Getter for scoreBoardPanel
 	 * @return scoreBoardPanel
 	 */
-	public JPanel getScoreBoardPanel() {
+	public JPanel getScoreBoardPanel() {//start getScoreBoardPanel method
 		return scoreBoardPanel;
-	}
+	}//end getScoreBoardPanel
 
 	/**
-	 * setter for scoreBoardPanel
+	 * Setter for scoreBoardPanel
 	 * @param scoreBoardPanel
 	 */
-	public void setScoreBoardPanel(JPanel scoreBoardPanel) {
+	public void setScoreBoardPanel(JPanel scoreBoardPanel) {//start setScoreBoardPanel method
 		this.scoreBoardPanel = scoreBoardPanel;
-	}
+	}//end setScoreBoardPanel method
 
 	/** 
-	 * getter for qp
+	 * Getter for qp
 	 * @return qp
 	 */
-	public QueuePanel getQp() {
+	public QueuePanel getQp() {//start getQp method
 		return qp;
-	}
+	}//end getQp method
 
 	/**
-	 * setter for qp
+	 * Setter for qp
 	 * @param qp
 	 */
-	public void setQp(QueuePanel qp) {
+	public void setQp(QueuePanel qp) {//start setQp method
 		this.qp = qp;
-	}
+	}//end setQp method
 
 	/**
-	 * getter for newGame
+	 * Getter for newGame
 	 * @return newGame
 	 */
-	public JMenuItem getNewGame() {
+	public JMenuItem getNewGame() {//start getNewGame method
 		return newGame;
-	}
+	}//end getNewGame method
 
 	/**
-	 * getter for exit
+	 * Getter for exit
 	 * @return exit
 	 */
-	public JMenuItem getExit() {
+	public JMenuItem getExit() {//start getExit method
 		return exit;
-	}
+	}//end getExit method
 
 	/**
-	 * getter for help
+	 * Setter for help
 	 * @return help
 	 */
-	public JMenuItem getHelp() {
+	public JMenuItem getHelp() {//start getHelp method
 		return help;
-	}
-	
-// end SumFunFrame constructor
-}
-// end SumFunFrame
+	}//end getHelp method
+
+}// end SumFunFrame class

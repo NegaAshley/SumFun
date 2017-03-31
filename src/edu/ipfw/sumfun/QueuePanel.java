@@ -10,7 +10,7 @@ import javax.swing.*;
  * @author Jake
  *
  */
-public class QueuePanel extends JPanel {
+public class QueuePanel extends JPanel {//start the QueuePanel class
 	
 	//Number of rows and columns in the grid
 	//Queue grid is simply one column of squares
@@ -21,7 +21,7 @@ public class QueuePanel extends JPanel {
     ArrayList<QueueTileView> queueTiles = new ArrayList<>();
     
     /**
-     * Constructor
+     * Constructor for the QueuePanel class
      */
     public QueuePanel() {//start QueuePanel constructor
 
@@ -32,11 +32,9 @@ public class QueuePanel extends JPanel {
         for (int row = 0; row < GRID_ROWS; row++) {
             for (int col = 0; col < GRID_COLS; col++) {
                 QueueTileView newTile = new QueueTileView(row, col, Color.GRAY);
-                queueTiles.add(newTile);
-                
+                queueTiles.add(newTile);  
             }
         } 
-        
     }//end QueuePanel constructor
      
     /*
@@ -52,8 +50,7 @@ public class QueuePanel extends JPanel {
         for(int i = 0; i < queueTiles.size(); i++) {
         	QueueTileView tile = queueTiles.get(i);
         	tile.draw(g2, Controller.getQueueTileModel(i));
-        }
-        
+        } 
     }//end paintComponent
     
 }//end QueuePanel class
