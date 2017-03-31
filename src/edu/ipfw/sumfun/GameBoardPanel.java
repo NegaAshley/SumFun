@@ -64,15 +64,12 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
                         	//If the tile is empty (value is -1), then the placement is valid
                         	//TODO: remove convoluted boolean logic on subsequent sprints
                         	//It only allows for selection of corner tiles
-                        	if(placementValue == -1 && ((tile.getRow() == 0 && tile.getCol() == 0)
-                        			|| (tile.getRow() == 0 && tile.getCol() == 8)
-                        			|| (tile.getRow() == 8 && tile.getCol() == 8)
-                        			|| (tile.getRow() == 8 && tile.getCol() == 0))) {
+                        	if(placementValue == -1 ) {
                         		
                         		//Get the value of the first item in the queue
                         		int queueValue = Controller.getQueueTileModel(0).getValue();
                         		
-                        		//Set the value of the corrsponding tile in the back-end to the new value
+                        		//Set the value of the corresponding tile in the back-end to the new value
                         		Controller.setTileValue(queueValue, tile.getRow(), tile.getCol());
                         		
                         		//Process the move, update the queue, and refresh the GUI
