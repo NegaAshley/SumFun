@@ -17,8 +17,8 @@ class TileView{//start Tile class
      */
     public TileView(int row, int col, Color tileOutlineColor){//start Tile constructor
         this.tileOutlineColor = tileOutlineColor;
-        x = row * TileView.SIZE;
-        y = col * TileView.SIZE;
+        x = col * TileView.SIZE;//x corresponds to col instead of row because it is the horizontal value, just like col
+        y = row * TileView.SIZE;//y corresponds to row instead of col because it is the vertical value, just like row
         this.row = row;
         this.col = col;
     }//end Tile constructor

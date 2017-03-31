@@ -64,7 +64,7 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
                         	//If the tile is empty (value is -1), then the placement is valid
                         	//TODO: remove convoluted boolean logic on subsequent sprints
                         	//It only allows for selection of corner tiles
-                        	if(placementValue == -1 && ((tile.getRow() == 0 && tile.getRow() == 0)
+                        	if(placementValue == -1 && ((tile.getRow() == 0 && tile.getCol() == 0)
                         			|| (tile.getRow() == 0 && tile.getCol() == 8)
                         			|| (tile.getRow() == 8 && tile.getCol() == 8)
                         			|| (tile.getRow() == 8 && tile.getCol() == 0))) {
