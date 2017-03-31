@@ -164,7 +164,6 @@ public class UntimedGame {
 		if(t.getSouthWest() != null){
 			t.getSouthWest().setValue(-1);
 		}
-		
 	}//end updateTiles
 	
 	/**
