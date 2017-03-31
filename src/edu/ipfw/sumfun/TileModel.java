@@ -27,7 +27,8 @@ public class TileModel {
 	 */
 	public static TileModel createRandomTile(){//start createRandomTile method
 		TileModel randomTile;//random tile created
-		randomTile = new TileModel( (int)(Math.random() * 9));
+		int value = (int)(Math.random() * 9);
+		randomTile = new TileModel(value);
 		return randomTile;
 	}//end createRandomTile method
 	

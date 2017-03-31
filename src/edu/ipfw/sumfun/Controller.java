@@ -82,5 +82,9 @@ public class Controller {//start SumFunGame class
 	public static void processMove(int i, int j, int value) {
 		untimedGame.calculateSum(i, j, value);
 	}
+	
+	public static void test() {
+		untimedGame.getGameBoard().printArray();
+	}
 
 }//end SumFunGame class
