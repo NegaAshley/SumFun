@@ -79,36 +79,36 @@ public class UntimedGame {
 		//running count of neighboring tiles for point value (x10)
 		int score = 0;
 		
-		//checking all potential neighbors
-		if(t.getEast() != null){
+		//checking all potential neighbors (omitting with value -1 so they don't mess up the total)
+		if(t.getEast() != null && t.getEast().getValue()!=-1){
 			total += t.getEast().getValue();
 			score++;
 		}
-		if(t.getWest() != null){
+		if(t.getWest() != null && t.getWest().getValue()!=-1){
 			total += t.getWest().getValue();
 			score++;
 		}
-		if(t.getNorth() != null){
+		if(t.getNorth() != null && t.getNorth().getValue()!=-1){
 			total += t.getNorth().getValue();
 			score++;
 		}
-		if(t.getSouth() != null){
+		if(t.getSouth() != null && t.getSouth().getValue()!=-1){
 			total += t.getSouth().getValue();
 			score++;
 		}
-		if(t.getNorthEast() != null){
+		if(t.getNorthEast() != null && t.getNorthEast().getValue()!=-1){
 			total += t.getNorthEast().getValue();
 			score++;
 		}
-		if(t.getSouthEast() != null){
+		if(t.getSouthEast() != null && t.getSouthEast().getValue()!=-1){
 			total += t.getSouthEast().getValue();
 			score++;
 		}
-		if(t.getNorthWest() != null){
+		if(t.getNorthWest() != null && t.getNorthWest().getValue()!=-1){
 			total += t.getNorthWest().getValue();
 			score++;
 		}
-		if(t.getSouthWest() != null){
+		if(t.getSouthWest() != null && t.getSouthWest().getValue()!=-1){
 			total += t.getSouthWest().getValue();
 			score++;
 		}
@@ -138,7 +138,6 @@ public class UntimedGame {
 	 * @param t, the tile that has been placed
 	 */
 	private void removeAdjacentTiles(TileModel t) {
-		
 		//Set value of placed tile to -1
 		t.setValue(-1);
 		
