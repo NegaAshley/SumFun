@@ -66,6 +66,22 @@ public class Controller {//start SumFunGame class
 	}//end getTileModel method
 	
 	/**
+	 * Gets the points from the back-end for use in front-end
+	 * @return 
+	 */
+	public static int getPoints() {
+		return untimedGame.getPoints();
+	}//end getPoints
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static int getMoves() {
+		return untimedGame.getMovesRemaining();
+	}//end getMoves
+	
+	/**
 	 * Gets the TileModel from the queue at the specified index
 	 * @param i the index desired
 	 * @return a TileModel object from the queue in untimedGame
@@ -122,4 +138,5 @@ public class Controller {//start SumFunGame class
 	public static void test() {//start test method
 		untimedGame.getGameBoard().printArray();
 	}//end test method
+	
 }//end SumFunGame class
