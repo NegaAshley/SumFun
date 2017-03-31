@@ -39,6 +39,8 @@ public class Controller {//start SumFunGame class
         
         //Makes frame visible
         frame.setVisible(FRAME_VISIBLE);
+        
+        untimedGame.getGameBoard().printArray();
 
 	}//end main method
 	
@@ -74,8 +76,11 @@ public class Controller {//start SumFunGame class
 		frame.repaint();
 	}
 	public static SumFunFrame getFrame(){
-		
 		return frame;
+	}
+	
+	public static void processMove(int i, int j, int value) {
+		untimedGame.calculateSum(i, j, value);
 	}
 
 }//end SumFunGame class
