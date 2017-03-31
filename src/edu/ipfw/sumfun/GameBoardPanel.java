@@ -50,14 +50,25 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
                         if(e.getButton() == 1 && newTile.contains(e.getX(), e.getY())){
                 				
                         	//Query back-end here to get the value of the selected tile
-                        	int placementValue = Controller.getTileModel(newTile.getRow(), newTile.getCol()).getValue();
+                        	int placementRow = newTile.getRow();
+                        	int placementCol = newTile.getCol();
+                        	TileModel t = Controller.getTileModel(placementRow, placementCol);
+                        	int placementValue = t.getValue();
+                        	
+                        	JOptionPane.showMessageDialog(null, newTile.getRow() + " " + newTile.getCol());
                         	
                         	//If the tile is empty (value is -1), then the placement is valid
-                        	if(placementValue == -1) {
+                        	//TODO: remove convoluted boolean logic on subsequent sprints
+
+                        	if(placementValue == -1 && ((newTile.getRow() == 0 && newTile.getRow() == 0)
+                        			|| (newTile.getRow() == 0 && newTile.getCol() == 8)
+                        			|| (newTile.getRow() == 8 && newTile.getCol() == 8)
+                        			|| (newTile.getRow() == 8 && newTile.getCol() == 0))) {
                         		
                         		//Get the value of the first item in the queue
                         		int queueValue = Controller.getQueueTileModel(0).getValue();
                         		Controller.setTileValue(queueValue, newTile.getRow(), newTile.getCol());
+                        		Controller.processMove(newTile.getRow(), newTile.getCol(), queueValue);
                         		Controller.pushQueue();
                         		Controller.repaintFrame();
                         		

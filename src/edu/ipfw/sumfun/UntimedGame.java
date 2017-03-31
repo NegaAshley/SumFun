@@ -66,7 +66,9 @@ public class UntimedGame {
 		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}
 	
-	private void calculateSum(int i, int j, int mod){
+	public void calculateSum(int i, int j, int mod){
+		
+		System.out.println("calculate sum reached");
 		
 		//Retrieval of tile referenced by i and j
 		
@@ -122,6 +124,8 @@ public class UntimedGame {
 			
 			//Update tile and adjacent tiles
 			removeAdjacentTiles(t);
+			
+			System.out.println("move successful");
 			
 			//Make calls to notifyObservers, etc
 

@@ -24,6 +24,7 @@ public class GameBoard {
 	 */
 	public GameBoard(){
 		populateBoard();
+		setDirectionalReferences();
 	}//end Constructor
 	
 	/**
@@ -114,59 +115,70 @@ public class GameBoard {
 	 * Sets the directional references of the tileGrid
 	 */
 	public void setDirectionalReferences(){//start setDirectionalReferences method
-		for(int i = 0; i < TILE_GRID_WIDTH; i++){
-			for(int j = 0; j < TILE_GRID_LENGTH; j++){
+		for(int row = 0; row < TILE_GRID_WIDTH; row++){
+			for(int col = 0; col < TILE_GRID_LENGTH; col++){
 				
-				if(i == 0){//then tile is on top row of grid and north reference is null
-					tileGrid[i][j].setNorth(null);
+				if(row == 0){//then tile is on top row of grid and north reference is null
+					tileGrid[row][col].setNorth(null);
 				}else{
-					tileGrid[i][j].setNorth(tileGrid[i - 1][j]);
+					tileGrid[row][col].setNorth(tileGrid[row - 1][col]);
 				}
 				
-				if(i == 0 && j == 8){//then tile is northeastern corner tile and northeast reference is null
-					tileGrid[i][j].setNorthEast(null);
+				if((col == 8) || (row == 0)){//then tile is northeastern corner tile and northeast reference is null
+					tileGrid[row][col].setNorthEast(null);
 				}else{
-					tileGrid[i][j].setNorthEast(tileGrid[i - 1][j + 1]);
+					tileGrid[row][col].setNorthEast(tileGrid[row - 1][col + 1]);
 				}
 				
-				if(j == 8){//then tile is on right column of grid and east reference is null
-					tileGrid[i][j].setEast(null);
+				if(col == 8){//then tile is on right column of grid and east reference is null
+					tileGrid[row][col].setEast(null);
 				}else{
-					tileGrid[i][j].setEast(tileGrid[i][j + 1]);
+					tileGrid[row][col].setEast(tileGrid[row][col+1]);
 				}
 				
-				if(i == 8 && j == 8){//then tile is southeastern corner tile and southeast reference is null
-					tileGrid[i][j].setSouthEast(null);
+				if((col == 8) || (row == 8)){//then tile is southeastern corner tile and southeast reference is null
+					tileGrid[row][col].setSouthEast(null);
 				}else{
-					tileGrid[i][j].setSouthEast(tileGrid[i + 1][j + 1]);
+					tileGrid[row][col].setSouthEast(tileGrid[row + 1][col + 1]);
 				}
 				
-				if(i == 8){//then tile is on bottom row of grid and south reference is null
-					tileGrid[i][j].setSouth(null);
+				if(row == 8){//then tile is on bottom row of grid and south reference is null
+					tileGrid[row][col].setSouth(null);
 				}else{
-					tileGrid[i][j].setSouth(tileGrid[i + 1][j]);
+					tileGrid[row][col].setSouth(tileGrid[row + 1][col]);
 				}
 				
-				if(i == 8 && j == 0){//then tile is southwestern corner tile and southwest reference is null
-					tileGrid[i][j].setSouthWest(null);
+				if((row == 8) || (col == 0)){//then tile is southwestern corner tile and southwest reference is null
+					tileGrid[row][col].setSouthWest(null);
 				}else{
-					tileGrid[i][j].setSouthWest(tileGrid[i + 1][j - 1]);
+					tileGrid[row][col].setSouthWest(tileGrid[row + 1][col - 1]);
 				}
 				
-				if(j == 0){//then tile is on left column of grid and west reference is null
-					tileGrid[i][j].setWest(null);
+				if(col == 0){//then tile is on left column of grid and west reference is null
+					tileGrid[row][col].setWest(null);
 				}else{
-					tileGrid[i][j].setWest(tileGrid[i][j - 1]);
+					tileGrid[row][col].setWest(tileGrid[row][col - 1]);
 				}
 				
-				if(i == 0 && j == 0){//then tile is northwestern corner tile and northwest reference is null
-					tileGrid[i][j].setNorthWest(null);
+				if((row == 0) || (col == 0)){//then tile is northwestern corner tile and northwest reference is null
+					tileGrid[row][col].setNorthWest(null);
 				}else{
-					tileGrid[i][j].setNorthWest(tileGrid[i - 1][j - 1]);
+					tileGrid[row][col].setNorthWest(tileGrid[row - 1][col - 1]);
 				}
 			}
 		}
 	}//end setDirectionalReferences method
+	
+	public void printArray() {
+		
+		for(int i = 0; i < tileGrid.length; i++) {
+			System.out.println("");
+			for(int j = 0; j < tileGrid[0].length; j++) {
+				System.out.print(tileGrid[i][j].getValue() + " ");
+			}
+		}
+		
+	}
 	
 	
 }//end class GameBoardModel
