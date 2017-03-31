@@ -111,57 +111,57 @@ public class TileModel {
 	/*
 	 * Setter for north tile reference
 	 */
-	public void setNorth(int givenValue){//start setNorth method
-		this.north.setValue(givenValue);
+	public void setNorth(TileModel givenTile){//start setNorth method
+		this.north = givenTile;
 	}//end setNorth method
 	
 	/*
 	 * Setter for northEast tile reference
 	 */
-	public void getNorthEast(int givenValue){//start setNorthEast method
-		this.northEast.setValue(givenValue);
+	public void setNorthEast(TileModel givenTile){//start setNorthEast method
+		this.northEast = givenTile;
 	}//end setNorthEast method
 	
 	/*
 	 * Setter for east tile reference
 	 */
-	public void setEast(int givenValue){//start setEast method
-		this.east.setValue(givenValue);
+	public void setEast(TileModel givenTile){//start setEast method
+		this.east = givenTile;
 	}//end setEast method
 	
 	/*
 	 * Setter for southEast tile reference
 	 */
-	public void setSouthEast(int givenValue){//start setSouthEast method
-		this.southEast.setValue(givenValue);
+	public void setSouthEast(TileModel givenTile){//start setSouthEast method
+		this.southEast = givenTile;
 	}//end setSouthEast method
 	
 	/*
 	 * Setter for south tile reference
 	 */
-	public void setSouth(int givenValue){//start setSouth method
-		this.south.setValue(givenValue);
+	public void setSouth(TileModel givenTile){//start setSouth method
+		this.south = givenTile;
 	}//end setSouth method
 	
 	/*
 	 * Setter for southWest tile reference
 	 */
-	public void setSouthWest(int givenValue){//start setSouthWest method
-		this.southWest.setValue(givenValue);
+	public void setSouthWest(TileModel givenTile){//start setSouthWest method
+		this.southWest = givenTile;
 	}//end setSouthWest method
 	
 	/*
 	 * Setter for west tile reference
 	 */
-	public void setWest(int givenValue){//start setWest method
-		this.west.setValue(givenValue);
+	public void setWest(TileModel givenTile){//start setWest method
+		this.west = givenTile;
 	}//end setWest method
 	
 	/*
 	 * Setter for northWest tile reference
 	 */
-	public void setNorthWest(int givenValue){//start setNorthWest method
-		this.northWest.setValue(givenValue);
+	public void setNorthWest(TileModel givenTile){//start setNorthWest method
+		this.northWest = givenTile;
 	}//end setNorthWest method
 	
 }//end ConceptualTile class

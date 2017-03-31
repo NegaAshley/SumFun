@@ -163,13 +163,13 @@ public class UntimedGame {
 		}
 		
 	}
-	
-					
-	
-	
-	public GameBoard getGameBoard(){
+	/*
+	 * Getter method for the gameBoard
+	 */
+	public GameBoard getGameBoard(){//start getGameBoard method
 		return gameBoard;
-	}
+	}//end getGameBoard method
+	
 	
 }
 
