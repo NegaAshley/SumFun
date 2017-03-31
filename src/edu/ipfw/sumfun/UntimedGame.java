@@ -29,11 +29,13 @@ public class UntimedGame {
 		gameBoard = new GameBoard();
 		//do other things
 	}
-	
-	public TileModel selectQueueTile(int i){//returns the head of the queue
+	/*
+	 * Returns the head of the queue
+	 */
+	public TileModel selectQueueTile(int i){//start selectQueueTile method
 		
 		return tileQueue.get(i);
-	}
+	}//start selectQueueTile method
 	
 	public boolean placeTile(){//not actually implemented, only has a return statement to get rid of the errors
 		return true;
