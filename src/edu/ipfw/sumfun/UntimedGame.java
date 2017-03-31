@@ -1,6 +1,6 @@
 /*
  * The UntimeGame class controls the untimed version of the game
- * Blargh
+ * Blarghhh
  */
 
 package edu.ipfw.sumfun;
