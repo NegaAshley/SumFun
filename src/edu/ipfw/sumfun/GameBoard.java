@@ -76,7 +76,7 @@ public class GameBoard {
 	 * 
 	 */
 	public void resetBoard(){//clears gameBoard to all NULL references (or zeros?)
-		
+		//TODO maybe get rid of
 	}//end resetBoard
 	
 	/**
@@ -87,6 +87,7 @@ public class GameBoard {
 	 */
 	private boolean isValid(int i, int j){//determines if a move at given coordinates is valid
 		return true;
+		//TODO maybe get rid of
 	}//end isValid
 	
 	/**
