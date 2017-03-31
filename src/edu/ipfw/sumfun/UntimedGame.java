@@ -1,12 +1,12 @@
 /*
- * The UntimeGame class controls the untimed version of the game
+ * The UntimedGame class controls the untimed version of the game
  */
 
 package edu.ipfw.sumfun;
 import java.util.*;
 
 /**
- * 
+ * The UntimedGame class controls the untimed version of the game
  * @author Jake
  *
  */
@@ -66,6 +66,12 @@ public class UntimedGame {
 		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}
 	
+	/**
+	 * calculates the sum of the tiles around the one at the given coordinates, and compares it to the given queue value, mod
+	 * @param i the row of the clicked tile
+	 * @param j the column of the clicked tile
+	 * @param mod the queue value placed
+	 */
 	public void calculateSum(int i, int j, int mod){
 		
 		System.out.println("calculate sum reached");

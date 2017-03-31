@@ -23,7 +23,7 @@ public class QueuePanel extends JPanel {
     /**
      * Constructor
      */
-    public QueuePanel() {//start SumFunPanel constructor
+    public QueuePanel() {//start QueuePanel constructor
 
         //Set QueuePanel layout to a grid layout of GRID_ROWS by GRID_COLS
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
@@ -37,7 +37,7 @@ public class QueuePanel extends JPanel {
             }
         } 
         
-    }//end SumFunPanel constructor
+    }//end QueuePanel constructor
      
     /*
      * Paints components
@@ -56,4 +56,4 @@ public class QueuePanel extends JPanel {
         
     }//end paintComponent
     
-}//end SumFunPanel class
+}//end QueuePanel class

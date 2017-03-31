@@ -15,40 +15,60 @@ import java.awt.Color;
 import java.awt.Container;
 
 /**
- * 
+ * The SumFunFrame class is the main View class, and builds the GUI
  * @author Jake
  * 
  */
+
 public class SumFunFrame extends JFrame {// start SumFunFrame
 
-	JMenuBar bar;
-	JMenu gameMenu;
-	JMenu helpMenu;
-	final JMenuItem newGame;
-	final JMenuItem exit;
-	final JMenuItem help;
-	JPanel initialPanel;
-	JPanel scoreBoardPanel;
-	QueuePanel qp;
-	JLabel scoreLabel;
-	JLabel moveLabel;
+	JMenuBar bar;//main menu bar
+	JMenu gameMenu;//menu option holding game options
+	JMenu helpMenu;//menu options holding help options
+	final JMenuItem newGame;//menu option in gameMenu that will create a new game
+	final JMenuItem exit;//menu option in gameMenu that will exit the game
+	final JMenuItem help;//menu option in helpMenu that will bring up help features
+	JPanel initialPanel;//panel to build from
+	JPanel scoreBoardPanel;//panel to hold score and moves left
+	QueuePanel qp;//QueuePanel to hold the queue
+	JLabel scoreLabel;//label for the score
+	JLabel moveLabel;//label for the moves remaining
 	
+	/**
+	 * getter for scoreLabel
+	 * @return scoreLabel
+	 */
 	public JLabel getScoreLabel() {
 		return scoreLabel;
 	}
-
+	
+	/**
+	 * setter for scoreLabel
+	 * @param scoreLabel
+	 */
 	public void setScoreLabel(JLabel scoreLabel) {
 		this.scoreLabel = scoreLabel;
 	}
-
+	
+	/**
+	 * getter for moveLabel
+	 * @return moveLabel
+	 */
 	public JLabel getMoveLabel() {
 		return moveLabel;
 	}
 
+	/**
+	 * setter for moveLabel
+	 * @param moveLabel
+	 */
 	public void setMoveLabel(JLabel moveLabel) {
 		this.moveLabel = moveLabel;
 	}
 
+	/**
+	 * builds the frame
+	 */
 	public SumFunFrame() {// start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
@@ -126,62 +146,122 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 		// changes
 	}
 
+	/**
+	 * getter for bar
+	 * @return bar
+	 */
 	public JMenuBar getBar() {
 		return bar;
 	}
 
+	/**
+	 * setter for bar
+	 * @param bar
+	 */
 	public void setBar(JMenuBar bar) {
 		this.bar = bar;
 	}
 
+	/**
+	 * getter for gameMenu
+	 * @return gameMenu
+	 */
 	public JMenu getGameMenu() {
 		return gameMenu;
 	}
 
+	/**
+	 * setter for gameMenu
+	 * @param gameMenu
+	 */
 	public void setGameMenu(JMenu gameMenu) {
 		this.gameMenu = gameMenu;
 	}
 
+	/**
+	 * getter for helpMenu
+	 * @return helpMenu
+	 */
 	public JMenu getHelpMenu() {
 		return helpMenu;
 	}
 
+	/**
+	 * setter for helpMenu
+	 * @param helpMenu
+	 */
 	public void setHelpMenu(JMenu helpMenu) {
 		this.helpMenu = helpMenu;
 	}
 
+	/**
+	 * getter for initialPanel
+	 * @return initialPanel
+	 */
 	public JPanel getInitialPanel() {
 		return initialPanel;
 	}
 
+	/**
+	 * setter for initialPanel
+	 * @param initialPanel
+	 */
 	public void setInitialPanel(JPanel initialPanel) {
 		this.initialPanel = initialPanel;
 	}
 
+	/**
+	 * getter for scoreBoardPanel
+	 * @return scoreBoardPanel
+	 */
 	public JPanel getScoreBoardPanel() {
 		return scoreBoardPanel;
 	}
 
+	/**
+	 * setter for scoreBoardPanel
+	 * @param scoreBoardPanel
+	 */
 	public void setScoreBoardPanel(JPanel scoreBoardPanel) {
 		this.scoreBoardPanel = scoreBoardPanel;
 	}
 
+	/** 
+	 * getter for qp
+	 * @return qp
+	 */
 	public QueuePanel getQp() {
 		return qp;
 	}
 
+	/**
+	 * setter for qp
+	 * @param qp
+	 */
 	public void setQp(QueuePanel qp) {
 		this.qp = qp;
 	}
 
+	/**
+	 * getter for newGame
+	 * @return newGame
+	 */
 	public JMenuItem getNewGame() {
 		return newGame;
 	}
 
+	/**
+	 * getter for exit
+	 * @return exit
+	 */
 	public JMenuItem getExit() {
 		return exit;
 	}
 
+	/**
+	 * getter for help
+	 * @return help
+	 */
 	public JMenuItem getHelp() {
 		return help;
 	}

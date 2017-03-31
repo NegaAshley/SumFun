@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.*;
 
 /**
- * 
+ * QueueTileView is a version of TileView designed for the queue
  * @author Jake
  *
  */
@@ -15,20 +15,20 @@ class QueueTileView {
     private int x, y;//Physical coordinates of Tile
     private Color tileOutlineColor;//Color outline of Tile
     /*
-     * Constructor method of Tile class
+     * Constructor method of QueueTileView class
      */
     public QueueTileView(int row, int col, Color tileOutlineColor){//start Tile constructor
         this.tileOutlineColor = tileOutlineColor;
-        x = row * TileView.SIZE;
-        y = col * TileView.SIZE;
+        x = row * TileView.SIZE;//since the queue is vertical and 1D, row corresponds to x, unlike in the main TileView class
+        y = col * TileView.SIZE;//similarly for y
         this.row = row;
         this.col = col;
     }//end Tile constructor
     
     /**
-     * 
-     * @param g2
-     * @param tile
+     * draw method for QueueTileView
+     * @param g2 the Graphics2D object
+     * @param tile the TileModel desired
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
     	
@@ -75,4 +75,4 @@ class QueueTileView {
         return col;
     }//end getCol method
     
-}//end Tile class
+}//end QueueTileView class
