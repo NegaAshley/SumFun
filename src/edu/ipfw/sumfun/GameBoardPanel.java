@@ -33,8 +33,8 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
             for (int col = 0; col < GRID_COLS; col++) {
             	
             	//Create a new tile and add it to the 2D array
-                TileView newTile = new TileView(row, col, Color.GRAY);
-                tiles[row][col] = newTile;
+                TileView tile = new TileView(row, col, Color.GRAY);
+                tiles[row][col] = tile;
 
                 //Adds MouseListener to SumFunPanel
                 //TODO Put code here when tiles are interacted with
@@ -47,28 +47,36 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
                          * Checks to see left mouse button was clicked and tile 
                          * contains the x,y coordinates
                          */
-                        if(e.getButton() == 1 && newTile.contains(e.getX(), e.getY())){
+                        if(e.getButton() == 1 && tile.contains(e.getX(), e.getY())){
+                        	
+                        	//print contents of back-end array of TileModel objects
+                        	//used to match with GUI representation
+                        	Controller.test();
                 				
                         	//Query back-end here to get the value of the selected tile
-                        	int placementRow = newTile.getRow();
-                        	int placementCol = newTile.getCol();
+                        	int placementRow = tile.getRow();
+                        	int placementCol = tile.getCol();
                         	TileModel t = Controller.getTileModel(placementRow, placementCol);
                         	int placementValue = t.getValue();
                         	
-                        	JOptionPane.showMessageDialog(null, newTile.getRow() + " " + newTile.getCol());
+                        	JOptionPane.showMessageDialog(null, tile.getRow() + " " + tile.getCol());
                         	
                         	//If the tile is empty (value is -1), then the placement is valid
                         	//TODO: remove convoluted boolean logic on subsequent sprints
-
-                        	if(placementValue == -1 && ((newTile.getRow() == 0 && newTile.getRow() == 0)
-                        			|| (newTile.getRow() == 0 && newTile.getCol() == 8)
-                        			|| (newTile.getRow() == 8 && newTile.getCol() == 8)
-                        			|| (newTile.getRow() == 8 && newTile.getCol() == 0))) {
+                        	//It only allows for selection of corner tiles
+                        	if(placementValue == -1 && ((tile.getRow() == 0 && tile.getRow() == 0)
+                        			|| (tile.getRow() == 0 && tile.getCol() == 8)
+                        			|| (tile.getRow() == 8 && tile.getCol() == 8)
+                        			|| (tile.getRow() == 8 && tile.getCol() == 0))) {
                         		
                         		//Get the value of the first item in the queue
                         		int queueValue = Controller.getQueueTileModel(0).getValue();
-                        		Controller.setTileValue(queueValue, newTile.getRow(), newTile.getCol());
-                        		Controller.processMove(newTile.getRow(), newTile.getCol(), queueValue);
+                        		
+                        		//Set the value of the corrsponding tile in the back-end to the new value
+                        		Controller.setTileValue(queueValue, tile.getRow(), tile.getCol());
+                        		
+                        		//Process the move, update the queue, and refresh the GUI
+                        		Controller.processMove(tile.getRow(), tile.getCol(), queueValue);
                         		Controller.pushQueue();
                         		Controller.repaintFrame();
                         		
@@ -98,9 +106,9 @@ public class GameBoardPanel extends JPanel{//start SumFunPanel class
         Graphics2D g2 = (Graphics2D) g;
         
         //Draws tiles onto panel
-        for(int i = 0; i < GRID_ROWS; i++) {
-        	for(int j = 0; j < GRID_COLS; j++) {
-        		tiles[i][j].draw(g2, Controller.getGameBoard().getTileGrid()[i][j]);
+        for(int row = 0; row < GRID_ROWS; row++) {
+        	for(int col = 0; col < GRID_COLS; col++) {
+        		tiles[row][col].draw(g2, Controller.getGameBoard().getTileGrid()[row][col]);
         	}
         }
        

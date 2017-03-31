@@ -31,74 +31,45 @@ public class GameBoard {
 	 * 
 	 */
 	public void populateBoard(){//populate the gameBoard with Tiles
+		
+		//instantiate 2d array of TileModel objects
 		tileGrid = new TileModel[TILE_GRID_WIDTH][TILE_GRID_LENGTH];
-		for(int i = 0; i < TILE_GRID_WIDTH; i++){
-			for(int j = 0; j < TILE_GRID_LENGTH; j++){
-				if(i == 0 || i == TILE_GRID_WIDTH-1 || j == 0 || j == TILE_GRID_WIDTH-1){
+		
+		
+		for(int row = 0; row < TILE_GRID_WIDTH; row++){
+			for(int col = 0; col < TILE_GRID_LENGTH; col++){
+				
+				if(row == 0 || row == (TILE_GRID_WIDTH - 1)|| col == 0 || col == TILE_GRID_WIDTH-1){
 					//Then this is the surrounding part of the grid
 					//Make the value of the TileModel zero
-					tileGrid[i][j] = new TileModel(-1);
+					tileGrid[row][col] = new TileModel(-1);
 					continue;
 				}
-				tileGrid[i][j] = TileModel.createRandomTile();
+				tileGrid[row][col] = TileModel.createRandomTile();
 			}
 		}
 	}//end populateBoard
 	
 	/**
 	 * 
-	 * @param i
-	 * @param j
-	 * @param t
+	 * @param row
+	 * @param col
 	 * @return
 	 */
-	public boolean addTile(int i, int j, TileModel t){//takes coordinates and a tile, and attempts to place the tile at that place
-		
-		if(tileGrid[i][j].getValue() == -1){
-			tileGrid[i][j] = t;
-			return true;
-		}else{
-			return false;
-		}
-	}//addTile
-	
-	/**
-	 * 
-	 * @param i
-	 * @param j
-	 * @return
-	 */
-	public boolean removeTile( int i, int j){//takes coordinates and attempts to remove the tile at that place if one exists
-		tileGrid[i][j] = new TileModel(-1);
+	public boolean removeTile(int row, int col){//takes coordinates and attempts to remove the tile at that place if one exists
+		tileGrid[row][col] = new TileModel(-1);
 		return true;
 	}//end removeTile
 	
-	/**
-	 * 
-	 */
-	public void resetBoard(){//clears gameBoard to all NULL references (or zeros?)
-		//TODO maybe get rid of
-	}//end resetBoard
 	
 	/**
 	 * 
-	 * @param i
-	 * @param j
+	 * @param row
+	 * @param col
 	 * @return
 	 */
-	private boolean isValid(int i, int j){//determines if a move at given coordinates is valid
-		return true;
-		//TODO maybe get rid of
-	}//end isValid
-	
-	/**
-	 * 
-	 * @param i
-	 * @param j
-	 * @return
-	 */
-	public TileModel getTile(int i, int j) {
-		return tileGrid[i][j];
+	public TileModel getTile(int row, int col) {
+		return tileGrid[row][col];
 	}// getTile
 	
 	/*
@@ -108,8 +79,8 @@ public class GameBoard {
 		return tileGrid;
 	}//end getTileGrid method
 	
-	public void setTile(int i, int j, int value) {
-		tileGrid[i][j].setValue(value);
+	public void setTile(int row, int col, int value) {
+		tileGrid[row][col].setValue(value);
 	}
 	/*
 	 * Sets the directional references of the tileGrid
@@ -171,10 +142,10 @@ public class GameBoard {
 	
 	public void printArray() {
 		
-		for(int i = 0; i < tileGrid.length; i++) {
+		for(int row = 0; row < tileGrid.length; row++) {
 			System.out.println("");
-			for(int j = 0; j < tileGrid[0].length; j++) {
-				System.out.print(tileGrid[i][j].getValue() + " ");
+			for(int col = 0; col < tileGrid[row].length; col++) {
+				System.out.print(tileGrid[row][col].getValue() + " ");
 			}
 		}
 		

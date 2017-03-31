@@ -11,6 +11,7 @@ class TileView{//start Tile class
     private int row, col;//Row and column location of Tile
     private int x, y;//Physical coordinates of Tile
     private Color tileOutlineColor;//Color outline of Tile
+    private static int counter = 0;
     /*
      * Constructor method of Tile class
      */
@@ -34,6 +35,11 @@ class TileView{//start Tile class
         g2.draw(r);
         
         g2.setPaint(Color.BLACK);
+        
+        //Test code to see in what order the tiles are drawn onto the panel
+//        g2.drawString(String.valueOf(counter), x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
+//        counter++;
+        
         if(tile.getValue() == -1) {
         	g2.drawString("", x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
         } else {
