@@ -11,17 +11,20 @@ public class UntimedGame {//start UntimedGame class
 	private ArrayList<TileModel> tileQueue = new ArrayList<>();//holds the queue of tiles
 	private GameBoard gameBoard;//handles details of board state
 	private int points;//holds the player's score
-	private int lowThreshold;//the lowest number that be randomly generated
-	private int highThreshold;//the highest number that be randomly generated
-	
+	final int LOW_THRESHOLD = 0;//the lowest number that be randomly generated
+	final int HIGH_THRESHOLD = 9;//the highest number that be randomly generated
+	final int MAX_MOVES = 50;//the max moves allowed for a game
+	final int INITIAL_POINTS = 0;//the number of points the user starts with
+	final int QUEUE_LENGTH = 5;//the length of the queue
+	final int MIN_NUM_TILES_TO_SCORE = 3;//the minimum number of tiles removed need to score points
+	final int TILE_SCORE_VALUE = 10;//the value given per tile when points are scored
+	final int MOD_VALUE = 10;//the modulus value to calculate with
 	/**
 	 * Constructor method for UntimedGame class
 	 */
 	public UntimedGame() {
-		movesRemaining = 50;
-		points = 0;
-		lowThreshold = 0;
-		highThreshold = 9;
+		movesRemaining = MAX_MOVES;
+		points = INITIAL_POINTS;
 		gameBoard = new GameBoard();
 		populateQueue();
 	}//end UntimedGame constructor method
@@ -54,11 +57,10 @@ public class UntimedGame {//start UntimedGame class
 	/**
 	 * Places a tile at the given location by simply replacing the value
 	 * of the current tile with the value of the selected tile
-	 * 
+	 * @param i,j - the row and column values of where the tile is placed
 	 */
 	public void placeTile(int i, int j){//start placeTile method
 		gameBoard.setTile(i, j, tileQueue.get(0).getValue());
-		System.out.println("TEST");
 		calculateSum(i, j, tileQueue.get(0).getValue());
 	}//end placeTile method
 	
@@ -69,9 +71,9 @@ public class UntimedGame {//start UntimedGame class
 	 */
 	private void populateQueue(){//initializes tileQueue with random values in the allowed range (inclusive)
 		int num;
-		for(int i=1; i<=5; i++){
-			num=lowThreshold + (int)(Math.random() * ((highThreshold - lowThreshold) + 1));
-			TileModel t=new TileModel(i-1);
+		for(int i = 0; i < QUEUE_LENGTH ; i++){
+			num = LOW_THRESHOLD + (int) (Math.random() * ((HIGH_THRESHOLD - LOW_THRESHOLD) + 1));
+			TileModel t = new TileModel(i - 1);
 			t.setValue(num);
 			tileQueue.add(t);
 		}
@@ -80,10 +82,10 @@ public class UntimedGame {//start UntimedGame class
 	 * Adds a new tile to the queue after one has been removed
 	 */
 	public void pushQueue(){//start pushQueue start
+		TileModel t;//the tile to be added to the queue
 		tileQueue.remove(0);
-		int num=lowThreshold + (int)(Math.random() * ((highThreshold - lowThreshold) + 1));
-		TileModel t=new TileModel(4);
-		t.setValue(num);
+		int num = LOW_THRESHOLD + (int) (Math.random() * ((HIGH_THRESHOLD - LOW_THRESHOLD) + 1));
+		t = new TileModel(num);
 		tileQueue.add(t);
 		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}//end pushQueue method
@@ -99,7 +101,7 @@ public class UntimedGame {//start UntimedGame class
 		//Uncomment this to test whether the calculateSum method was reached
 		//For testing
 		//TODO remove later
-		System.out.println("Calculate sum reached");
+		//System.out.println("Calculate sum reached");
 		
 		//decrement movesRemaining
 		movesRemaining--;
@@ -147,16 +149,16 @@ public class UntimedGame {//start UntimedGame class
 			score++;
 		}
 		
-		//If 3 or more tiles have been removed, calculate score
+		//If the MIN_NUM_TILES_TO_SCORE or more tiles have been removed, calculate score
 		//Otherwise, no score awarded
-		if(score >= 3) {
-			score = score * 10;
+		if(score >= MIN_NUM_TILES_TO_SCORE) {
+			score = score * TILE_SCORE_VALUE;
 		} else {
 			score = 0;
 		}
 		
-		//Check if value of placed tile = total neighboring tile values modulo 10
-		if((total % 10) == mod){
+		//Check if value of placed tile = total neighboring tile values modulo MOD_VALUE
+		if((total % MOD_VALUE) == mod){
 			
 			//Update points with new score
 			this.points += score;
@@ -165,7 +167,7 @@ public class UntimedGame {//start UntimedGame class
 			removeAdjacentTiles(t);
 			
 			//Test print statement
-			System.out.println("move successful");
+			//System.out.println("Move successful");
 			
 			//Make calls to notifyObservers, etc
 		}	

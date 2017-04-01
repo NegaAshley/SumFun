@@ -15,12 +15,12 @@ public class PointBoardBuilder {//start PointBoardBuilder class
 	private JPanel board;//the JPanel to put the point board in
 	private JLabel textLabel;//the label for the score
 	private JLabel scoreLabel;//the label that holds the value of the score
-	
+	final int STARTING_SCORE = 0;//the starting score for the game
 	/*
 	 * Constructor for the PointBoardBuilder class
 	 */
 	public PointBoardBuilder(){//start PointBoardBuilder constructor
-		score = 0;//initialize score to 0
+		score = STARTING_SCORE;//initialize score to STARTING_SCORE
 		text = "Score: ";//set the text to "Score: " to put in the textLabel
 		board = new JPanel();//creates the board panel
 		board.setLayout(new GridLayout(1,2));//sets the layout of the board to GridLayout

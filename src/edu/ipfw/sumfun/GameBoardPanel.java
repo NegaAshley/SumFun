@@ -48,7 +48,7 @@ public class GameBoardPanel extends JPanel{//start GameBoardPanel class
                         	
                         	//Print contents of back-end array of TileModel objects
                         	//Used to match with GUI representation
-                        	Controller.test();
+                        	//Controller.test();
                 				
                         	//Query back-end here to get the value of the selected tile
                         	int placementRow = tile.getRow();

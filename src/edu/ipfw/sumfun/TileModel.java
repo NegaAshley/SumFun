@@ -14,6 +14,7 @@ public class TileModel {//start TileModel class
 	private int value;//the value of the Tile
 	//Directional references for the tiles around this TileModel
 	private TileModel north, northEast, east, southEast, south, southWest, west, northWest;
+	final static int MAX_RANDOM_VALUE = 9;//the maximum random value for a tile
 	
 	/*
 	 * The constructor for the ConceptualTile class.  Sets value to given value.
@@ -24,12 +25,12 @@ public class TileModel {//start TileModel class
 	}//end ConceptualTile constructor
 	
 	/*
-	 * Creates a tile with a value between 0 and 9
+	 * Creates a tile with a value between 0 and MAX_RANDOM_VALUE
 	 * @returns TileModel - the TileModel created
 	 */
 	public static TileModel createRandomTile(){//start createRandomTile method
 		TileModel randomTile;//random tile created
-		int value = (int)(Math.random() * 9);
+		int value = (int)(Math.random() * MAX_RANDOM_VALUE);
 		randomTile = new TileModel(value);
 		return randomTile;
 	}//end createRandomTile method

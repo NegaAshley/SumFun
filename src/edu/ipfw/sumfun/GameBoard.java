@@ -77,9 +77,9 @@ public class GameBoard {//start GameBoard class
 	
 	/**
 	 * Sets the tile at the given coordinates to the given value
-	 * @param row the row desired
-	 * @param col the column desired
-	 * @param value the new value
+	 * @param row - the row desired
+	 * @param col - the column desired
+	 * @param value - the new value
 	 */
 	public void setTile(int row, int col, int value) {//start setTile method
 		tileGrid[row][col].setValue(value);
@@ -98,31 +98,31 @@ public class GameBoard {//start GameBoard class
 					tileGrid[row][col].setNorth(tileGrid[row - 1][col]);
 				}
 				
-				if((col == 8) || (row == 0)){//then tile is in top row or rightmost column
+				if((col == tileGrid[0].length - 1) || (row == 0)){//then tile is in top row or rightmost column
 					tileGrid[row][col].setNorthEast(null);//set northeast reference to null
 				}else{
 					tileGrid[row][col].setNorthEast(tileGrid[row - 1][col + 1]);
 				}
 				
-				if(col == 8){//then tile is on right column of grid and east reference is null
+				if(col == tileGrid[0].length - 1){//then tile is on right column of grid and east reference is null
 					tileGrid[row][col].setEast(null);//set east reference to null
 				}else{
 					tileGrid[row][col].setEast(tileGrid[row][col+1]);
 				}
 				
-				if((col == 8) || (row == 8)){//then tile is on bottom row or rightmost column
+				if((col == tileGrid[0].length - 1) || (row == tileGrid[0].length - 1)){//then tile is on bottom row or rightmost column
 					tileGrid[row][col].setSouthEast(null);//set southeast reference to null
 				}else{
 					tileGrid[row][col].setSouthEast(tileGrid[row + 1][col + 1]);
 				}
 				
-				if(row == 8){//then tile is on bottom row
+				if(row == tileGrid[0].length - 1){//then tile is on bottom row
 					tileGrid[row][col].setSouth(null);//set south reference to null
 				}else{
 					tileGrid[row][col].setSouth(tileGrid[row + 1][col]);
 				}
 				
-				if((row == 8) || (col == 0)){//then tile is leftmost column or bottom row
+				if((row == tileGrid[0].length - 1) || (col == 0)){//then tile is leftmost column or bottom row
 					tileGrid[row][col].setSouthWest(null);//set southwest reference to null
 				}else{
 					tileGrid[row][col].setSouthWest(tileGrid[row + 1][col - 1]);
