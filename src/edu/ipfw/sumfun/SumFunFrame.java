@@ -32,7 +32,8 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 	QueuePanel qp;//QueuePanel to hold the queue
 	JLabel scoreLabel;//label for the score
 	JLabel moveLabel;//label for the moves remaining
-	
+	Boolean isTimed = false;//Boolean check for user game choice
+	JLabel timeLabel;//Label for remaining time
 	/**
 	 * Constructor for the SumFunFrame
 	 */
@@ -90,6 +91,10 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 		scoreBoardPanel.setLayout(new GridLayout(2, 2));
 
 		//Adds JLabels and text fields for Score and Moves Remaining
+		
+		//Checks for passed value to indicate timed/un-timed game
+		if(isTimed == false){
+			
 		int score = Controller.getPoints();
 		String scoreString = "Score: " + score;
 		int moves = Controller.getMoves();
@@ -98,6 +103,19 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 		moveLabel = new JLabel(movesString);
 		scoreBoardPanel.add(scoreLabel);
 		scoreBoardPanel.add(moveLabel);
+		}
+		else{
+			
+			int score = Controller.getPoints();
+			String scoreString = "Score: " + score;
+			int moves = Controller.getMoves();
+			String movesString = "Moves Remaining: " + moves;
+			scoreLabel = new JLabel(scoreString);
+			moveLabel = new JLabel(movesString);
+			scoreBoardPanel.add(scoreLabel);
+			scoreBoardPanel.add(moveLabel);
+		}
+		
 		
 		//Add score board panel to the north of initialPanel
 		initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
