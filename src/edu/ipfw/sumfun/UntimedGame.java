@@ -5,20 +5,21 @@ import java.util.*;
  * The UntimedGame class controls the untimed version of the game
  * @author Jake
  */
-public class UntimedGame {//start UntimedGame class
+public class UntimedGame extends Observable {//start UntimedGame class
 	
-	public int movesRemaining;//counter of number of moves remaining, decrements with each successful move
+	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
 	private ArrayList<TileModel> tileQueue = new ArrayList<>();//holds the queue of tiles
 	private GameBoard gameBoard;//handles details of board state
 	private int points;//holds the player's score
-	final int LOW_THRESHOLD = 0;//the lowest number that be randomly generated
-	final int HIGH_THRESHOLD = 9;//the highest number that be randomly generated
-	final int MAX_MOVES = 50;//the max moves allowed for a game
-	final int INITIAL_POINTS = 0;//the number of points the user starts with
-	final int QUEUE_LENGTH = 5;//the length of the queue
-	final int MIN_NUM_TILES_TO_SCORE = 3;//the minimum number of tiles removed need to score points
-	final int TILE_SCORE_VALUE = 10;//the value given per tile when points are scored
-	final int MOD_VALUE = 10;//the modulus value to calculate with
+	private final int LOW_THRESHOLD = 0;//the lowest number that be randomly generated
+	private final int HIGH_THRESHOLD = 9;//the highest number that be randomly generated
+	private final int MAX_MOVES = 50;//the max moves allowed for a game
+	private final int INITIAL_POINTS = 0;//the number of points the user starts with
+	private final int QUEUE_LENGTH = 5;//the length of the queue
+	private final int MIN_NUM_TILES_TO_SCORE = 3;//the minimum number of tiles removed need to score points
+	private final int TILE_SCORE_VALUE = 10;//the value given per tile when points are scored
+	private final int MOD_VALUE = 10;//the modulus value to calculate with
+	
 	/**
 	 * Constructor method for UntimedGame class
 	 */
@@ -62,9 +63,9 @@ public class UntimedGame {//start UntimedGame class
 	public void placeTile(int i, int j){//start placeTile method
 		gameBoard.setTile(i, j, tileQueue.get(0).getValue());
 		calculateSum(i, j, tileQueue.get(0).getValue());
+		setChanged();
+		notifyObservers();
 	}//end placeTile method
-	
-	//COMMENT
 	
 	/**
 	 * Populates the tileQueue with some values
@@ -171,6 +172,10 @@ public class UntimedGame {//start UntimedGame class
 			
 			//Make calls to notifyObservers, etc
 		}	
+		
+		setChanged();
+		notifyObservers();
+		
 	}//end calculateSum method
 	
 	/**
@@ -223,6 +228,8 @@ public class UntimedGame {//start UntimedGame class
 	public void decrementMoves() {
 		System.out.println("decrementMoves called");
 		movesRemaining--;
+		setChanged();
+		notifyObservers();
 	}//end decrementMoves
 	
 }//end UntimedGame class

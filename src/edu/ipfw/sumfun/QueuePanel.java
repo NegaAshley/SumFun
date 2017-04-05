@@ -54,7 +54,7 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
     	//g2.setBackground(Color.GRAY);
         for(int i = 0; i < queueTiles.size(); i++) {
         	QueueTileView tile = queueTiles.get(i);
-        	tile.draw(g2, Controller.getQueueTileModel(i));
+        	tile.draw(g2, Application.getQueueTileModel(i));
         } 
     }//end paintComponent
     
