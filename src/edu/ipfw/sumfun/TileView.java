@@ -3,11 +3,14 @@
  */
 package edu.ipfw.sumfun;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.geom.*;
 
 class TileView{//start Tile class
 	
-    public static final int SIZE = 50;//Size of Tile
+	private Controller controller;
+	
+    private static final int SIZE = 50;//Size of Tile
     private int row, col;//Row and column location of Tile
     private int x, y;//Physical coordinates of Tile
     private Color tileOutlineColor;//Color outline of Tile
@@ -22,6 +25,25 @@ class TileView{//start Tile class
         this.row = row;
         this.col = col;
     }//end Tile constructor
+    
+    public void addActionListener(Controller controller) {
+    	this.controller = controller;
+    }
+    
+    public void processEvent() {
+    	
+    	try {
+    		
+    		int id = ActionEvent.ACTION_FIRST;
+    		String eventString = row + " " + col;
+    		controller.actionPerformed(new ActionEvent(this, id, eventString));
+    		
+    	} catch(Exception e){
+    		System.out.println("Fatal error. No controller registered for tile.");
+    		System.exit(1);
+    	}
+    	
+    }
     
     /**
      * Draws the tiles onto the grid.
