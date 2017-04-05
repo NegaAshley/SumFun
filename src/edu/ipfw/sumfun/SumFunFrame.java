@@ -6,6 +6,8 @@ package edu.ipfw.sumfun;
 
 import java.awt.GridLayout;
 import java.awt.event.*;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,35 +15,53 @@ import javax.swing.border.Border;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  * The SumFunFrame class is the main View class, and builds the GUI
  * @author Jake
  * 
  */
-public class SumFunFrame extends JFrame {// start SumFunFrame
-
-	JMenuBar bar;//main menu bar
-	JMenu gameMenu;//menu option holding game options
-	JMenu helpMenu;//menu options holding help options
-	final JMenuItem newGame;//menu option in gameMenu that will create a new game
-	final JMenuItem exit;//menu option in gameMenu that will exit the game
-	final JMenuItem help;//menu option in helpMenu that will bring up help features
-	JPanel initialPanel;//panel to build from
-	JPanel scoreBoardPanel;//panel to hold score and moves left
-	QueuePanel qp;//QueuePanel to hold the queue
-	JLabel scoreLabel;//label for the score
-	JLabel moveLabel;//label for the moves remaining
+public class SumFunFrame extends JFrame implements Observer {// start SumFunFrame
+	
+	private static final boolean GUI_RESIZABLE = false;
+	private static final int GUI_WIDTH = 1000;
+	private static final int GUI_HEIGHT = 525;
+    private static final int GRID_ROWS = 9;
+    private static final int GRID_COLS = 9;
+	
+    //The model
+	private UntimedGame untimedGame;
+	
+    //A two-dimensional array of TileView tiles for easy access
+    private TileView[][] tiles = new TileView[GRID_ROWS][GRID_COLS];//2D Array where tiles are located
+	private JMenuBar bar;//main menu bar
+	private JMenu gameMenu;//menu option holding game options
+	private JMenu helpMenu;//menu options holding help options
+	private final JMenuItem newGame;//menu option in gameMenu that will create a new game
+	private final JMenuItem exit;//menu option in gameMenu that will exit the game
+	private final JMenuItem help;//menu option in helpMenu that will bring up help features
+	private JPanel initialPanel;//panel to build from
+	private JPanel scoreBoardPanel;//panel to hold score and moves left
+	private QueuePanel qp;//QueuePanel to hold the queue
+	private JLabel scoreLabel;//label for the score
+	private JLabel moveLabel;//label for the moves remaining
 	
 	/**
 	 * Constructor for the SumFunFrame
 	 */
-	public SumFunFrame() {//start SumFunFrame constructor
+	public SumFunFrame(UntimedGame untimedGame) {//start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
 		setDefaultCloseOperation(EXIT_ON_CLOSE);//exits game on close
-
+		setSize(GUI_WIDTH, GUI_HEIGHT);
+		setResizable(GUI_RESIZABLE);
 		setLayout(new GridLayout(1, 1));//sets the layout of the frame to GridLayout
+		
+		//
+		this.untimedGame = untimedGame;
+		untimedGame.addObserver(this);
 		
 		// Creates and sets the menu bar
 		bar = new JMenuBar();
@@ -65,22 +85,15 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 		gameMenu.add(exit);
 		helpMenu.add(help);
 
-		//Closes game when exit menu option is selected
-		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {//start actionPerformed method
-				dispose();
-			}//end actionPerformed method
-		});
-
+		//Creates and adds SumFunPanel
+		GameBoardPanel panel = new GameBoardPanel();
+		add(panel);
+		
 		//Initial panel to be added to frame
 		//This panel is intermediate, so we can add another panel
 		//on the right side of the frame but only in the north space
 		initialPanel = new JPanel();
 		initialPanel.setLayout(new BorderLayout());
-
-		//Creates and adds SumFunPanel
-		GameBoardPanel panel = new GameBoardPanel();
-		add(panel);
 
 		//Add initial panel to right of SumFunPanel
 		add(initialPanel);
@@ -90,9 +103,9 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 		scoreBoardPanel.setLayout(new GridLayout(2, 2));
 
 		//Adds JLabels and text fields for Score and Moves Remaining
-		int score = Controller.getPoints();
+		int score = Application.getPoints();
 		String scoreString = "Score: " + score;
-		int moves = Controller.getMoves();
+		int moves = Application.getMoves();
 		String movesString = "Moves Remaining: " + moves;
 		scoreLabel = new JLabel(scoreString);
 		moveLabel = new JLabel(movesString);
@@ -102,10 +115,8 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 		//Add score board panel to the north of initialPanel
 		initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
 
-		// Instantiate a new QueuePanel
+		// Instantiate a new QueuePanel and add to initialPanel
 		qp = new QueuePanel();
-
-		//Ad qp to the panel
 		initialPanel.add(qp);
 
 		//Resets board when new game is selected
@@ -114,6 +125,14 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 				// panel.resetBoard(getBackground());
 			}//end actionPerformed method
 		});
+		
+		//Closes game when exit menu option is selected
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {//start actionPerformed method
+				dispose();
+			}//end actionPerformed method
+		});
+		
 	}//end SumFunFrame constructor
 	/**
 	 * Getter for scoreLabel
@@ -266,5 +285,124 @@ public class SumFunFrame extends JFrame {// start SumFunFrame
 	public JMenuItem getHelp() {//start getHelp method
 		return help;
 	}//end getHelp method
+	
+	/**
+	 * Updates each GUI component with corresponding model element
+	 */
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		
+		//Update score
+		String score = "Score: " + untimedGame.getPoints();
+		scoreLabel.setText(score);
+		
+		//Update moves remaining
+		String moves = "Moves Remaining: " + untimedGame.getMovesRemaining();
+		moveLabel.setText(moves);
+		
+		//Repaint the frame
+		repaint();
+		
+	}//end update
+	
+	/**
+	 * GameBoardPanel is the panel which holds the game grid
+	 * GameBoardPanel is an inner class of SumFunFrame
+	 * @author Ashley
+	 *
+	 */
+	public class GameBoardPanel extends JPanel{//start GameBoardPanel class
+	    
+	    /**
+	     * GameBoardPanel constructor
+	     */
+	    public GameBoardPanel() {//start GameBoardPanel constructor
+	    	
+	        //Creates grid of size GRID_ROWS by GRID_COLS
+	        setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
+	        
+	        //Iterates through the tileView 2D array
+	        for (int row = 0; row < GRID_ROWS; row++) {
+	            for (int col = 0; col < GRID_COLS; col++) {
+	            	
+	            	//Create a new tile and add it to the 2D array
+	                TileView tile = new TileView(row, col, Color.GRAY);
+	                tiles[row][col] = tile;
+
+	                //Adds MouseListener to SumFunPanel
+	                addMouseListener(new MouseAdapter() {
+
+	                    //Event occurs when mouse is clicked on panel
+	                    public void mouseClicked(MouseEvent e){//start mouseClicked method
+	                    	
+	                        /**
+	                         * Checks to see left mouse button was clicked and tile 
+	                         * contains the x,y coordinates
+	                         */
+	                        if(e.getButton() == 1 && tile.contains(e.getX(), e.getY())){
+	                        	
+	                        	//Create an ActionEvent with the tile's row and column as the action command
+	                        	//Set in the format "row col"
+	                       // 	String actionCommand = tile.getRow() + " " + tile.getCol();
+	                     //   	ActionEvent newEvent = new ActionEvent(null, 0, actionCommand);
+	                        	
+	                        	//Query back-end here to get the value of the selected tile
+	                        	int placementRow = tile.getRow();
+	                        	int placementCol = tile.getCol();
+	                        	TileModel t = Application.getTileModel(placementRow, placementCol);
+	                        	int placementValue = t.getValue();
+	                        	
+	                        	//TODO remove later
+	                        	//Uncomment this to see the coordinates of the tile
+	                        	//Used for testing
+	                        	//JOptionPane.showMessageDialog(null, tile.getRow() + " " + tile.getCol());
+	                        	
+	                        	//If the tile is empty (value is -1), then the placement is valid
+	                        	if(placementValue == -1 ) {
+	                        		
+	                        		//Get the value of the first item in the queue
+	                        		int queueValue = Application.getQueueTileModel(0).getValue();
+	                        		
+	                        		//Set the value of the corresponding tile in the back-end to the new value
+	                        		Application.setTileValue(queueValue, tile.getRow(), tile.getCol());
+	                        		
+	                        		//Process the move, update the queue, and refresh the GUI
+	                        		Application.processMove(tile.getRow(), tile.getCol(), queueValue);
+	                        		Application.pushQueue();
+	                        		
+	                        		SumFunFrame.this.repaint();
+	                        		
+	                        		//Uncomment to see the value of the tile placed in a popup window
+	                        		//TODO remove later
+	                        		//JOptionPane.showMessageDialog(null, queueValue);
+	                        		
+	                        	} else {
+	                        		//Lets the user know that they are unable to place a tile in a particular location
+	                        		JOptionPane.showMessageDialog(null, "Cannot place tile here!");
+	                        		return;
+	                        	}
+	                        }
+	                    }//end mouseClicked method
+	                });//end addMouseListner
+	            }//end nested for
+	        }//end for 
+	    }//end SumFunPanel constructor
+	     
+	    /*
+	     * Paints components
+	     */
+	    public void paintComponent(Graphics g){//start paintComponent method
+	        super.paintComponent(g);
+	        Graphics2D g2 = (Graphics2D) g;
+	        
+	        //Iterates through tiles and draws tiles onto panel
+	        for(int row = 0; row < GRID_ROWS; row++) {
+	        	for(int col = 0; col < GRID_COLS; col++) {
+	        		tiles[row][col].draw(g2, Application.getGameBoard().getTileGrid()[row][col]);
+	        	}
+	        }
+	    }//end paintComponent method
+	}//end SumFunPanel class
+
 
 }// end SumFunFrame class
