@@ -90,16 +90,6 @@ public class Application {//start SumFunGame class
 	}//end pushQueue method
 	
 	/**
-	 * Calls UntimedGame logic to process a move with the clicked-on coordinates and the top queue value
-	 * @param i the row of the tile clicked
-	 * @param j the column of the tile clicked
-	 * @param value the top queue value
-	 */
-	public static void processMove(int i, int j, int value) {//start processMove method
-		untimedGame.calculateSum(i, j, value);
-	}//end processMove method
-	
-	/**
 	 * Prints the values of the gameBoard to the console for testing
 	 */
 	public static void test() {//start test method

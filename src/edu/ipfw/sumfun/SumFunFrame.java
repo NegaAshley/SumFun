@@ -30,9 +30,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private static final int GUI_HEIGHT = 525;
     private static final int GRID_ROWS = 9;
     private static final int GRID_COLS = 9;
+    private static final String INVALID_MOVE_MESSAGE = "Cannot place Tile here!";
 	
     //The model
 	private UntimedGame untimedGame;
+	
+	//The controller
+	private Controller controller;
 	
     //A two-dimensional array of TileView tiles for easy access
     private TileView[][] tiles = new TileView[GRID_ROWS][GRID_COLS];//2D Array where tiles are located
@@ -51,7 +55,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	/**
 	 * Constructor for the SumFunFrame
 	 */
-	public SumFunFrame(UntimedGame untimedGame) {//start SumFunFrame constructor
+	public SumFunFrame(UntimedGame untimedGame, Controller controller) {//start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
 		setDefaultCloseOperation(EXIT_ON_CLOSE);//exits game on close
@@ -59,9 +63,11 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		setResizable(GUI_RESIZABLE);
 		setLayout(new GridLayout(1, 1));//sets the layout of the frame to GridLayout
 		
-		//
+		//Register view as observer of model
 		this.untimedGame = untimedGame;
 		untimedGame.addObserver(this);
+		
+		this.controller = controller;
 		
 		// Creates and sets the menu bar
 		bar = new JMenuBar();
@@ -327,12 +333,15 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	            	
 	            	//Create a new tile and add it to the 2D array
 	                TileView tile = new TileView(row, col, Color.GRAY);
+	                tile.addActionListener(controller);
 	                tiles[row][col] = tile;
 
 	                //Adds MouseListener to SumFunPanel
 	                addMouseListener(new MouseAdapter() {
 
-	                    //Event occurs when mouse is clicked on panel
+	                    /**
+	                     * Process MouseEvent when tile is clicked
+	                     */
 	                    public void mouseClicked(MouseEvent e){//start mouseClicked method
 	                    	
 	                        /**
@@ -340,49 +349,10 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	                         * contains the x,y coordinates
 	                         */
 	                        if(e.getButton() == 1 && tile.contains(e.getX(), e.getY())){
-	                        	
-	                        	//Create an ActionEvent with the tile's row and column as the action command
-	                        	//Set in the format "row col"
-	                       // 	String actionCommand = tile.getRow() + " " + tile.getCol();
-	                     //   	ActionEvent newEvent = new ActionEvent(null, 0, actionCommand);
-	                        	
-	                        	//Query back-end here to get the value of the selected tile
-	                        	int placementRow = tile.getRow();
-	                        	int placementCol = tile.getCol();
-	                        	TileModel t = Application.getTileModel(placementRow, placementCol);
-	                        	int placementValue = t.getValue();
-	                        	
-	                        	//TODO remove later
-	                        	//Uncomment this to see the coordinates of the tile
-	                        	//Used for testing
-	                        	//JOptionPane.showMessageDialog(null, tile.getRow() + " " + tile.getCol());
-	                        	
-	                        	//If the tile is empty (value is -1), then the placement is valid
-	                        	if(placementValue == -1 ) {
-	                        		
-	                        		//Get the value of the first item in the queue
-	                        		int queueValue = Application.getQueueTileModel(0).getValue();
-	                        		
-	                        		//Set the value of the corresponding tile in the back-end to the new value
-	                        		Application.setTileValue(queueValue, tile.getRow(), tile.getCol());
-	                        		
-	                        		//Process the move, update the queue, and refresh the GUI
-	                        		Application.processMove(tile.getRow(), tile.getCol(), queueValue);
-	                        		Application.pushQueue();
-	                        		
-	                        		SumFunFrame.this.repaint();
-	                        		
-	                        		//Uncomment to see the value of the tile placed in a popup window
-	                        		//TODO remove later
-	                        		//JOptionPane.showMessageDialog(null, queueValue);
-	                        		
-	                        	} else {
-	                        		//Lets the user know that they are unable to place a tile in a particular location
-	                        		JOptionPane.showMessageDialog(null, "Cannot place tile here!");
-	                        		return;
-	                        	}
+		                        	tile.processEvent();
 	                        }
 	                    }//end mouseClicked method
+	                    
 	                });//end addMouseListner
 	            }//end nested for
 	        }//end for 
@@ -403,6 +373,10 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	        }
 	    }//end paintComponent method
 	}//end SumFunPanel class
+	
+	public void invalidMoveEvent() {
+		JOptionPane.showMessageDialog(this, INVALID_MOVE_MESSAGE);
+	}
 
 
 }// end SumFunFrame class

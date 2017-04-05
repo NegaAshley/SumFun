@@ -19,8 +19,8 @@ class QueueTileView {//start QueueTileView class
      */
     public QueueTileView(int row, int col, Color tileOutlineColor){//start Tile constructor
         this.tileOutlineColor = tileOutlineColor;
-        x = row * TileView.SIZE;//since the queue is vertical and 1D, row corresponds to x, unlike in the main TileView class
-        y = col * TileView.SIZE;//similarly for y
+        x = row * SIZE;//since the queue is vertical and 1D, row corresponds to x, unlike in the main TileView class
+        y = col * SIZE;//similarly for y
         this.row = row;
         this.col = col;
     }//end Tile constructor
