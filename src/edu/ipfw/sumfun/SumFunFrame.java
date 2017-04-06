@@ -44,6 +44,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private JMenu gameMenu;//menu option holding game options
 	private JMenu helpMenu;//menu options holding help options
 	private final JMenuItem newGame;//menu option in gameMenu that will create a new game
+	private final JMenuItem resetQueue;//menu option in gameMenu to reset queue once
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem help;//menu option in helpMenu that will bring up help features
 	private JPanel initialPanel;//panel to build from
@@ -83,11 +84,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 
 		//Creates menu items for menus
 		newGame = new JMenuItem("New Game");
+		resetQueue = new JMenuItem("Reset Queue");
 		exit = new JMenuItem("Exit");
 		help = new JMenuItem("Help");
 
 		//Adds menu items to menus
 		gameMenu.add(newGame);
+		gameMenu.add(resetQueue);
 		gameMenu.add(exit);
 		helpMenu.add(help);
 
@@ -137,6 +140,12 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
 				dispose();
 			}//end actionPerformed method
+		});
+		
+		resetQueue.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				model.pushQueue();
+			}
 		});
 		
 	}//end SumFunFrame constructor

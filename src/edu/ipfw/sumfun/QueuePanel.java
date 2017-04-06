@@ -17,7 +17,6 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
     public static final int GRID_ROWS = 1;
     public static final int GRID_COLS = 5;
     public static final String GREEN_HEX_VALUE="0x00cc00";
-
     //ArrayList of queueTiles to hold references to the physical tiles
     ArrayList<QueueTileView> queueTiles = new ArrayList<>();
     
@@ -39,6 +38,7 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
                 queueTiles.add(newTile);  
             }
         } 
+        
     }//end QueuePanel constructor
      
     /*
