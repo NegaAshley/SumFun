@@ -31,7 +31,15 @@ public class Controller implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		
+		if(event.getActionCommand().equals("Reset Queue")){
+			//Refreshes the queue the size of the queue panel
+			for(int i = 0; i < QueuePanel.GRID_COLS; i++){
+				model.pushQueue();
+			}
+			//Makes the resetQueue menu item disabled
+			view.getResetQueue().setEnabled(false);
+			return;
+		}
 		//Parse the coordinates of the tile and sparked the ActionEvent
 		int[] coordinates = parseActionCommand(event);
 		int row = coordinates[0];
