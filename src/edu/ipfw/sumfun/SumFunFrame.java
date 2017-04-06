@@ -25,6 +25,7 @@ import java.awt.Graphics2D;
  */
 public class SumFunFrame extends JFrame implements Observer {// start SumFunFrame
 	
+	//Various constants for use throughout SumFunFrame
 	private static final boolean GUI_RESIZABLE = false;
 	private static final int GUI_WIDTH = 1000;
 	private static final int GUI_HEIGHT = 525;
@@ -376,6 +377,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	                });//end addMouseListner
 	            }//end nested for
 	        }//end for 
+	        
 	    }//end SumFunPanel constructor
 	     
 	    /*
@@ -392,11 +394,14 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	        	}
 	        }
 	    }//end paintComponent method
+	    
 	}//end SumFunPanel class
 	
+	/**
+	 * Display an alert that an invalid move was attempted by the player
+	 */
 	public void invalidMoveEvent() {
 		JOptionPane.showMessageDialog(this, INVALID_MOVE_MESSAGE);
-	}
-
+	}//end invalidMoveEvent
 
 }// end SumFunFrame class

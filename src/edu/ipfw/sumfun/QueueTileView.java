@@ -14,6 +14,7 @@ class QueueTileView {//start QueueTileView class
     private int row, col;//Row and column location of Tile
     private int x, y;//Physical coordinates of Tile
     private Color tileOutlineColor;//Color outline of Tile
+    
     /*
      * Constructor method of QueueTileView class
      */
