@@ -36,6 +36,12 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
     //The model
 	private UntimedGame untimedGame;
 	
+	//The other model
+	private TimedGame timedGame;
+	
+	//Game type toggle
+	//private int gameType;
+	
 	//The controller
 	private Controller controller;
 	
@@ -54,6 +60,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private QueuePanel qp;//QueuePanel to hold the queue
 	private JLabel scoreLabel;//label for the score
 	private JLabel moveLabel;//label for the moves remaining
+	private JLabel timeLabel;//label for the time remaining
 	
 	/**
 	 * Constructor for the SumFunFrame
@@ -118,10 +125,14 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		String scoreString = "Score: " + score;
 		int moves = Application.getMoves();
 		String movesString = "Moves Remaining: " + moves;
+		int time = Application.getTime();
+		String timeString = Integer.toString(time);
 		scoreLabel = new JLabel(scoreString);
 		moveLabel = new JLabel(movesString);
+		timeLabel = new JLabel(timeString);
 		scoreBoardPanel.add(scoreLabel);
 		scoreBoardPanel.add(moveLabel);
+		scoreBoardPanel.add(timeLabel);
 		
 		//Add score board panel to the north of initialPanel
 		initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
@@ -154,6 +165,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		});
 		
 	}//end SumFunFrame constructor
+
 	/**
 	 * Getter for scoreLabel
 	 * @return scoreLabel
@@ -324,6 +336,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		scoreLabel.setText(score);
 		
 		//Update moves remaining
+		
 		String moves = "Moves Remaining: " + untimedGame.getMovesRemaining();
 		moveLabel.setText(moves);
 		
