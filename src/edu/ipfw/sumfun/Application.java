@@ -17,6 +17,9 @@ public class Application {//start SumFunGame class
 	//Reference to the model
 	private static UntimedGame untimedGame;
 	
+	//Reference to the other model
+	private static TimedGame timedGame;
+	
 	/**
 	 * Instantiate untimedGame and frame to run game logic and GUI.
 	 * @param args, the command line arguments
@@ -56,12 +59,20 @@ public class Application {//start SumFunGame class
 	}//end getPoints
 	
 	/**
-	 * 
+	 * Gets the moves from the back-end for use in front-end
 	 * @return
 	 */
 	public static int getMoves() {
 		return untimedGame.getMovesRemaining();
 	}//end getMoves
+	
+	/**
+	 * Gets the time remaining for use in front end
+	 * @return
+	 */
+	public static int getTime(){
+		return timedGame.getTimeRemaining();
+	}//end getTime
 	
 	/**
 	 * Gets the TileModel from the queue at the specified index
