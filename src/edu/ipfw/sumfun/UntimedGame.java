@@ -70,7 +70,7 @@ public class UntimedGame extends Observable {//start UntimedGame class
 	/**
 	 * Populates the tileQueue with some values
 	 */
-	private void populateQueue(){//initializes tileQueue with random values in the allowed range (inclusive)
+	public void populateQueue(){//initializes tileQueue with random values in the allowed range (inclusive)
 		int num;
 		for(int i = 0; i < QUEUE_LENGTH ; i++){
 			num = LOW_THRESHOLD + (int) (Math.random() * ((HIGH_THRESHOLD - LOW_THRESHOLD) + 1));
@@ -78,6 +78,8 @@ public class UntimedGame extends Observable {//start UntimedGame class
 			t.setValue(num);
 			tileQueue.add(t);
 		}
+		setChanged();
+		notifyObservers();
 	}//end populateQueue
 	/*
 	 * Adds a new tile to the queue after one has been removed
