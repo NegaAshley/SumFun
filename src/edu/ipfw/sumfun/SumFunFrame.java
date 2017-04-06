@@ -47,6 +47,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private final JMenuItem resetQueue;//menu option in gameMenu to reset queue once
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem help;//menu option in helpMenu that will bring up help features
+	private final String RESET_QUEUE = "Reset Queue";
 	private JPanel initialPanel;//panel to build from
 	private JPanel scoreBoardPanel;//panel to hold score and moves left
 	private QueuePanel qp;//QueuePanel to hold the queue
@@ -142,9 +143,12 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			}//end actionPerformed method
 		});
 		
+		//Resets the queue once and then disables the option
 		resetQueue.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				model.pushQueue();
+				resetQueue.setActionCommand(RESET_QUEUE);
+				controller.actionPerformed(e);
+				
 			}
 		});
 		
@@ -285,6 +289,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		return newGame;
 	}//end getNewGame method
 
+	/**
+	 * Getter for resetQueue
+	 * @return resetQueue
+	 */
+	public JMenuItem getResetQueue() {//start getResetQueue method
+		return resetQueue;
+	}//end getResetQueue method
 	/**
 	 * Getter for exit
 	 * @return exit

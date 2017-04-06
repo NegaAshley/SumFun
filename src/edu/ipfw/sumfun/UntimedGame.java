@@ -90,6 +90,8 @@ public class UntimedGame extends Observable {//start UntimedGame class
 		int num = LOW_THRESHOLD + (int) (Math.random() * ((HIGH_THRESHOLD - LOW_THRESHOLD) + 1));
 		t = new TileModel(num);
 		tileQueue.add(t);
+		setChanged();
+		notifyObservers();
 		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}//end pushQueue method
 	
