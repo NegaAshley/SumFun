@@ -11,9 +11,12 @@ import javax.swing.JPanel;
  */
 public class GameBoard {//start GameBoard class
 	
-	private TileModel [][] tileGrid;//the grid of TileModels representing the game board
+	//Various constants for use in GameBoard
 	final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
+	
+	private TileModel [][] tileGrid;//the grid of TileModels representing the game board
+
 	
 	/**
 	 * Constructor that populates the board and sets directional references via helper methods
@@ -84,6 +87,7 @@ public class GameBoard {//start GameBoard class
 	public void setTile(int row, int col, int value) {//start setTile method
 		tileGrid[row][col].setValue(value);
 	}//end setTile method
+	
 	/*
 	 * Sets the directional references of the tileGrid
 	 */

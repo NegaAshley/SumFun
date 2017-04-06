@@ -8,6 +8,7 @@ import java.awt.geom.*;
 
 class TileView{//start Tile class
 	
+	//Reference to the controller
 	private Controller controller;
 	
     private static final int SIZE = 50;//Size of Tile
@@ -15,6 +16,7 @@ class TileView{//start Tile class
     private int x, y;//Physical coordinates of Tile
     private Color tileOutlineColor;//Color outline of Tile
     private static int counter = 0;
+    
     /*
      * Constructor method of Tile class
      */
@@ -26,10 +28,14 @@ class TileView{//start Tile class
         this.col = col;
     }//end Tile constructor
     
+    //Adds controller
     public void addActionListener(Controller controller) {
     	this.controller = controller;
-    }
+    }//end addActionListener
     
+    /**
+     * processes tile click event
+     */
     public void processEvent() {
     	
     	try {
@@ -43,7 +49,7 @@ class TileView{//start Tile class
     		System.exit(1);
     	}
     	
-    }
+    }//end processEvent
     
     /**
      * Draws the tiles onto the grid.
@@ -57,10 +63,6 @@ class TileView{//start Tile class
         g2.draw(r);
         
         g2.setPaint(Color.BLACK);
-        
-        //Test code to see in what order the tiles are drawn onto the panel
-//        g2.drawString(String.valueOf(counter), x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);
-//        counter++;
         
         if(tile.getValue() == -1) {
         	g2.drawString("", x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);

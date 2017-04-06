@@ -10,8 +10,11 @@ import java.awt.event.ActionListener;
  */
 public class Controller implements ActionListener {
 	
+	//Various constants for use throughout Controller
 	private static final boolean GUI_VISIBLE = true;
+	private static final String RESET_QUEUE = "Reset Queue";
 	
+	//References to model and view
 	private UntimedGame model;
 	private SumFunFrame view;
 	
@@ -23,7 +26,7 @@ public class Controller implements ActionListener {
 		model = u;
 		view = new SumFunFrame(model, this);
 		view.setVisible(GUI_VISIBLE);
-	}
+	}//end Constructor
 
 	/**
 	 * Process all actions that need to occur due to user input
@@ -31,15 +34,35 @@ public class Controller implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		if(event.getActionCommand().equals("Reset Queue")){
-			//Refreshes the queue the size of the queue panel
-			for(int i = 0; i < QueuePanel.GRID_COLS; i++){
-				model.pushQueue();
-			}
-			//Makes the resetQueue menu item disabled
-			view.getResetQueue().setEnabled(false);
+		
+		//Check for an event that needs to reset the queue
+		if(event.getActionCommand().equals(RESET_QUEUE)){
+			resetQueue();
 			return;
 		}
+		
+		//Process a move
+		placeTile(event);
+		
+	}//end actionPerformed
+	
+	/**
+	 * Resets the value of each tile in the queue
+	 */
+	private void resetQueue() {
+		//Refreshes the queue the size of the queue panel
+		for(int i = 0; i < QueuePanel.GRID_COLS; i++){
+			model.pushQueue();
+		}
+		//Makes the resetQueue menu item disabled
+		view.getResetQueue().setEnabled(false);
+	}//end resetQueue
+	
+	/**
+	 * Parses the coordinates of a tile that was clicked, and updates model accordingly
+	 */
+	private void placeTile(ActionEvent event) {
+		
 		//Parse the coordinates of the tile and sparked the ActionEvent
 		int[] coordinates = parseActionCommand(event);
 		int row = coordinates[0];
@@ -58,8 +81,7 @@ public class Controller implements ActionListener {
 			//Alert user that move is invalid
 			view.invalidMoveEvent();
 		}
-		
-	}//end actionPerformed
+	}//end placeTile
 	
 	/**
 	 * Parse int coordinates from ActionEvent
@@ -95,18 +117,5 @@ public class Controller implements ActionListener {
 		return coordinates;
 		
 	}//end parseActionCommand
-	
-	/**
-	 * 
-	 * @param c, any single character
-	 * @return whether or not that character is a digit
-	 */
-	private boolean isNumeric(char c) {
-		
-		boolean answer = ((c == '0') || (c == '1') || (c == '2') || (c == '3') || (c == '4')
-				|| (c == '5') || (c == '6') || (c == '7') || (c == '8') || (c == '9'));
-		return answer;
-		
-	}//end isNumeric
 
 }//end class Controller

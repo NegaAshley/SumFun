@@ -103,11 +103,6 @@ public class UntimedGame extends Observable {//start UntimedGame class
 	 */
 	public void calculateSum(int i, int j, int mod){//start calculateSum method
 		
-		//Uncomment this to test whether the calculateSum method was reached
-		//For testing
-		//TODO remove later
-		//System.out.println("Calculate sum reached");
-		
 		//decrement movesRemaining
 		movesRemaining--;
 		
