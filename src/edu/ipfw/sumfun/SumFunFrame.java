@@ -30,7 +30,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private static final int GUI_HEIGHT = 525;
     private static final int GRID_ROWS = 9;
     private static final int GRID_COLS = 9;
-    private static final String INVALID_MOVE_MESSAGE = "Cannot place Tile here!";
+    private static final String INVALID_MOVE_MESSAGE = "Cannot place tile here!";
 	
     //The model
 	private UntimedGame untimedGame;

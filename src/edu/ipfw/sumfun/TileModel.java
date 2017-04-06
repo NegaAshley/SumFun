@@ -4,12 +4,13 @@
  * this TileModel.
  */
 package edu.ipfw.sumfun;
+import java.util.*;
 /**
  * TileModel is the conceptual model for the tile.
  * @author Jake
  *
  */
-public class TileModel {//start TileModel class
+public class TileModel extends Observable{//start TileModel class
 	
 	private int value;//the value of the Tile
 	//Directional references for the tiles around this TileModel
