@@ -126,7 +126,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		int moves = Application.getMoves();
 		String movesString = "Moves Remaining: " + moves;
 		int time = Application.getTime();
-		String timeString = Integer.toString(time);
+		String timeString = "Time Remaining: " + time;
 		scoreLabel = new JLabel(scoreString);
 		moveLabel = new JLabel(movesString);
 		timeLabel = new JLabel(timeString);
@@ -346,6 +346,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	}//end update
 	
 	/**
+	 * Display an alert that an invalid move was attempted by the player
+	 */
+	public void invalidMoveEvent() {
+		JOptionPane.showMessageDialog(this, INVALID_MOVE_MESSAGE);
+	}//end invalidMoveEvent
+	
+	/**
 	 * GameBoardPanel is the panel which holds the game grid
 	 * GameBoardPanel is an inner class of SumFunFrame
 	 * @author Ashley
@@ -409,12 +416,5 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	    }//end paintComponent method
 	    
 	}//end SumFunPanel class
-	
-	/**
-	 * Display an alert that an invalid move was attempted by the player
-	 */
-	public void invalidMoveEvent() {
-		JOptionPane.showMessageDialog(this, INVALID_MOVE_MESSAGE);
-	}//end invalidMoveEvent
 
 }// end SumFunFrame class
