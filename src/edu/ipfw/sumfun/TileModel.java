@@ -4,7 +4,9 @@
  * this TileModel.
  */
 package edu.ipfw.sumfun;
-import java.util.*;
+
+import java.util.Observable;
+
 /**
  * TileModel is the conceptual model for the tile.
  * @author Jake
@@ -12,12 +14,19 @@ import java.util.*;
  */
 public class TileModel extends Observable{//start TileModel class
 	
-	final static int MAX_RANDOM_VALUE = 9;//the maximum random value for a tile
+	static final  int MAX_RANDOM_VALUE = 9;//the maximum random value for a tile
 	
 	//Value of this tile
 	private int value;
 	//Directional references for the tiles around this TileModel
-	private TileModel north, northEast, east, southEast, south, southWest, west, northWest;
+	private TileModel north;
+	private TileModel northEast;
+	private TileModel east;
+	private TileModel southEast;
+	private TileModel south;
+	private TileModel southWest;
+	private TileModel west;
+	private TileModel northWest;
 	
 	/*
 	 * The constructor for the ConceptualTile class.  Sets value to given value.

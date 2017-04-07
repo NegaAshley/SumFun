@@ -1,9 +1,5 @@
 package edu.ipfw.sumfun;
 
-import java.util.*;
-
-import javax.swing.JPanel;
-
 /**
  * The GameBoard class holds and controls the game board
  * @author Ashley
@@ -12,8 +8,8 @@ import javax.swing.JPanel;
 public class GameBoard {//start GameBoard class
 	
 	//Various constants for use in GameBoard
-	final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
-	final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
+	static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
+	static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
 	
 	private TileModel [][] tileGrid;//the grid of TileModels representing the game board
 

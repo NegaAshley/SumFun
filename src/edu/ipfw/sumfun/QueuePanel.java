@@ -1,9 +1,12 @@
 package edu.ipfw.sumfun;
 
-import java.awt.*;
-import java.awt.event.*;//Save this for action listener
-import java.util.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
 
 /**
  * QueuePanel is a JPanel extension designed to show the visual queue
