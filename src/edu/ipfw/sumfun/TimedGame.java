@@ -1,6 +1,8 @@
 package edu.ipfw.sumfun;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The TimedGame class handles the timed version
@@ -15,22 +17,22 @@ public class TimedGame extends Observable {
 																// tiles
 	private GameBoard gameBoard;// handles details of board state
 	private int points;// holds the player's score
-	private final int LOW_THRESHOLD = 0;// the lowest number that be randomly
+	private static final int LOW_THRESHOLD = 0;// the lowest number that be randomly
 										// generated
-	private final int HIGH_THRESHOLD = 9;// the highest number that be randomly
+	private static final int HIGH_THRESHOLD = 9;// the highest number that be randomly
 											// generated
-	private int DURATION = 300000;// Duration of timed game in millis
-	private final int TICK = 1000; // Number of milliseconds per tick (1 second)
-	private final int INITIAL_POINTS = 0;// the number of points the user starts
+	private static int DURATION = 300000;// Duration of timed game in millis
+	private static final int TICK = 1000; // Number of milliseconds per tick (1 second)
+	private static final int INITIAL_POINTS = 0;// the number of points the user starts
 											// with
-	private final int QUEUE_LENGTH = 5;// the length of the queue
-	private final int MIN_NUM_TILES_TO_SCORE = 3;// the minimum number of tiles
+	private static final int QUEUE_LENGTH = 5;// the length of the queue
+	private static final int MIN_NUM_TILES_TO_SCORE = 3;// the minimum number of tiles
 													// removed need to score
 													// points
-	private final int TILE_SCORE_VALUE = 10;// the value given per tile when
+	private static final int TILE_SCORE_VALUE = 10;// the value given per tile when
 											// points are scored
-	private final int MOD_VALUE = 10;// the modulus value to calculate with
-	private Timer t;// Timer for timed game
+	private static final int MOD_VALUE = 10;// the modulus value to calculate with
+	private static Timer t;// Timer for timed game
 
 	/**
 	 * Constructor for TimedGame class

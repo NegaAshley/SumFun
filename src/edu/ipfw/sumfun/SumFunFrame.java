@@ -4,19 +4,25 @@
  */
 package edu.ipfw.sumfun;
 
-import java.awt.GridLayout;
-import java.awt.event.*;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 
 /**
  * The SumFunFrame class is the main View class, and builds the GUI
@@ -32,6 +38,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
     private static final int GRID_ROWS = 9;
     private static final int GRID_COLS = 9;
     private static final String INVALID_MOVE_MESSAGE = "Cannot place tile here!";
+	private static final String RESET_QUEUE = "Reset Queue";
 	
     //The model
 	private UntimedGame untimedGame;
@@ -54,7 +61,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private final JMenuItem resetQueue;//menu option in gameMenu to reset queue once
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem help;//menu option in helpMenu that will bring up help features
-	private final String RESET_QUEUE = "Reset Queue";
 	private JPanel initialPanel;//panel to build from
 	private JPanel scoreBoardPanel;//panel to hold score and moves left
 	private QueuePanel qp;//QueuePanel to hold the queue
