@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.geom.*;
 
-class TileView{//start Tile class
+class TileView {//start Tile class
 	
 	//Reference to the controller
 	private Controller controller;
@@ -62,6 +62,8 @@ class TileView{//start Tile class
         Rectangle2D r = new Rectangle2D.Double(x, y, SIZE, SIZE);
         g2.draw(r);
         
+        Font myFont = new Font(Font.DIALOG, Font.PLAIN, 20);
+        g2.setFont(myFont);
         g2.setPaint(Color.BLACK);
         
         if(tile.getValue() == -1) {
@@ -80,7 +82,7 @@ class TileView{//start Tile class
      */
     public boolean contains(int newx, int newy){//start contains method
     	
-        if(newx >= x && newx <= x+ SIZE){
+        if(newx >= x && newx <= x + SIZE){
         	
             if(newy >= y && newy <= y + SIZE){
                 return true;

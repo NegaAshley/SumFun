@@ -37,6 +37,9 @@ class QueueTileView {//start QueueTileView class
         Rectangle2D r = new Rectangle2D.Double(x, y, SIZE, SIZE);
         g2.draw(r);
         
+        Font myFont = new Font(Font.DIALOG, Font.PLAIN, 20);
+        g2.setFont(myFont);
+        
         g2.setPaint(Color.BLACK);
         if(tile.getValue() == -1) {
         	g2.drawString("", x + (SIZE / 2) - 4, y + (SIZE / 2) + 4);

@@ -71,7 +71,11 @@ public class Application {//start SumFunGame class
 	 * @return
 	 */
 	public static int getTime(){
-		return timedGame.getTimeRemaining();
+		if(timedGame == null) {
+			return 0;
+		} else {
+			return timedGame.getTimeRemaining();
+		}
 	}//end getTime
 	
 	/**
