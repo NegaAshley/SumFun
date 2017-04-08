@@ -45,12 +45,13 @@ public class TimedGame extends Observable {
 			@Override
 			public void run() {
 				DURATION = DURATION - TICK;
+				setChanged();
+				notifyObservers();
 				if (DURATION <= 0) {
 					t.cancel();
 				}
 			}
 		}, 0, 1000);
-
 		timeRemaining = DURATION;
 		points = INITIAL_POINTS;
 		gameBoard = new GameBoard();
@@ -71,8 +72,11 @@ public class TimedGame extends Observable {
 	 * 
 	 * @return movesRemaining, a member field
 	 */
-	public int getTimeRemaining() {
-		return timeRemaining;
+	public String getTime() {
+		int minutes = DURATION / (60 * 1000);
+		int seconds = (DURATION / 1000) % 60;
+		String str = String.format("%d:%02d", minutes, seconds);
+		return str;
 	}// end getMovesRemaining
 
 	/**
