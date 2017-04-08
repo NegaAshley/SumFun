@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -71,7 +72,9 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	/**
 	 * Constructor for the SumFunFrame
 	 */
-	public SumFunFrame(UntimedGame untimedGame, Controller controller) {//start SumFunFrame constructor
+	//Add TimedGame here
+	//$ public SumFunFrame(TimedGame timedGame, final Controller controller) {
+	public SumFunFrame(UntimedGame untimedGame, final Controller controller) {//start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
 		setDefaultCloseOperation(EXIT_ON_CLOSE);//exits game on close
@@ -80,7 +83,11 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		setLayout(new GridLayout(1, 1));//sets the layout of the frame to GridLayout
 		
 		//Register view as observer of model
+		//change to timedgame constructor
+		//$ this.timedGame = timedGame;
 		this.untimedGame = untimedGame;
+		//change to timedgame
+		//$ timedGame.addObserver(this);
 		untimedGame.addObserver(this);
 		
 		this.controller = controller;
@@ -130,15 +137,16 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		int score = Application.getPoints();
 		String scoreString = "Score: " + score;
 		int moves = Application.getMoves();
-		String movesString = "Moves Remaining: " + moves;
-		int time = Application.getTime();
-		String timeString = "Time Remaining: " + time;
+		//$ String timeString = "Time Remaining: " + time;
+		//$ String time = Application.getTime();
+		String moveString = "Moves Remaining: " + moves;
+		//$ String timeString = "Time Remaining: " + time;
 		scoreLabel = new JLabel(scoreString);
-		moveLabel = new JLabel(movesString);
-		timeLabel = new JLabel(timeString);
+		moveLabel = new JLabel(moveString);
+		//$ timeLabel = new JLabel(timeString);
 		scoreBoardPanel.add(scoreLabel);
 		scoreBoardPanel.add(moveLabel);
-		scoreBoardPanel.add(timeLabel);
+		//$ scoreBoardPanel.add(timeLabel);
 		
 		//Add score board panel to the north of initialPanel
 		initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
@@ -343,8 +351,12 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		
 		//Update moves remaining
 		
-		String moves = "Moves Remaining: " + untimedGame.getMovesRemaining();
-		moveLabel.setText(moves);
+		String move = "Moves Remaining: " + untimedGame.getMovesRemaining();
+		moveLabel.setText(move);
+		
+		//These strings handle timer update
+		//$ String time = "Time Remaining: " + timedGame.getTime();
+		//$ timeLabel.setText(time);
 		
 		//Repaint the frame
 		repaint();
@@ -379,7 +391,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	            for (int col = 0; col < GRID_COLS; col++) {
 	            	
 	            	//Create a new tile and add it to the 2D array
-	                TileView tile = new TileView(row, col, Color.GRAY);
+	                final TileView tile = new TileView(row, col, Color.GRAY);
 	                tile.addActionListener(controller);
 	                tiles[row][col] = tile;
 
