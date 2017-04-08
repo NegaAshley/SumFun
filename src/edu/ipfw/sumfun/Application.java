@@ -27,7 +27,9 @@ public class Application {//start SumFunGame class
 	public static void main(String[] args) {//start main method
 		
 		//Instantiate a model and a controller, passing the model reference to the controller
+		//$ timedGame = new TimedGame();
 		untimedGame = new UntimedGame();
+		//$ Controller controller = new Controller(timedGame);
 		Controller controller = new Controller(untimedGame);
 
 
@@ -38,6 +40,7 @@ public class Application {//start SumFunGame class
 	 * @return a GameBoard object from untimedGame
 	 */
 	public static GameBoard getGameBoard(){//start getGameBoard method
+		//$ return timedGame.getGameBoard();
 		return untimedGame.getGameBoard();
 	}//end getGameBoard method
 	
@@ -48,6 +51,8 @@ public class Application {//start SumFunGame class
 	 * @return the TileModel at the coordinates
 	 */
 	public static TileModel getTileModel(int row, int col) {//start getTileModel method
+		//game type change
+		//$ return timedGame.getGameBoard().getTile(row, col);
 		return untimedGame.getGameBoard().getTile(row, col);
 	}//end getTileModel method
 	
@@ -56,6 +61,8 @@ public class Application {//start SumFunGame class
 	 * @return 
 	 */
 	public static int getPoints() {
+		//change game type
+		//$ return timedGame.getPoints();
 		return untimedGame.getPoints();
 	}//end getPoints
 	
@@ -71,11 +78,11 @@ public class Application {//start SumFunGame class
 	 * Gets the time remaining for use in front end
 	 * @return
 	 */
-	public static int getTime(){
+	public static String getTime(){
 		if(timedGame == null) {
-			return 0;
+			return null;
 		} else {
-			return timedGame.getTimeRemaining();
+			return timedGame.getTime();
 		}
 	}//end getTime
 	
@@ -85,6 +92,8 @@ public class Application {//start SumFunGame class
 	 * @return a TileModel object from the queue in untimedGame
 	 */
 	public static TileModel getQueueTileModel(int i) {//start getQueueTileModel
+		//change game type
+		//$ return timedGame.selectQueueTile(i);
 		return untimedGame.selectQueueTile(i);
 	}//end getqueueTileModel
 	
@@ -95,6 +104,8 @@ public class Application {//start SumFunGame class
 	 * @param col the column desired
 	 */
 	public static void setTileValue(int value, int row, int col){//start setTileValue method
+		//change game type
+		//$ timedGame.getGameBoard().getTile(row, col).setValue(value);
 		untimedGame.getGameBoard().getTile(row, col).setValue(value);
 	}//end setTileValue method
 	
@@ -102,6 +113,8 @@ public class Application {//start SumFunGame class
 	 * Advances the queue one position
 	 */
 	public static void pushQueue(){//start pushQueue method
+		//change game type
+		//$ timedGame.pushQueue();
 		untimedGame.pushQueue();
 	}//end pushQueue method
 	
@@ -109,6 +122,8 @@ public class Application {//start SumFunGame class
 	 * Prints the values of the gameBoard to the console for testing
 	 */
 	public static void test() {//start test method
+		//change game type
+		//$ timedGame.getGameBoard().printArray();
 		untimedGame.getGameBoard().printArray();
 	}//end test method
 	
