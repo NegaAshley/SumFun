@@ -33,9 +33,17 @@ public class UntimedRecord {
 	 * mm/dd/yyyy
 	 * @return, a String containing the formatted date
 	 */
-	public String getDate() {
+	public String getDateString() {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		return df.format(date);
+	}//end getDate
+	
+	/**
+	 * Access method for field date
+	 * @return
+	 */
+	public Date getDate() {
+		return date;
 	}//end getDate
 	
 	/**
@@ -61,5 +69,42 @@ public class UntimedRecord {
 	public String getName() {
 		return playerName;
 	}//end getName
+	
+	public boolean equals(UntimedRecord other) {
+		return points == other.getPoints();
+	}
+	
+	/**
+	 * Compares two UntimedRecord objects
+	 * @param other
+	 * @return
+	 */
+	public int compareTo(UntimedRecord other) {
+		
+		if(this.equals(other)) {
+			
+			long thisDate = date.getTime();
+			long otherDate = other.getDate().getTime();
+			
+			//Scores are equal, so lets see who was first
+			if(thisDate < otherDate) {
+				return -1;
+			} else if (thisDate <= otherDate) {
+				return 1;
+			} else {
+				return 0;
+			}
+			
+		} else if(this.getPoints() >= other.getPoints()) {
+			return -1;
+		} else {
+			return 1;
+		}
+		
+	}//end compareTo
+	
+	public String toString() {
+		return playerName + " " + points + " " + date;
+	}
 
 }//end class Record

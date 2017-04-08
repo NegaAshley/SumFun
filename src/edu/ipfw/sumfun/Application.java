@@ -32,7 +32,6 @@ public class Application {//start SumFunGame class
 		//$ Controller controller = new Controller(timedGame);
 		Controller controller = new Controller(untimedGame);
 
-
 	}//end main method
 	
 	/**
