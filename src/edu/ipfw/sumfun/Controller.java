@@ -15,15 +15,19 @@ public class Controller implements ActionListener {
 	private static final String RESET_QUEUE = "Reset Queue";
 	
 	//References to model and view
-	private UntimedGame model;
+	//Change model type
+	//$ private TimedGame model;
+	private UntimedGame model; 
 	private SumFunFrame view;
 	
 	/**
 	 * Constructor
 	 * @param u, an instance of UntimedGame (the system's model)
 	 */
-	public Controller(UntimedGame u) {
-		model = u;
+	//$ public Controller(TimedGame t) {
+		//$ model = t;
+	public Controller(UntimedGame u){
+		model =u;
 		view = new SumFunFrame(model, this);
 		view.setVisible(GUI_VISIBLE);
 	}//end Constructor
