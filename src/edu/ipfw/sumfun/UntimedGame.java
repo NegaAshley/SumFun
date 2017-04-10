@@ -238,6 +238,8 @@ public class UntimedGame extends Observable {//start UntimedGame class
 	 */
 	public void createNewGameBoard(){//start createNewGameBoard method
 		gameBoard = new GameBoard();
+		movesRemaining = MAX_MOVES;
+		points = INITIAL_POINTS;
 		setChanged();
 		notifyObservers();
 	}//end createNewGameBoard method
