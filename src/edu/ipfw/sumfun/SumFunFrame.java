@@ -39,6 +39,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
     private static final int GRID_COLS = 9;
     private static final String INVALID_MOVE_MESSAGE = "Cannot place tile here!";
 	private static final String RESET_QUEUE = "Reset Queue";
+	private static final String NEW_GAME = "New Game";
 	
     //The model
 	private UntimedGame untimedGame;
@@ -170,7 +171,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		//Resets board when new game is selected
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
-
+				newGame.setActionCommand(NEW_GAME);
+				controller.actionPerformed(e);
 			}//end actionPerformed method
 		});
 		
