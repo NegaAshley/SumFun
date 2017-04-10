@@ -15,7 +15,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -58,10 +57,14 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private JMenuBar bar;//main menu bar
 	private JMenu gameMenu;//menu option holding game options
 	private JMenu helpMenu;//menu options holding help options
+	private JMenu topMenu;//menu options to view top ten players
 	private final JMenuItem newGame;//menu option in gameMenu that will create a new game
 	private final JMenuItem resetQueue;//menu option in gameMenu to reset queue once
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem help;//menu option in helpMenu that will bring up help features
+	private final JMenuItem mostPoints;
+	private final JMenuItem newUntimedGame;
+	private final JMenuItem newTimedGame;
 	private JPanel initialPanel;//panel to build from
 	private JPanel scoreBoardPanel;//panel to hold score and moves left
 	private QueuePanel qp;//QueuePanel to hold the queue
@@ -99,22 +102,31 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		//Creates menus
 		gameMenu = new JMenu("Game");
 		helpMenu = new JMenu("Help");
+		topMenu = new JMenu("Top Players");
 
 		//Adds menus to menu bar
 		bar.add(gameMenu);
+		bar.add(topMenu);
 		bar.add(helpMenu);
 
 		//Creates menu items for menus
 		newGame = new JMenuItem("New Game");
+		newUntimedGame = new JMenuItem("New Untimed Game");
+		newTimedGame = new JMenuItem("New Timed Game");
 		resetQueue = new JMenuItem("Reset Queue");
 		exit = new JMenuItem("Exit");
 		help = new JMenuItem("Help");
+		mostPoints = new JMenuItem("Most Points");
 
 		//Adds menu items to menus
 		gameMenu.add(newGame);
+		gameMenu.add(newUntimedGame);
+		gameMenu.add(newTimedGame);
+		gameMenu.addSeparator();
 		gameMenu.add(resetQueue);
 		gameMenu.add(exit);
 		helpMenu.add(help);
+		topMenu.add(mostPoints);
 
 		//Creates and adds SumFunPanel
 		GameBoardPanel panel = new GameBoardPanel();
@@ -158,7 +170,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		//Resets board when new game is selected
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
-				// panel.resetBoard(getBackground());
+
 			}//end actionPerformed method
 		});
 		
