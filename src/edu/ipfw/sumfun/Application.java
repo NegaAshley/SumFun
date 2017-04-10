@@ -26,6 +26,32 @@ public class Application {//start Application class
 	 */
 	public static void main(String[] args) {//start main method
 		
+		
+		//Test data for top players
+		TopPointPlayers tpp = TopPointPlayers.getInstance();
+		
+		UntimedRecord record1 = new UntimedRecord("Abel", 0, 10);
+		UntimedRecord record2 = new UntimedRecord("Bob", 0, 15);
+		UntimedRecord record3 = new UntimedRecord("Carrie", 0, 5);
+		UntimedRecord record4 = new UntimedRecord("Delilah", 0, 27);
+		UntimedRecord record5 = new UntimedRecord("Ellie", 0, 87);
+		UntimedRecord record6 = new UntimedRecord("Fred", 0, 6);
+		UntimedRecord record7 = new UntimedRecord("Gail", 0, 4);
+		UntimedRecord record8 = new UntimedRecord("Harriet", 0, 12);
+		UntimedRecord record9 = new UntimedRecord("Ingrid", 0, 12);
+		UntimedRecord record10 = new UntimedRecord("Jacque", 0, 8);
+		
+		tpp.addRecord(record1);
+		tpp.addRecord(record2);
+		tpp.addRecord(record3);
+		tpp.addRecord(record4);
+		tpp.addRecord(record5);
+		tpp.addRecord(record6);
+		tpp.addRecord(record7);
+		tpp.addRecord(record8);
+		tpp.addRecord(record9);
+		tpp.addRecord(record10);
+		
 		//Instantiate a model and a controller, passing the model reference to the controller
 		//$ timedGame = new TimedGame();
 		untimedGame = new UntimedGame();

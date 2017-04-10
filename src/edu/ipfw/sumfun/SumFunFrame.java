@@ -489,19 +489,27 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			
 			for(int i = 0; i < GRID_ROWS; i++) {
 				
+				//Add new JLabels to each of the arraylists
 				nameList.add(i, new JLabel());
 				scoreList.add(i, new JLabel());
 				dateList.add(i, new JLabel());
 				
-				nameList.get(i).setText("Name test " + i);
-				scoreList.get(i).setText("Score test " + i);
-				dateList.get(i).setText("Date test " + i);
+				UntimedRecord currentRecord = TopPointPlayers.getInstance().getRecord(i);
+				String name = currentRecord.getName();
+				String score = "" + currentRecord.getPoints();
+				String date = currentRecord.getDateString();
+				
+				nameList.get(i).setText("Name: " + name);
+				scoreList.get(i).setText("Score: " + score);
+				dateList.get(i).setText("Date: " + date);
 				
 				listPanel.add(nameList.get(i));
 				listPanel.add(scoreList.get(i));
 				listPanel.add(dateList.get(i));
 				
 			}
+			
+			
 			
 			add(listPanel);
 			
