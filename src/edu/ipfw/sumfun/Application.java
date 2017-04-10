@@ -12,7 +12,7 @@ package edu.ipfw.sumfun;
  * @author Jake
  *
  */
-public class Application {//start SumFunGame class
+public class Application {//start Application class
 	
 	//Reference to the model
 	private static UntimedGame untimedGame;
@@ -126,4 +126,4 @@ public class Application {//start SumFunGame class
 		untimedGame.getGameBoard().printArray();
 	}//end test method
 	
-}//end SumFunGame class
+}//end Application class
