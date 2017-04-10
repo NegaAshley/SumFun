@@ -13,6 +13,7 @@ public class Controller implements ActionListener {
 	//Various constants for use throughout Controller
 	private static final boolean GUI_VISIBLE = true;
 	private static final String RESET_QUEUE = "Reset Queue";
+	private static final String NEW_GAME = "New Game";
 	
 	//References to model and view
 	//Change model type
@@ -39,6 +40,12 @@ public class Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		
+		//Check for an even that needs to start a new game
+		if(event.getActionCommand().equals(NEW_GAME)){
+			startNewGame();
+			return;
+		}
+		
 		//Check for an event that needs to reset the queue
 		if(event.getActionCommand().equals(RESET_QUEUE)){
 			resetQueue();
@@ -61,6 +68,18 @@ public class Controller implements ActionListener {
 		//Makes the resetQueue menu item disabled
 		view.getResetQueue().setEnabled(false);
 	}//end resetQueue
+	
+	/*
+	 * Resets the variables of the game and creates a new board
+	 */
+	private void startNewGame(){//start startNewGame method
+		//Resets queue
+		resetQueue();
+		//Enables queue reset option
+		view.getResetQueue().setEnabled(true);
+		//Repopulate board
+		model.createNewGameBoard();	
+	}//end startNewGame method
 	
 	/**
 	 * Parses the coordinates of a tile that was clicked, and updates model accordingly

@@ -233,4 +233,13 @@ public class UntimedGame extends Observable {//start UntimedGame class
 		notifyObservers();
 	}//end decrementMoves
 	
+	/*
+	 * Creates a new GameBoard
+	 */
+	public void createNewGameBoard(){//start createNewGameBoard method
+		gameBoard = new GameBoard();
+		setChanged();
+		notifyObservers();
+	}//end createNewGameBoard method
+	
 }//end UntimedGame class
