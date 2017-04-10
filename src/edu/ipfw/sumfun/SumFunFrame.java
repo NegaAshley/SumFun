@@ -531,6 +531,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 						scoreList.get(i).setText("Score: " + score);
 						dateList.get(i).setText("Date: " + date);
 					}
+				
 					
 					listPanel.add(nameList.get(i));
 					listPanel.add(scoreList.get(i));
