@@ -13,8 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -172,6 +175,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
 
 			}//end actionPerformed method
+		});
+		
+		mostPoints.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TopPointsDialog tpd = new TopPointsDialog();
+				tpd.setVisible(true);
+			}
 		});
 		
 		//Closes game when exit menu option is selected
@@ -446,5 +456,56 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	    }//end paintComponent method
 	    
 	}//end SumFunPanel class
+	
+	/**
+	 * 
+	 * @author Jake
+	 *
+	 */
+	class TopPointsDialog extends JDialog {
+		
+		private final int TOP_POINTS_WIDTH = 400;
+		private final int TOP_POINTS_LENGTH = 400;
+		private final int GRID_ROWS = 10;
+		private final int GRID_COLS = 3;
+		private final boolean RESIZABLE = false;
+		
+        private ArrayList<JLabel> nameList = new ArrayList<>();
+        private ArrayList<JLabel> scoreList = new ArrayList<>();
+        private ArrayList<JLabel> dateList = new ArrayList<>();
+		
+		public TopPointsDialog() {
+			
+			//Set some properties of the dialog box
+			setSize(TOP_POINTS_WIDTH, TOP_POINTS_LENGTH);
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			setTitle("Top 10 Players - Most Points");
+			setResizable(RESIZABLE);
+			
+			JPanel listPanel = new JPanel();
+			listPanel.setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
+			
+			for(int i = 0; i < GRID_ROWS; i++) {
+				
+				nameList.add(i, new JLabel());
+				scoreList.add(i, new JLabel());
+				dateList.add(i, new JLabel());
+				
+				nameList.get(i).setText("Name test " + i);
+				scoreList.get(i).setText("Score test " + i);
+				dateList.get(i).setText("Date test " + i);
+				
+				listPanel.add(nameList.get(i));
+				listPanel.add(scoreList.get(i));
+				listPanel.add(dateList.get(i));
+				
+			}
+			
+			add(listPanel);
+			
+		}
+
+		
+	}//end class TopPointsDialog
 
 }// end SumFunFrame class
