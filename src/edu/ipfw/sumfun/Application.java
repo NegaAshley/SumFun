@@ -6,6 +6,17 @@
  */
 package edu.ipfw.sumfun;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  * Application class contains the main method, which initiates the MVC relationship by instantiating
  * a model and the controller
@@ -14,11 +25,16 @@ package edu.ipfw.sumfun;
  */
 public class Application {//start Application class
 	
+	private static final String path = "sumfun.csv";
+	
 	//Reference to the model
 	private static UntimedGame untimedGame;
 	
 	//Reference to the other model
 	private static TimedGame timedGame;
+	
+	//Reference to a structure containing the top 10 player records by points earned
+	private static TopPointPlayers tpp;
 	
 	/**
 	 * Instantiate untimedGame and frame to run game logic and GUI.
@@ -26,39 +42,51 @@ public class Application {//start Application class
 	 */
 	public static void main(String[] args) {//start main method
 		
+		//Attempt to load saved data
+		deserialize();
 		
-		//Test data for top players
-		TopPointPlayers tpp = TopPointPlayers.getInstance();
-		
-		UntimedRecord record1 = new UntimedRecord("Abel", 0, 10);
-		UntimedRecord record2 = new UntimedRecord("Bob", 0, 15);
-		UntimedRecord record3 = new UntimedRecord("Carrie", 0, 5);
-		UntimedRecord record4 = new UntimedRecord("Delilah", 0, 27);
-		UntimedRecord record5 = new UntimedRecord("Ellie", 0, 87);
-		UntimedRecord record6 = new UntimedRecord("Fred", 0, 6);
-		UntimedRecord record7 = new UntimedRecord("Gail", 0, 4);
-		UntimedRecord record8 = new UntimedRecord("Harriet", 0, 12);
-		UntimedRecord record9 = new UntimedRecord("Ingrid", 0, 12);
-		UntimedRecord record10 = new UntimedRecord("Jacque", 0, 8);
-		
-		tpp.addRecord(record1);
-		tpp.addRecord(record2);
-		tpp.addRecord(record3);
-		tpp.addRecord(record4);
-		tpp.addRecord(record5);
-		tpp.addRecord(record6);
-		tpp.addRecord(record7);
-		tpp.addRecord(record8);
-		tpp.addRecord(record9);
-		tpp.addRecord(record10);
+	// adds some sample UntimedRecords to TopPointsPlayers	
+	// tpp.addRecord(new UntimedRecord("Rhiannon", 0, 66));
+	// tpp.addRecord(new UntimedRecord("Freya", 0, 77);
 		
 		//Instantiate a model and a controller, passing the model reference to the controller
 		//$ timedGame = new TimedGame();
 		untimedGame = new UntimedGame();
 		//$ Controller controller = new Controller(timedGame);
-		Controller controller = new Controller(untimedGame);
+		Controller controller = new Controller(untimedGame, tpp);
 
 	}//end main method
+	
+	/**
+	 * save player records to persistent file storage
+	 */
+    public static void serialize() {
+
+            try (FileOutputStream fos = new FileOutputStream(path)) {
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(tpp);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error writing to file! Work not saved!");
+            }
+            
+    }//end serialize
+    
+    /**
+     * load player records from persistent file storage, or instantiate new
+     * TopPlayers objects if they fail to load
+     */
+    public static void deserialize() {
+        JFileChooser fc = new JFileChooser();
+            try (FileInputStream fis = new FileInputStream(path)) {
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                tpp = (TopPointPlayers) ois.readObject();
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error reading file! Loading to default settings!");
+                tpp = new TopPointPlayers();
+            }
+        
+    }//end deserialize 
 	
 	/**
 	 * Returns the gameBoard from untimedGame

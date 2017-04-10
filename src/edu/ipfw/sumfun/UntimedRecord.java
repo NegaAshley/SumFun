@@ -1,5 +1,6 @@
 package edu.ipfw.sumfun;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Date;
  * @author Jake
  *
  */
-public class UntimedRecord {
+public class UntimedRecord implements Serializable {
 	
 	private final String playerName;
 	private final Date date;

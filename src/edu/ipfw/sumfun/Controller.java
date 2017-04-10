@@ -2,6 +2,12 @@ package edu.ipfw.sumfun;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  * 
@@ -20,6 +26,7 @@ public class Controller implements ActionListener {
 	//$ private TimedGame model;
 	private UntimedGame model; 
 	private SumFunFrame view;
+	private TopPointPlayers tpp;
 	
 	/**
 	 * Constructor
@@ -27,9 +34,10 @@ public class Controller implements ActionListener {
 	 */
 	//$ public Controller(TimedGame t) {
 		//$ model = t;
-	public Controller(UntimedGame u){
-		model =u;
-		view = new SumFunFrame(model, this);
+	public Controller(UntimedGame u, TopPointPlayers tpp){
+		model = u;
+		this.tpp = tpp;
+		view = new SumFunFrame(model, this, tpp);
 		view.setVisible(GUI_VISIBLE);
 	}//end Constructor
 

@@ -1,5 +1,6 @@
 package edu.ipfw.sumfun;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,12 +8,9 @@ import java.util.ArrayList;
  * @author Jake
  *
  */
-public class TopPointPlayers {
+public class TopPointPlayers implements Serializable {
 	
 	private static final int NUM_RECORDS = 10;
-	
-	//Reference to the singleton instance of TopUntimedPlayers
-	private static TopPointPlayers topPlayers = new TopPointPlayers();
 	
 	//Contains the top 10 records of players with the highest score
 	private ArrayList<UntimedRecord> records;
@@ -20,17 +18,9 @@ public class TopPointPlayers {
 	/**
 	 * Constructor
 	 */
-	private TopPointPlayers() {
+	public TopPointPlayers() {
 		records = new ArrayList<UntimedRecord>();
 	}//end Constructor
-	
-	/**
-	 * Access method for singleton TopPointPlayers instance
-	 * @return
-	 */
-	public static TopPointPlayers getInstance() {
-		return topPlayers;
-	}//end getInstance
 	
 	/**
 	 * Returns the record found in ArrayList records at index
@@ -41,12 +31,23 @@ public class TopPointPlayers {
 		return records.get(index);
 	}//end getRecord
 	
+	/**
+	 * Print all records contained in ArrayList records to console
+	 */
 	public void printRecords() {
 		for(UntimedRecord u : records) {
 			System.out.println(u.toString());
 		}
 		System.out.println();
-	}
+	}//end printRecords
+	
+	/**
+	 * Access method for the size of ArrayList records
+	 * @return the size of ArrayList records
+	 */
+	public int getNumRecords() {
+		return records.size();
+	}//end getNumRecords
 	
 	/**
 	 * Attempts to add a record to ArrayList records

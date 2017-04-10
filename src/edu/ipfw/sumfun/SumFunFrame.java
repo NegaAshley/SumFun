@@ -16,8 +16,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
+import java.util.*;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -25,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.io.*;
 
 
 /**
@@ -56,6 +58,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	//The controller
 	private Controller controller;
 	
+	private TopPointPlayers tpp;
+	
     //A two-dimensional array of TileView tiles for easy access
     private TileView[][] tiles = new TileView[GRID_ROWS][GRID_COLS];//2D Array where tiles are located
 	private JMenuBar bar;//main menu bar
@@ -81,14 +85,16 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 */
 	//Add TimedGame here
 	//$ public SumFunFrame(TimedGame timedGame, final Controller controller) {
-	public SumFunFrame(UntimedGame untimedGame, final Controller controller) {//start SumFunFrame constructor
+	public SumFunFrame(UntimedGame untimedGame, final Controller controller, TopPointPlayers tpp) {//start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);//exits game on close
 		setSize(GUI_WIDTH, GUI_HEIGHT);
 		setResizable(GUI_RESIZABLE);
 		setLayout(new GridLayout(1, 1));//sets the layout of the frame to GridLayout
 		
+		this.tpp = tpp;
 		//Register view as observer of model
 		//change to timedgame constructor
 		//$ this.timedGame = timedGame;
@@ -189,6 +195,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		//Closes game when exit menu option is selected
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
+				Application.serialize();
 				dispose();
 			}//end actionPerformed method
 		});
@@ -460,7 +467,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	}//end SumFunPanel class
 	
 	/**
-	 * 
+	 * Dialog box to display the top 10 players by points earned
 	 * @author Jake
 	 *
 	 */
@@ -476,6 +483,9 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
         private ArrayList<JLabel> scoreList = new ArrayList<>();
         private ArrayList<JLabel> dateList = new ArrayList<>();
 		
+        /**
+         * Constructor
+         */
 		public TopPointsDialog() {
 			
 			//Set some properties of the dialog box
@@ -486,6 +496,9 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			
 			JPanel listPanel = new JPanel();
 			listPanel.setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
+			String name = "";
+			String score = "";
+			String date = "";
 			
 			for(int i = 0; i < GRID_ROWS; i++) {
 				
@@ -494,26 +507,41 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 				scoreList.add(i, new JLabel());
 				dateList.add(i, new JLabel());
 				
-				UntimedRecord currentRecord = TopPointPlayers.getInstance().getRecord(i);
-				String name = currentRecord.getName();
-				String score = "" + currentRecord.getPoints();
-				String date = currentRecord.getDateString();
-				
-				nameList.get(i).setText("Name: " + name);
-				scoreList.get(i).setText("Score: " + score);
-				dateList.get(i).setText("Date: " + date);
-				
-				listPanel.add(nameList.get(i));
-				listPanel.add(scoreList.get(i));
-				listPanel.add(dateList.get(i));
+				//Populate labels with appropriate records as long as they exist
+				//If exception is thrown, there is an insufficient number of records
+				//And we must display empty records
+				try {
+					UntimedRecord currentRecord = tpp.getRecord(i);
+					name = currentRecord.getName();
+					score = "" + currentRecord.getPoints();
+					date = currentRecord.getDateString();
+				} catch (IndexOutOfBoundsException e) {
+					name = "";
+					score = "";
+					date = "";
+					
+				} finally {
+					
+					if(i < 9) {
+						nameList.get(i).setText(" " + (i+1) + ".    " + "Name: " + name);
+						scoreList.get(i).setText("Score: " + score);
+						dateList.get(i).setText("Date: " + date);
+					} else {
+						nameList.get(i).setText(" " + (i+1) + ".  " + "Name: " + name);
+						scoreList.get(i).setText("Score: " + score);
+						dateList.get(i).setText("Date: " + date);
+					}
+					
+					listPanel.add(nameList.get(i));
+					listPanel.add(scoreList.get(i));
+					listPanel.add(dateList.get(i));
+				}
 				
 			}
 			
-			
-			
 			add(listPanel);
 			
-		}
+		}//end constructor
 
 		
 	}//end class TopPointsDialog
