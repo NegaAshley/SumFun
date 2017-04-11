@@ -20,21 +20,20 @@ public abstract class Game extends Observable{//start Game class
 	public static final int MIN_NUM_TILES_TO_SCORE = 3;//the minimum number of tiles removed need to score points
 	public static final int TILE_SCORE_VALUE = 10;//the value given per tile when points are scored
 	public static final int MOD_VALUE = 10;//the modulus value to calculate with
-	public static final int REMOVE_THIS = 0;//TODO remove this
 	
-	public Game(){
+	public Game(){//start Game constructor
 		points = INITIAL_POINTS;
 		gameBoard = new GameBoard();
 		populateQueue();
-	}
+	}//end Game constructor
 	
 	/**
 	 * Access method for field points
 	 * @return points, a member field containing the user's score
 	 */
-	public int getPoints() {
+	public int getPoints() {//start getPoints method
 		return points;
-	}//end getPoints
+	}//end getPoints method
 	
 	/*
 	 * Returns the head of the queue
@@ -168,7 +167,7 @@ public abstract class Game extends Observable{//start Game class
 	 * set value of current tile and all adjacent tiles to -1
 	 * @param t, the tile that has been placed
 	 */
-	private void removeAdjacentTiles(TileModel t) {
+	private void removeAdjacentTiles(TileModel t) {//start removeAdjacentTiles method
 		//Set value of placed tile to -1
 		t.setValue(-1);
 		
@@ -198,7 +197,7 @@ public abstract class Game extends Observable{//start Game class
 		if(t.getSouthWest() != null){
 			t.getSouthWest().setValue(-1);
 		}
-	}//end updateTiles
+	}//end removeAdjacentTiles method
 	
 	/**
 	 * Accessor method for gameBoard

@@ -6,6 +6,8 @@ package edu.ipfw.sumfun;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -16,6 +18,8 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +28,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 /**
@@ -68,6 +73,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem help;//menu option in helpMenu that will bring up help features
 	private final JMenuItem mostPoints;
+	//TODO Delete later - for testing only
+	private final JMenuItem userDialog;
 	private final JMenuItem newUntimedGame;
 	private final JMenuItem newTimedGame;
 	private JPanel initialPanel;//panel to build from
@@ -124,6 +131,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		exit = new JMenuItem("Exit");
 		help = new JMenuItem("Help");
 		mostPoints = new JMenuItem("Most Points");
+		//TODO delete later - this is for testing
+		userDialog = new JMenuItem("Get User Name");
 
 		//Adds menu items to menus
 		gameMenu.add(newGame);
@@ -134,6 +143,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		gameMenu.add(exit);
 		helpMenu.add(help);
 		topMenu.add(mostPoints);
+		//TODO delete later - for testing only
+		topMenu.add(userDialog);
 
 		//Creates and adds SumFunPanel
 		GameBoardPanel panel = new GameBoardPanel();
@@ -186,6 +197,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			public void actionPerformed(ActionEvent e) {
 				TopPointsDialog tpd = new TopPointsDialog();
 				tpd.setVisible(true);
+			}
+		});
+		//TODO delete later - this is for testing
+		userDialog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetUserNameDialog gUND = new GetUserNameDialog();
+				gUND.setVisible(true);
 			}
 		});
 		
@@ -543,5 +561,40 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 
 		
 	}//end class TopPointsDialog
+	/*
+	 * This class is a dialog box used to get the name of the user at the end of the
+	 * game.
+	 */
+	class GetUserNameDialog extends JDialog{//start getUserNameDialog class
+		private static final int GET_USER_WIDTH = 400;//the width of the dialog box
+		private static final int GET_USER_LENGTH = 100;//the length of the dialog box
+		private static final boolean RESIZABLE = false;//whether or not box is resizeable
+		//The text for the JLabel preceding the textbox
+		private static final String GET_USER_DIALOG = "Game over!  Enter name:";
+		private JLabel userDialogLabel;//the label before the textbox
+		private JTextField userNameTextField;//the text field where user enters name
+		private JButton okButton;//the button to confirm
+		private String userName;//the entered name of the user
+		/*
+		 * The constructor for the getUserNameDialog class.
+		 */
+		public GetUserNameDialog(){//start getUserNameDialog constructor
+			//Set some properties of the dialog box
+			setSize(GET_USER_WIDTH, GET_USER_LENGTH);
+			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+			setTitle("Game Over - Enter Name");
+			setResizable(RESIZABLE);
+			setLayout(new FlowLayout());
+			//Creates label and adds it to dialog box
+			userDialogLabel = new JLabel(GET_USER_DIALOG);
+			add(userDialogLabel);
+			//Creates text field and adds it to dialog box
+			userNameTextField = new JTextField(10);
+			add(userNameTextField);
+			//Creates ok button and adds it to dialog box
+			okButton = new JButton("Ok");
+			add(okButton);
+		}//end getUserNameDialog constructor
+	}//end getUserNameDialog class
 
 }// end SumFunFrame class

@@ -12,7 +12,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	/**
 	 * Constructor method for UntimedGame class
 	 */
-	public UntimedGame() {
+	public UntimedGame() {//start UntimedGame constructor method
 		super();
 		movesRemaining = MAX_MOVES;
 	}//end UntimedGame constructor method
@@ -28,25 +28,25 @@ public class UntimedGame extends Game {//start UntimedGame class
 		//decrement movesRemaining
 		decrementMoves();
 		super.calculateSum(i, j, mod);
-}
+	}//end calculateSum method
 	
 	/**
 	 * Access method for field movesRemaining
 	 * @return movesRemaining, a member field 
 	 */
-	public int getMovesRemaining() {
+	public int getMovesRemaining() {//start get movesRemaining method
 		return movesRemaining;
-	}//end getMovesRemaining
+	}//end getMovesRemaining method
 	
 	
 	/**
 	 * Decrement movesRemaining by 1
 	 */
-	public void decrementMoves() {
+	public void decrementMoves() {//start decrementMoves method
 		movesRemaining--;
 		setChanged();
 		notifyObservers();
-	}//end decrementMoves
+	}//end decrementMoves method
 	
 	/*
 	 * Creates a new GameBoard
@@ -57,4 +57,11 @@ public class UntimedGame extends Game {//start UntimedGame class
 		super.createNewGameBoard();
 	}//end createNewGameBoard method
 	
+	/*
+	 * Checks to see if moves remaining is less than or equal to zero.  
+	 * @returns true if movesRemaining is less than or equal to zero
+	 */
+	public boolean isZeroMovesRemaining(){//start isZeroMovesRemaining method
+		return (movesRemaining <= 0);
+	}//end isZeroMovesRemaining method
 }//end UntimedGame class
