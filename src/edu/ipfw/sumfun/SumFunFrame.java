@@ -16,9 +16,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.*;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -26,7 +24,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.io.*;
 
 
 /**
@@ -473,11 +470,11 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 */
 	class TopPointsDialog extends JDialog {
 		
-		private final int TOP_POINTS_WIDTH = 400;
-		private final int TOP_POINTS_LENGTH = 400;
-		private final int GRID_ROWS = 10;
-		private final int GRID_COLS = 3;
-		private final boolean RESIZABLE = false;
+		private static final int TOP_POINTS_WIDTH = 400;
+		private static final int TOP_POINTS_LENGTH = 400;
+		private static final int GRID_ROWS = 10;
+		private static final int GRID_COLS = 3;
+		private static final boolean RESIZABLE = false;
 		
         private ArrayList<JLabel> nameList = new ArrayList<>();
         private ArrayList<JLabel> scoreList = new ArrayList<>();
