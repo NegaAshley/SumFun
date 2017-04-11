@@ -47,7 +47,33 @@ public class TimedGame extends Game {
 		String str = String.format("%d:%02d", minutes, seconds);
 		return str;
 	}// end getStartTime
+	
+	/**
+	 * 
+	 * Setter method fo duration, to restart timed game
+	 * 
+	 * @return n/a 
+	 */
+	public void resetTimer(int newTime){
+		
+		DURATION = newTime;
+		t.cancel();
+		t.scheduleAtFixedRate(new TimerTask() {
 
+			@Override
+			public void run() {
+				DURATION = DURATION - TICK;
+				setChanged();
+				notifyObservers();
+				if (DURATION <= 0) {
+					t.cancel();
+				}
+			}
+		}, 0, 1000);
+		
+	}
+	
+	
 	/**
 	 * Accessor method for set increment of time
 	 * 
