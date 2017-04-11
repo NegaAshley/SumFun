@@ -58,24 +58,24 @@ public class Application {//start Application class
 	}//end main method
 	
 	/**
-	 * save player records to persistent file storage
+	 * Save player records to persistent file storage
 	 */
-    public static void serialize() {
+    public static void serialize() {//start serialize method
 
             try (FileOutputStream fos = new FileOutputStream(path)) {
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(tpp);
-            } catch (Exception ex) {
+            } catch (Exception ex0111111111) {
                 JOptionPane.showMessageDialog(null, "Error writing to file! Work not saved!");
             }
             
-    }//end serialize
+    }//end serialize method
     
     /**
-     * load player records from persistent file storage, or instantiate new
+     * Load player records from persistent file storage, or instantiate new
      * TopPlayers objects if they fail to load
      */
-    public static void deserialize() {
+    public static void deserialize() {//start deserialize method
         JFileChooser fc = new JFileChooser();
             try (FileInputStream fis = new FileInputStream(path)) {
                 ObjectInputStream ois = new ObjectInputStream(fis);
@@ -86,7 +86,7 @@ public class Application {//start Application class
                 tpp = new TopPointPlayers();
             }
         
-    }//end deserialize 
+    }//end deserialize method
 	
 	/**
 	 * Returns the gameBoard from untimedGame
@@ -111,7 +111,7 @@ public class Application {//start Application class
 	
 	/**
 	 * Gets the points from the back-end for use in front-end
-	 * @return 
+	 * @return points
 	 */
 	public static int getPoints() {
 		//change game type
@@ -121,7 +121,7 @@ public class Application {//start Application class
 	
 	/**
 	 * Gets the moves from the back-end for use in front-end
-	 * @return
+	 * @return movesRemaining
 	 */
 	public static int getMoves() {
 		return untimedGame.getMovesRemaining();
@@ -129,15 +129,15 @@ public class Application {//start Application class
 	
 	/**
 	 * Gets the time remaining for use in front end
-	 * @return
+	 * @return time - as a string
 	 */
-	public static String getTime(){
+	public static String getTime(){//start getTime method
 		if(timedGame == null) {
 			return null;
 		} else {
 			return timedGame.getTime();
 		}
-	}//end getTime
+	}//end getTime method
 	
 	/**
 	 * Gets the TileModel from the queue at the specified index
