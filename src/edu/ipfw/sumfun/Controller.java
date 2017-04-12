@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import edu.ipfw.sumfun.SumFunFrame.GetUserNameDialog;
+
 /**
  * 
  * @author Jake
@@ -20,6 +22,7 @@ public class Controller implements ActionListener {
 	private static final boolean GUI_VISIBLE = true;
 	private static final String RESET_QUEUE = "Reset Queue";
 	private static final String NEW_GAME = "New Game";
+	private static final String GET_USER_NAME = "Get User Name";
 	
 	//References to model and view
 	//Change model type
@@ -48,7 +51,7 @@ public class Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		
-		//Check for an even that needs to start a new game
+		//Check for an event that needs to start a new game
 		if(event.getActionCommand().equals(NEW_GAME)){
 			startNewGame();
 			return;
@@ -57,6 +60,34 @@ public class Controller implements ActionListener {
 		//Check for an event that needs to reset the queue
 		if(event.getActionCommand().equals(RESET_QUEUE)){
 			resetQueue();
+			return;
+		}
+
+		//Checks for an event that needs to grab user name and closes popup
+		if(event.getActionCommand().equals(GET_USER_NAME)){
+			String userName;//the name of the user
+			int moves;//the number of moves left
+			int points;//the number of points
+			
+			//Assigns the username to a variable from the text box
+			view.getUserNameDialog().assignUserName();
+			//sets the local variable username
+			userName = view.getUserNameDialog().getUserName();
+			//Sets the local variable moves
+			moves = model.getMovesRemaining();
+			//Sets the local variable points
+			points = model.getPoints();
+			
+			//Creates the record with given variables
+			UntimedRecord record = new UntimedRecord(userName, moves, points);
+			//Adds a record to the top point players
+			tpp.addRecord(record);
+			
+			//Disposes the dialog box
+			view.getUserNameDialog().dispose();
+			//Starts a new game
+			startNewGame();
+			view.setVisible(true);
 			return;
 		}
 		
@@ -68,7 +99,7 @@ public class Controller implements ActionListener {
 	/**
 	 * Resets the value of each tile in the queue
 	 */
-	private void resetQueue() {
+	private void resetQueue() {//start resetQueue method
 		//Refreshes the queue the size of the queue panel
 		for(int i = 0; i < QueuePanel.GRID_COLS; i++){
 			model.pushQueue();
@@ -89,11 +120,25 @@ public class Controller implements ActionListener {
 		model.createNewGameBoard();	
 	}//end startNewGame method
 	
+	/*
+	 * TODO delete
+	 */
+	private void setUserName(){//start setUserName method
+		
+	}//end setUserName method
 	/**
 	 * Parses the coordinates of a tile that was clicked, and updates model accordingly
 	 */
 	private void placeTile(ActionEvent event) {
-		
+		//Doesn't allow tiles to be placed if board is inactive
+		if(model.getIsActive() == false){
+			//TODO fix this later
+//			GetUserNameDialog GUND;
+//			GUND = view.new GetUserNameDialog();
+//			GUND.setVisible(true);
+//			view.getSumFunFrame().setVisible(false);
+			return;
+		}
 		//Parse the coordinates of the tile and sparked the ActionEvent
 		int[] coordinates = parseActionCommand(event);
 		int row = coordinates[0];

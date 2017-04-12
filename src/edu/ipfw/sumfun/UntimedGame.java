@@ -9,12 +9,14 @@ public class UntimedGame extends Game {//start UntimedGame class
 	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
 	private static final int MAX_MOVES = 50;//the max moves allowed for a game
 	
+	
 	/**
 	 * Constructor method for UntimedGame class
 	 */
 	public UntimedGame() {//start UntimedGame constructor method
 		super();
 		movesRemaining = MAX_MOVES;
+		setIsActive(true);
 	}//end UntimedGame constructor method
 	
 	/**
@@ -44,6 +46,9 @@ public class UntimedGame extends Game {//start UntimedGame class
 	 */
 	public void decrementMoves() {//start decrementMoves method
 		movesRemaining--;
+		if(isZeroMovesRemaining()){
+			setIsActive(false);
+		}
 		setChanged();
 		notifyObservers();
 	}//end decrementMoves method

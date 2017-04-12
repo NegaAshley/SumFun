@@ -45,8 +45,10 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
     private static final int GRID_ROWS = 9;
     private static final int GRID_COLS = 9;
     private static final String INVALID_MOVE_MESSAGE = "Cannot place tile here!";
+    private static final String EMPTY_TEXT_MESSAGE = "Please enter a name!";
 	private static final String RESET_QUEUE = "Reset Queue";
 	private static final String NEW_GAME = "New Game";
+	private static final String GET_USER_NAME = "Get User Name";
 	
     //The model
 	private UntimedGame untimedGame;
@@ -83,6 +85,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private JLabel scoreLabel;//label for the score
 	private JLabel moveLabel;//label for the moves remaining
 	private JLabel timeLabel;//label for the time remaining
+	private GetUserNameDialog gUND;
 	
 	/**
 	 * Constructor for the SumFunFrame
@@ -93,7 +96,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 
 		super("Sum Fun");// sets title of window
 		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);//exits game on close
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);//does nothing on close
 		setSize(GUI_WIDTH, GUI_HEIGHT);
 		setResizable(GUI_RESIZABLE);
 		setLayout(new GridLayout(1, 1));//sets the layout of the frame to GridLayout
@@ -202,8 +205,9 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		//TODO delete later - this is for testing
 		userDialog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GetUserNameDialog gUND = new GetUserNameDialog();
+				gUND = new GetUserNameDialog();
 				gUND.setVisible(true);
+				getSumFunFrame().setVisible(false);
 			}
 		});
 		
@@ -385,6 +389,19 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		return help;
 	}//end getHelp method
 	
+	/*
+	 *TODO remove later
+	 */
+	public GetUserNameDialog getUserNameDialog(){
+		return gUND;
+	}
+	/*
+	 * Getter for this SumFunFrame
+	 * @returns this.SumFunFrame
+	 */
+	public SumFunFrame getSumFunFrame(){//start getSumFunFrame method
+		return this;
+	}//end getSumFunFrame method
 	/**
 	 * Updates each GUI component with corresponding model element
 	 */
@@ -569,9 +586,9 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		private static final int GET_USER_WIDTH = 400;//the width of the dialog box
 		private static final int GET_USER_LENGTH = 100;//the length of the dialog box
 		private static final boolean RESIZABLE = false;//whether or not box is resizeable
-		//The text for the JLabel preceding the textbox
+		//The text for the JLabel preceding the text box
 		private static final String GET_USER_DIALOG = "Game over!  Enter name:";
-		private JLabel userDialogLabel;//the label before the textbox
+		private JLabel userDialogLabel;//the label before the text box
 		private JTextField userNameTextField;//the text field where user enters name
 		private JButton okButton;//the button to confirm
 		private String userName;//the entered name of the user
@@ -585,16 +602,60 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			setTitle("Game Over - Enter Name");
 			setResizable(RESIZABLE);
 			setLayout(new FlowLayout());
+			
 			//Creates label and adds it to dialog box
 			userDialogLabel = new JLabel(GET_USER_DIALOG);
 			add(userDialogLabel);
+			
 			//Creates text field and adds it to dialog box
 			userNameTextField = new JTextField(10);
 			add(userNameTextField);
+			
 			//Creates ok button and adds it to dialog box
 			okButton = new JButton("Ok");
 			add(okButton);
+			okButton.setActionCommand(GET_USER_NAME);
+			
+			//Grabs the text from the text box and creates
+			okButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					//If textbox is empty, show a dialog and return to GetUserNameDialog
+					if(isTextBoxEmpty() == true){
+						JOptionPane.showMessageDialog(getGetUserNameDialog(), EMPTY_TEXT_MESSAGE);
+						return;
+					}
+					controller.actionPerformed(e);
+				}
+			});
 		}//end getUserNameDialog constructor
+		
+		/*
+		 * Assigns username from text box
+		 */
+		public void assignUserName(){//start assignUserName method
+			userName = userNameTextField.getText();
+		}//end assignUserName method
+		/*
+		 * Returns the username
+		 * @returns userName - the name of the user
+		 */
+		public String getUserName(){//start getUserName method
+			return userName;
+		}//end getUserName method
+		/*
+		 * Returns true if the textbox is empty.
+		 * @returns true if textbox is empty
+		 */
+		public boolean isTextBoxEmpty(){
+			return userNameTextField.getText().equals("");
+		}
+		/*
+		 * Returns this dialog
+		 * @returns this.GetUserNameDialog
+		 */
+		public GetUserNameDialog getGetUserNameDialog(){//start getGetUserNameDialog method
+			return this;
+		}//end getGetUserNameDialog method
 	}//end getUserNameDialog class
 
 }// end SumFunFrame class

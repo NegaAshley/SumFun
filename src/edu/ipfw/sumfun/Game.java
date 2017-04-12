@@ -13,6 +13,7 @@ public abstract class Game extends Observable{//start Game class
 	private ArrayList<TileModel> tileQueue = new ArrayList<>();//holds the queue of tiles
 	private GameBoard gameBoard;//handles details of board state
 	private int points;//holds the player's score
+	private boolean isActive;//boolean to keep track of whether the game is active
 	public static final int LOW_THRESHOLD = 0;//the lowest number that be randomly generated
 	public static final int HIGH_THRESHOLD = 9;//the highest number that be randomly generated
 	public static final int INITIAL_POINTS = 0;//the number of points the user starts with
@@ -208,11 +209,26 @@ public abstract class Game extends Observable{//start Game class
 	}//end getGameBoard method
 	
 	/*
+	 * Accessor method for isActive
+	 * @return isActive - boolean to keep track of whether the game is active
+	 */
+	public boolean getIsActive(){//start getIsActive method
+		return isActive;
+	}//end getIsActive method
+	/*
+	 * Setter for isActive
+	 * @param newIsActive - the new value for isActive
+	 */
+	public void setIsActive(boolean newIsActive){//start setIsActive method
+		isActive = newIsActive;
+	}//end setIsActive method
+	/*
 	 * Creates a new GameBoard
 	 */
 	public void createNewGameBoard(){//start createNewGameBoard method
 		gameBoard = new GameBoard();
 		points = INITIAL_POINTS;
+		isActive = true;
 		setChanged();
 		notifyObservers();
 	}//end createNewGameBoard method
