@@ -6,7 +6,8 @@ package edu.ipfw.sumfun;
  *
  */
 public class GameBoard {//start GameBoard class
-	
+	private int numTilesFilled;//the number of tiles filled on the gameboard
+	private int maxTilesFilled;//the max number of tiles possible to be filled
 	//Various constants for use in GameBoard
 	static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
@@ -18,6 +19,8 @@ public class GameBoard {//start GameBoard class
 	 * Constructor that populates the board and sets directional references via helper methods
 	 */
 	public GameBoard(){//start GameBoard constructor
+		numTilesFilled = 0;//starts tiles filled number at zero
+		maxTilesFilled = TILE_GRID_WIDTH * TILE_GRID_LENGTH;
 		populateBoard();
 		setDirectionalReferences();
 	}//end GameBoard constructor
@@ -42,6 +45,7 @@ public class GameBoard {//start GameBoard class
 				}
 				//Create a tile in this place with a random value
 				tileGrid[row][col] = TileModel.createRandomTile();
+				numTilesFilled++;
 			}
 		}
 	}//end populateBoard method
@@ -54,6 +58,7 @@ public class GameBoard {//start GameBoard class
 	 */
 	public boolean removeTile(int row, int col){//start removeTile method
 		tileGrid[row][col] = new TileModel(-1);
+		numTilesFilled--;
 		return true;
 	}//end removeTile method
 
@@ -81,7 +86,16 @@ public class GameBoard {//start GameBoard class
 	 * @param value - the new value
 	 */
 	public void setTile(int row, int col, int value) {//start setTile method
+		if(tileGrid[row][col].getValue() == -1 && value != -1){
+			//Then tile is being filled, so increment numTilesFilled
+			numTilesFilled++;
+		}
+		if(tileGrid[row][col].getValue() != -1 && value == -1){
+			//Then tile is being emptied, so decrement numTilesFilled
+			numTilesFilled--;
+		}
 		tileGrid[row][col].setValue(value);
+		System.out.println("Num tiles filled: " + numTilesFilled);
 	}//end setTile method
 	
 	/*

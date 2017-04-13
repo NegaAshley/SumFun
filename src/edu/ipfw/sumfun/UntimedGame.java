@@ -7,7 +7,7 @@ package edu.ipfw.sumfun;
 public class UntimedGame extends Game {//start UntimedGame class
 	
 	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
-	private static final int MAX_MOVES = 50;//the max moves allowed for a game
+	private static final int MAX_MOVES = 5;//the max moves allowed for a game
 	
 	
 	/**
