@@ -50,7 +50,6 @@ public class Controller implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		
 		//Check for an event that needs to start a new game
 		if(event.getActionCommand().equals(NEW_GAME)){
 			startNewGame();
@@ -157,6 +156,13 @@ public class Controller implements ActionListener {
 			//Alert user that move is invalid
 			view.invalidMoveEvent();
 		}
+		
+		//If board is inactive, prompt for user name
+		if(model.getIsActive() == false){
+			System.out.println("Board is inactive");
+		}
+
+		
 	}//end placeTile
 	
 	/**
