@@ -45,15 +45,11 @@ public class Application {//start Application class
 		//Attempt to load saved data
 		deserialize();
 		
-	// adds some sample UntimedRecords to TopPointsPlayers	
-	// tpp.addRecord(new UntimedRecord("Rhiannon", 0, 66));
-	// tpp.addRecord(new UntimedRecord("Freya", 0, 77);
-		
-		//Instantiate a model and a controller, passing the model reference to the controller
-		//$ timedGame = TimedGame.getInstance();
+		//Grab references to both types of game models
 		untimedGame = UntimedGame.getInstance();
 		timedGame = TimedGame.getInstance();
-		//$ Controller controller = new Controller(timedGame);
+
+		//Instantiate a controller, passing the UntimedGame as the initial model
 		Controller controller = new Controller(untimedGame, tpp);
 
 	}//end main method
@@ -66,7 +62,7 @@ public class Application {//start Application class
             try (FileOutputStream fos = new FileOutputStream(path)) {
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(tpp);
-            } catch (Exception ex0111111111) {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error writing to file! Work not saved!");
             }
             
