@@ -21,13 +21,17 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
     public static final int GRID_COLS = 5;
     public static final String GREEN_HEX_VALUE="0x00cc00";
     
+    private Game game;
+    
     //ArrayList of queueTiles to hold references to the physical tiles
     ArrayList<QueueTileView> queueTiles = new ArrayList<>();
     
     /**
      * Constructor for the QueuePanel class
      */
-    public QueuePanel() {//start QueuePanel constructor
+    public QueuePanel(Game game) {//start QueuePanel constructor
+    	
+    	this.game = game;
 
         //Set QueuePanel layout to a grid layout of GRID_ROWS by GRID_COLS
         setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
@@ -44,6 +48,10 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
         } 
         
     }//end QueuePanel constructor
+    
+    public void setGame(Game game) {
+    	this.game = game;
+    }
      
     /*
      * Paints components
@@ -58,7 +66,7 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
     	//g2.setBackground(Color.GRAY);
         for(int i = 0; i < queueTiles.size(); i++) {
         	QueueTileView tile = queueTiles.get(i);
-        	tile.draw(g2, Application.getQueueTileModel(i));
+        	tile.draw(g2, game.selectQueueTile(i));
         } 
     }//end paintComponent
     

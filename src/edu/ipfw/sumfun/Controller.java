@@ -27,7 +27,8 @@ public class Controller implements ActionListener {
 	//References to model and view
 	//Change model type
 	//$ private TimedGame model;
-	private UntimedGame model; 
+	//$ private UntimedGame model; 
+	private Game model;
 	private SumFunFrame view;
 	private TopPointPlayers tpp;
 	
@@ -37,8 +38,8 @@ public class Controller implements ActionListener {
 	 */
 	//$ public Controller(TimedGame t) {
 		//$ model = t;
-	public Controller(UntimedGame u, TopPointPlayers tpp) {
-		model = u;
+	public Controller(Game game, TopPointPlayers tpp) {
+		model = game;
 		this.tpp = tpp;
 		view = new SumFunFrame(model, this, tpp);
 		view.setVisible(GUI_VISIBLE);
@@ -57,6 +58,16 @@ public class Controller implements ActionListener {
 			return;
 		}
 		
+		if(event.getActionCommand().equals("Untimed")) {
+			startNewUntimedGame();
+			return;
+		}
+		
+		if(event.getActionCommand().equals("Timed")) {
+			startNewTimedGame();
+			return;
+		}
+		
 		//Check for an event that needs to reset the queue
 		if(event.getActionCommand().equals(RESET_QUEUE)){
 			resetQueue();
@@ -66,17 +77,20 @@ public class Controller implements ActionListener {
 		//Checks for an event that needs to grab user name and closes popup
 		if(event.getActionCommand().equals(GET_USER_NAME)){
 			String userName;//the name of the user
-			int moves;//the number of moves left
+			int moves = 0;//the number of moves left
 			int points;//the number of points
 			
 			//Assigns the username to a variable from the text box
 			view.getUserNameDialog().assignUserName();
 			//sets the local variable username
 			userName = view.getUserNameDialog().getUserName();
-			//Sets the local variable moves
-			moves = model.getMovesRemaining();
 			//Sets the local variable points
 			points = model.getPoints();
+			//Sets the local variable moves
+			if(model instanceof UntimedGame) {
+				UntimedGame temp = (UntimedGame) model;
+				moves = temp.getMovesRemaining();
+			}
 			
 			//Creates the record with given variables
 			UntimedRecord record = new UntimedRecord(userName, moves, points);
@@ -120,12 +134,25 @@ public class Controller implements ActionListener {
 		model.createNewGameBoard();	
 	}//end startNewGame method
 	
-	/*
-	 * TODO delete
-	 */
-	private void setUserName(){//start setUserName method
-		
-	}//end setUserName method
+	private void startNewUntimedGame() {
+		model = UntimedGame.getInstance();
+		view.setModel(UntimedGame.getInstance());
+		resetQueue();
+		view.getResetQueue().setEnabled(true);
+		model.createNewGameBoard();
+	}
+	
+	private void startNewTimedGame() {
+		System.out.println("Starting a new timed game");
+		model = TimedGame.getInstance();
+		TimedGame temp = (TimedGame) model;
+		temp.setTimer();
+		view.setModel(model);
+		resetQueue();
+		view.getResetQueue().setEnabled(true);
+		model.createNewGameBoard();
+	}
+
 	/**
 	 * Parses the coordinates of a tile that was clicked, and updates model accordingly
 	 */

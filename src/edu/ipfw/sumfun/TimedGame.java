@@ -29,14 +29,22 @@ public class TimedGame extends Game {
 			@Override
 			public void run() {
 				DURATION = DURATION - TICK;
+				if (DURATION <= 0) {
+					DURATION = 300000;
+				}
 				setChanged();
 				notifyObservers();
-				if (DURATION <= 0) {
-					t.cancel();
-				}
 			}
 		}, 0, 1000);
 	}// end TimedGame constructor
+	
+	public void setTimer() {
+		DURATION = 300000;
+	}
+	
+	public void stopTimer() {
+		t.cancel();
+	}
 	
 	/**
 	 * Return singleton instance of TimedGame
@@ -55,6 +63,7 @@ public class TimedGame extends Game {
 		int minutes = DURATION / (60 * 1000);
 		int seconds = (DURATION / 1000) % 60;
 		String str = String.format("%d:%02d", minutes, seconds);
+		System.out.println(str);
 		return str;
 	}// end getStartTime
 	
