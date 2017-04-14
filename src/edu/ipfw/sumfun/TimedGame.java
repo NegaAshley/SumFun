@@ -9,6 +9,8 @@ import java.util.TimerTask;
  * @author Connor
  */
 public class TimedGame extends Game {
+	
+	private static TimedGame timedInstance = new TimedGame();
 
 	private static int DURATION = 300000;// Duration of timed game in millis
 	private static final int TICK = 1000; // Number of milliseconds per tick (1
@@ -18,7 +20,7 @@ public class TimedGame extends Game {
 	/**
 	 * Constructor for TimedGame class
 	 */
-	public TimedGame() {
+	private TimedGame() {
 
 		super();
 		t = new Timer();
@@ -35,6 +37,14 @@ public class TimedGame extends Game {
 			}
 		}, 0, 1000);
 	}// end TimedGame constructor
+	
+	/**
+	 * Return singleton instance of TimedGame
+	 * @return timedInstance
+	 */
+	public static TimedGame getInstance() {
+		return timedInstance;
+	}//end getInstance
 
 	/**
 	 * Access method for current time remaining

@@ -634,12 +634,14 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		 */
 		public void assignUserName(){//start assignUserName method
 			userName = userNameTextField.getText();
+			System.out.println(userName);
 		}//end assignUserName method
 		/*
 		 * Returns the username
 		 * @returns userName - the name of the user
 		 */
 		public String getUserName(){//start getUserName method
+			System.out.println(userName);
 			return userName;
 		}//end getUserName method
 		/*

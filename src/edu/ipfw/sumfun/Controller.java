@@ -37,7 +37,7 @@ public class Controller implements ActionListener {
 	 */
 	//$ public Controller(TimedGame t) {
 		//$ model = t;
-	public Controller(UntimedGame u, TopPointPlayers tpp){
+	public Controller(UntimedGame u, TopPointPlayers tpp) {
 		model = u;
 		this.tpp = tpp;
 		view = new SumFunFrame(model, this, tpp);
@@ -50,6 +50,7 @@ public class Controller implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		
 		//Check for an event that needs to start a new game
 		if(event.getActionCommand().equals(NEW_GAME)){
 			startNewGame();

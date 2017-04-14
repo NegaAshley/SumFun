@@ -50,8 +50,8 @@ public class Application {//start Application class
 	// tpp.addRecord(new UntimedRecord("Freya", 0, 77);
 		
 		//Instantiate a model and a controller, passing the model reference to the controller
-		//$ timedGame = new TimedGame();
-		untimedGame = new UntimedGame();
+		//$ timedGame = TimedGame.getInstance();
+		untimedGame = UntimedGame.getInstance();
 		//$ Controller controller = new Controller(timedGame);
 		Controller controller = new Controller(untimedGame, tpp);
 
