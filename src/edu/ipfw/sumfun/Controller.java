@@ -180,15 +180,6 @@ public class Controller implements ActionListener {
 			view.invalidMoveEvent();
 		}
 		
-		//If board is inactive, prompt for user name
-		if(model.getIsActive() == false){
-			System.out.println("Board is inactive");
-			GetUserNameDialog gUND = view.new GetUserNameDialog();
-			gUND.setVisible(true);
-			view.getSumFunFrame().setVisible(false);
-		}
-
-		
 	}//end placeTile
 	
 	/**

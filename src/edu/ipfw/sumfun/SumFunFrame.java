@@ -79,8 +79,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem help;//menu option in helpMenu that will bring up help features
 	private final JMenuItem mostPoints;
-	//TODO Delete later - for testing only
-	private final JMenuItem userDialog;
 	private final JMenuItem newUntimedGame;
 	private final JMenuItem newTimedGame;
 	private JPanel initialPanel;//panel to build from
@@ -140,8 +138,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		exit = new JMenuItem("Exit");
 		help = new JMenuItem("Help");
 		mostPoints = new JMenuItem("Most Points");
-		//TODO delete later - this is for testing
-		userDialog = new JMenuItem("Get User Name");
 
 		//Adds menu items to menus
 		gameMenu.add(newGame);
@@ -152,8 +148,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		gameMenu.add(exit);
 		helpMenu.add(help);
 		topMenu.add(mostPoints);
-		//TODO delete later - for testing only
-		topMenu.add(userDialog);
 
 		//Creates and adds SumFunPanel
 		GameBoardPanel panel = new GameBoardPanel();
@@ -235,15 +229,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			public void actionPerformed(ActionEvent e) {
 				TopPointsDialog tpd = new TopPointsDialog();
 				tpd.setVisible(true);
-			}
-		});
-		
-		//TODO delete later - this is for testing
-		userDialog.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gUND = new GetUserNameDialog();
-				gUND.setVisible(true);
-				getSumFunFrame().setVisible(false);
 			}
 		});
 		
@@ -436,18 +421,21 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	}//end getHelp method
 	
 	/*
-	 *TODO remove later
-	 */
-	public GetUserNameDialog getUserNameDialog(){
-		return gUND;
-	}
-	/*
 	 * Getter for this SumFunFrame
 	 * @returns this.SumFunFrame
 	 */
 	public SumFunFrame getSumFunFrame(){//start getSumFunFrame method
 		return this;
 	}//end getSumFunFrame method
+	
+	/*
+	 * Getter for GetUserNameDialog
+	 * @returns this.GetUserNameDialog
+	 */
+	public GetUserNameDialog getUserNameDialog(){//start getUserNameDialog method
+		return gUND;
+	}//end getUserNameDialog method
+	
 	/**
 	 * Updates each GUI component with corresponding model element
 	 */
@@ -478,6 +466,16 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			timeLabel.setText(time);
 		}
 		
+		if(model.getIsActive() == false){
+			//Tried this to stop updating each second with popup, but it resulted in
+			//"Fatal error.  No controller registered for tile."
+//			((TimedGame) model).getTimer().cancel();
+			gUND = new GetUserNameDialog();
+			gUND.setVisible(true);
+			getSumFunFrame().setVisible(false);
+			
+			//TODO fix repeating issue with clock
+		}
 		//Repaint the frame
 		repaint();
 		
