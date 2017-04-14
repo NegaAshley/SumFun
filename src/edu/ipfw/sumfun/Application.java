@@ -52,6 +52,7 @@ public class Application {//start Application class
 		//Instantiate a model and a controller, passing the model reference to the controller
 		//$ timedGame = TimedGame.getInstance();
 		untimedGame = UntimedGame.getInstance();
+		timedGame = TimedGame.getInstance();
 		//$ Controller controller = new Controller(timedGame);
 		Controller controller = new Controller(untimedGame, tpp);
 
@@ -87,97 +88,5 @@ public class Application {//start Application class
             }
         
     }//end deserialize method
-	
-	/**
-	 * Returns the gameBoard from untimedGame
-	 * @return a GameBoard object from untimedGame
-	 */
-	public static GameBoard getGameBoard(){//start getGameBoard method
-		//$ return timedGame.getGameBoard();
-		return untimedGame.getGameBoard();
-	}//end getGameBoard method
-	
-	/**
-	 * returns the TileModel from the gameBoard at the specified coordinates
-	 * @param row the row desired
-	 * @param col the column desired
-	 * @return the TileModel at the coordinates
-	 */
-	public static TileModel getTileModel(int row, int col) {//start getTileModel method
-		//game type change
-		//$ return timedGame.getGameBoard().getTile(row, col);
-		return untimedGame.getGameBoard().getTile(row, col);
-	}//end getTileModel method
-	
-	/**
-	 * Gets the points from the back-end for use in front-end
-	 * @return points
-	 */
-	public static int getPoints() {
-		//change game type
-		//$ return timedGame.getPoints();
-		return untimedGame.getPoints();
-	}//end getPoints
-	
-	/**
-	 * Gets the moves from the back-end for use in front-end
-	 * @return movesRemaining
-	 */
-	public static int getMoves() {
-		return untimedGame.getMovesRemaining();
-	}//end getMoves
-	
-	/**
-	 * Gets the time remaining for use in front end
-	 * @return time - as a string
-	 */
-	public static String getTime(){//start getTime method
-		if(timedGame == null) {
-			return null;
-		} else {
-			return timedGame.getTime();
-		}
-	}//end getTime method
-	
-	/**
-	 * Gets the TileModel from the queue at the specified index
-	 * @param i the index desired
-	 * @return a TileModel object from the queue in untimedGame
-	 */
-	public static TileModel getQueueTileModel(int i) {//start getQueueTileModel
-		//change game type
-		//$ return timedGame.selectQueueTile(i);
-		return untimedGame.selectQueueTile(i);
-	}//end getqueueTileModel
-	
-	/**
-	 * Sets the value of the tile at the specified coordinates to the specified value
-	 * @param value the valued desired
-	 * @param row the row desired
-	 * @param col the column desired
-	 */
-	public static void setTileValue(int value, int row, int col){//start setTileValue method
-		//change game type
-		//$ timedGame.getGameBoard().getTile(row, col).setValue(value);
-		untimedGame.getGameBoard().getTile(row, col).setValue(value);
-	}//end setTileValue method
-	
-	/**
-	 * Advances the queue one position
-	 */
-	public static void pushQueue(){//start pushQueue method
-		//change game type
-		//$ timedGame.pushQueue();
-		untimedGame.pushQueue();
-	}//end pushQueue method
-	
-	/**
-	 * Prints the values of the gameBoard to the console for testing
-	 */
-	public static void test() {//start test method
-		//change game type
-		//$ timedGame.getGameBoard().printArray();
-		untimedGame.getGameBoard().printArray();
-	}//end test method
 	
 }//end Application class

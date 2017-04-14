@@ -47,14 +47,18 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
     private static final String INVALID_MOVE_MESSAGE = "Cannot place tile here!";
     private static final String EMPTY_TEXT_MESSAGE = "Please enter a name!";
 	private static final String RESET_QUEUE = "Reset Queue";
+	private static final String NEW_UNTIMED = "Untimed";
+	private static final String NEW_TIMED = "Timed";
 	private static final String NEW_GAME = "New Game";
 	private static final String GET_USER_NAME = "Get User Name";
 	
     //The model
-	private UntimedGame untimedGame;
+	//$ private UntimedGame untimedGame;
 	
 	//The other model
-	private TimedGame timedGame;
+	//$ private TimedGame timedGame;
+	
+	private Game model;
 	
 	//Game type toggle
 	//private int gameType;
@@ -92,7 +96,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 */
 	//Add TimedGame here
 	//$ public SumFunFrame(TimedGame timedGame, final Controller controller) {
-	public SumFunFrame(UntimedGame untimedGame, final Controller controller, TopPointPlayers tpp) {//start SumFunFrame constructor
+	public SumFunFrame(Game game, final Controller controller, TopPointPlayers tpp) {//start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
 		
@@ -101,15 +105,17 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		setResizable(GUI_RESIZABLE);
 		setLayout(new GridLayout(1, 1));//sets the layout of the frame to GridLayout
 		
+		//Set reference to TopPointPlayers object
 		this.tpp = tpp;
-		//Register view as observer of model
-		//change to timedgame constructor
-		//$ this.timedGame = timedGame;
-		this.untimedGame = untimedGame;
-		//change to timedgame
-		//$ timedGame.addObserver(this);
-		untimedGame.addObserver(this);
 		
+		//Set the model to whatever game was passed to the frame's constructor
+		this.model = game;
+		
+		//Add this frame as an observer to both game types
+		UntimedGame.getInstance().addObserver(this);
+		TimedGame.getInstance().addObserver(this);
+		
+		//Sets reference to controller
 		this.controller = controller;
 		
 		// Creates and sets the menu bar
@@ -167,27 +173,56 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		scoreBoardPanel.setLayout(new GridLayout(2, 2));
 
 		//Adds JLabels and text fields for Score and Moves Remaining
-		int score = Application.getPoints();
+		int moves = 0;
+		String moveString = "";
+		if(model instanceof UntimedGame) {
+			UntimedGame temp = (UntimedGame) model;
+			moves = temp.getMovesRemaining();
+			moveString = "Moves Remaining: " + moves;
+		} else {
+			moveString = "Moves Remaining: N/A";
+		}
+		
+		int score = model.getPoints();
 		String scoreString = "Score: " + score;
-		int moves = Application.getMoves();
-		//$ String timeString = "Time Remaining: " + time;
-		//$ String time = Application.getTime();
-		String moveString = "Moves Remaining: " + moves;
-		//$ String timeString = "Time Remaining: " + time;
+
+		
+		String time;
+		String timeString = "Time Remaining: ";
+		if(model instanceof TimedGame) {
+			TimedGame temp = (TimedGame) model;
+			time = temp.getTime();
+			timeString += time;
+		}
+
 		scoreLabel = new JLabel(scoreString);
 		moveLabel = new JLabel(moveString);
-		//$ timeLabel = new JLabel(timeString);
+		timeLabel = new JLabel(timeString);
 		scoreBoardPanel.add(scoreLabel);
 		scoreBoardPanel.add(moveLabel);
-		//$ scoreBoardPanel.add(timeLabel);
+		scoreBoardPanel.add(timeLabel);
 		
 		//Add score board panel to the north of initialPanel
 		initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
 
 		// Instantiate a new QueuePanel and add to initialPanel
-		qp = new QueuePanel();
+		qp = new QueuePanel(model);
 		initialPanel.add(qp);
 
+		newUntimedGame.setActionCommand(NEW_UNTIMED);
+		newUntimedGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {//start actionPerformed method
+				controller.actionPerformed(e);
+			}//end actionPerformed method
+		});
+		
+		newTimedGame.setActionCommand(NEW_TIMED);
+		newTimedGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {//start actionPerformed method
+				controller.actionPerformed(e);
+			}//end actionPerformed method
+		});
+		
 		//Resets board when new game is selected
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
@@ -202,6 +237,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 				tpd.setVisible(true);
 			}
 		});
+		
 		//TODO delete later - this is for testing
 		userDialog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -214,6 +250,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		//Closes game when exit menu option is selected
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
+				TimedGame.getInstance().stopTimer();
 				Application.serialize();
 				dispose();
 			}//end actionPerformed method
@@ -229,6 +266,15 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		});
 		
 	}//end SumFunFrame constructor
+	
+	/**
+	 * Set the model to specified Game
+	 * @param game, the instance of Game to use as model
+	 */
+	public void setModel(Game game) {
+		model = game;
+		qp.setGame(game);
+	}//end setModel
 
 	/**
 	 * Getter for scoreLabel
@@ -409,17 +455,28 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	public void update(Observable arg0, Object arg1) {
 		
 		//Update score
-		String score = "Score: " + untimedGame.getPoints();
+		String score = "Score: " + model.getPoints();
 		scoreLabel.setText(score);
 		
 		//Update moves remaining
+		//if the model is an UntimedGame
+		if(model instanceof UntimedGame)  {
+			UntimedGame temp = (UntimedGame) model;
+			String move = "Moves Remaining: " + temp.getMovesRemaining();
+			moveLabel.setText(move);
+		} else {
+			String move = "Moves Remaining: N/A";
+			moveLabel.setText(move);
+		}
 		
-		String move = "Moves Remaining: " + untimedGame.getMovesRemaining();
-		moveLabel.setText(move);
-		
-		//These strings handle timer update
-		//$ String time = "Time Remaining: " + timedGame.getTime();
-		//$ timeLabel.setText(time);
+		if(model instanceof TimedGame) {
+			TimedGame temp = (TimedGame) model;
+			String time = "Time Remaining: " + temp.getTime();
+			timeLabel.setText(time);
+		} else {
+			String time = "Time Remaining: N/A";
+			timeLabel.setText(time);
+		}
 		
 		//Repaint the frame
 		repaint();
@@ -491,7 +548,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	        //Iterates through tiles and draws tiles onto panel
 	        for(int row = 0; row < GRID_ROWS; row++) {
 	        	for(int col = 0; col < GRID_COLS; col++) {
-	        		tiles[row][col].draw(g2, Application.getGameBoard().getTileGrid()[row][col]);
+	        		tiles[row][col].draw(g2, model.getGameBoard().getTileGrid()[row][col]);
 	        	}
 	        }
 	    }//end paintComponent method
