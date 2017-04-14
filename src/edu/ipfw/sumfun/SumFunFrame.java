@@ -656,6 +656,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		public GetUserNameDialog getGetUserNameDialog(){//start getGetUserNameDialog method
 			return this;
 		}//end getGetUserNameDialog method
+	
 	}//end getUserNameDialog class
 
 }// end SumFunFrame class
