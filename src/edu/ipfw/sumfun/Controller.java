@@ -131,11 +131,6 @@ public class Controller implements ActionListener {
 	private void placeTile(ActionEvent event) {
 		//Doesn't allow tiles to be placed if board is inactive
 		if(model.getIsActive() == false){
-			//TODO fix this later
-//			GetUserNameDialog GUND;
-//			GUND = view.new GetUserNameDialog();
-//			GUND.setVisible(true);
-//			view.getSumFunFrame().setVisible(false);
 			return;
 		}
 		//Parse the coordinates of the tile and sparked the ActionEvent
@@ -160,6 +155,9 @@ public class Controller implements ActionListener {
 		//If board is inactive, prompt for user name
 		if(model.getIsActive() == false){
 			System.out.println("Board is inactive");
+			GetUserNameDialog gUND = view.new GetUserNameDialog();
+			gUND.setVisible(true);
+			view.getSumFunFrame().setVisible(false);
 		}
 
 		
