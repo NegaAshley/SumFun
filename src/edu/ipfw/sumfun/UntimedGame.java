@@ -6,6 +6,8 @@ package edu.ipfw.sumfun;
  */
 public class UntimedGame extends Game {//start UntimedGame class
 	
+	private static UntimedGame untimedInstance = new UntimedGame();
+	
 	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
 	private static final int MAX_MOVES = 5;//the max moves allowed for a game
 	
@@ -13,7 +15,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	/**
 	 * Constructor method for UntimedGame class
 	 */
-	public UntimedGame() {//start UntimedGame constructor method
+	private UntimedGame() {//start UntimedGame constructor method
 		super();
 		movesRemaining = MAX_MOVES;
 		setIsActive(true);
@@ -61,6 +63,14 @@ public class UntimedGame extends Game {//start UntimedGame class
 		movesRemaining = MAX_MOVES;
 		super.createNewGameBoard();
 	}//end createNewGameBoard method
+	
+	/**
+	 * Returns the singleton instance of UntimedGame
+	 * @return untimedInstance
+	 */
+	public static UntimedGame getInstance() {
+		return untimedInstance;
+	}//end getInstance
 	
 	/*
 	 * Checks to see if moves remaining is less than or equal to zero.  
