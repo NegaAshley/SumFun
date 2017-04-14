@@ -46,18 +46,6 @@ public abstract class Game extends Observable{//start Game class
 	}//start selectQueueTile method
 	
 	/**
-	 * Places a tile at the given location by simply replacing the value
-	 * of the current tile with the value of the selected tile
-	 * @param i,j - the row and column values of where the tile is placed
-	 */
-	public void placeTile(int i, int j){//start placeTile method
-		gameBoard.setTile(i, j, tileQueue.get(0).getValue());
-		calculateSum(i, j, tileQueue.get(0).getValue());
-		setChanged();
-		notifyObservers();
-	}//end placeTile method
-	
-	/**
 	 * Populates the tileQueue with some values
 	 */
 	public void populateQueue(){//initializes tileQueue with random values in the allowed range (inclusive)
@@ -158,6 +146,10 @@ public abstract class Game extends Observable{//start Game class
 			
 			//Make calls to notifyObservers, etc
 		}	
+		
+		if(gameBoard.isGameBoardEmpty() || gameBoard.isGameBoardFull()){
+			isActive = false;
+		}
 		
 		setChanged();
 		notifyObservers();

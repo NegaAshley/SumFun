@@ -73,7 +73,7 @@ public class TimedGame extends Game {
 	 * 
 	 * @return n/a 
 	 */
-	public void resetTimer(int newTime){
+	public void resetTimer(int newTime){//start resetTimer method
 		
 		DURATION = newTime;
 		t.cancel();
@@ -88,10 +88,8 @@ public class TimedGame extends Game {
 					t.cancel();
 				}
 			}
-		}, 0, 1000);
-		
-	}
-	
+		}, 0, 1000);	
+	}//end resetTimer method
 	
 	/**
 	 * Accessor method for set increment of time
@@ -102,4 +100,11 @@ public class TimedGame extends Game {
 		return TICK;
 	}// end getTick
 
+	/*
+	 * Accessor method to get the timer
+	 * @return t - the timer
+	 */
+	public Timer getTimer(){//start getTimer method
+		return t;
+	}//end getTimer method
 }// end TimedGame class

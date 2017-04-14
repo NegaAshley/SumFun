@@ -6,8 +6,6 @@ package edu.ipfw.sumfun;
  *
  */
 public class GameBoard {//start GameBoard class
-	private int numTilesFilled;//the number of tiles filled on the gameboard
-	private int maxTilesFilled;//the max number of tiles possible to be filled
 	//Various constants for use in GameBoard
 	static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
@@ -19,8 +17,6 @@ public class GameBoard {//start GameBoard class
 	 * Constructor that populates the board and sets directional references via helper methods
 	 */
 	public GameBoard(){//start GameBoard constructor
-		numTilesFilled = 0;//starts tiles filled number at zero
-		maxTilesFilled = TILE_GRID_WIDTH * TILE_GRID_LENGTH;
 		populateBoard();
 		setDirectionalReferences();
 	}//end GameBoard constructor
@@ -45,7 +41,6 @@ public class GameBoard {//start GameBoard class
 				}
 				//Create a tile in this place with a random value
 				tileGrid[row][col] = TileModel.createRandomTile();
-				numTilesFilled++;
 			}
 		}
 	}//end populateBoard method
@@ -58,7 +53,6 @@ public class GameBoard {//start GameBoard class
 	 */
 	public boolean removeTile(int row, int col){//start removeTile method
 		tileGrid[row][col] = new TileModel(-1);
-		numTilesFilled--;
 		return true;
 	}//end removeTile method
 
@@ -79,24 +73,7 @@ public class GameBoard {//start GameBoard class
 		return tileGrid;
 	}//end getTileGrid method
 	
-	/**
-	 * Sets the tile at the given coordinates to the given value
-	 * @param row - the row desired
-	 * @param col - the column desired
-	 * @param value - the new value
-	 */
-	public void setTile(int row, int col, int value) {//start setTile method
-		if(tileGrid[row][col].getValue() == -1 && value != -1){
-			//Then tile is being filled, so increment numTilesFilled
-			numTilesFilled++;
-		}
-		if(tileGrid[row][col].getValue() != -1 && value == -1){
-			//Then tile is being emptied, so decrement numTilesFilled
-			numTilesFilled--;
-		}
-		tileGrid[row][col].setValue(value);
-		System.out.println("Num tiles filled: " + numTilesFilled);
-	}//end setTile method
+
 	
 	/*
 	 * Sets the directional references of the tileGrid
@@ -173,4 +150,41 @@ public class GameBoard {//start GameBoard class
 		
 	}//end printArray method
 	
+	/*
+	 * Returns true if GameBoard is full of tiles
+	 * @returns true if GameBoard is full
+	 */
+	public boolean isGameBoardFull(){//start isGameBoardFull method
+		boolean isFull;
+		isFull = true;
+		for(int row = 0; row < tileGrid.length; row++){
+			for(int col = 0; col < tileGrid[row].length; col++){
+				if(tileGrid[row][col].getValue() == -1){
+					//then there is an empty tile and the board is not full
+					isFull = false;
+					return isFull;
+				}
+			}
+		}
+		return isFull;
+	}//end isGameBoardFull method
+	
+	/*
+	 * Returns true if GameBoard is empty of tiles
+	 * @returns true if GameBoard is empty
+	 */
+	public boolean isGameBoardEmpty(){//start isGameBoardEmpty method
+		boolean isEmpty;
+		isEmpty = true;
+		for(int row = 0; row < tileGrid.length; row++){
+			for(int col = 0; col < tileGrid[row].length; col++){
+				if(tileGrid[row][col].getValue() != -1){
+					//then there is a filled tile and the board is not empty
+					isEmpty = false;
+					return isEmpty;
+				}
+			}
+		}
+		return isEmpty;
+	}//end isGameBoardEmpty method
 }//end class GameBoardModel
