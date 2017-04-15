@@ -23,6 +23,9 @@ class TileView {//start Tile class
     
     /*
      * Constructor method of Tile class
+     * @param row - the row of the tile
+     * @param col - the column of the tile
+     * @param tileOutlineColor - the color of the outline of the tile
      */
     public TileView(int row, int col, Color tileOutlineColor){//start Tile constructor
         this.tileOutlineColor = tileOutlineColor;
@@ -38,9 +41,9 @@ class TileView {//start Tile class
     }//end addActionListener
     
     /**
-     * processes tile click event
+     * Processes tile click event
      */
-    public void processEvent() {
+    public void processEvent() {//start processEvent method
     	
     	try {
     		
@@ -53,12 +56,12 @@ class TileView {//start Tile class
     		return;
     	}
     	
-    }//end processEvent
+    }//end processEvent method
     
     /**
      * Draws the tiles onto the grid.
-     * @param g2, the brush
-     * @param tile, the backend tile
+     * @param g2 - the brush
+     * @param tile - the backend tile
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
     	
@@ -81,8 +84,8 @@ class TileView {//start Tile class
     /**
      * Checks to see if a tile contains given coordinates.  Returns true if tile 
      * contains given coordinates and false if not.
-     * @param newx, the x-coordinate
-     * @param newy, the y-coordinate
+     * @param newx - the x-coordinate
+     * @param newy - the y-coordinate
      */
     public boolean contains(int newx, int newy){//start contains method
     	
@@ -97,6 +100,7 @@ class TileView {//start Tile class
     
     /**
      * Returns row as an int.
+     * @return row - the row of the tile
      */
     public int getRow(){//start getRow method
         return row;
@@ -104,6 +108,7 @@ class TileView {//start Tile class
     
     /**
      * Returns column as an int.
+     * @return col - the column of the tile
      */
     public int getCol(){//start getCol method
         return col;

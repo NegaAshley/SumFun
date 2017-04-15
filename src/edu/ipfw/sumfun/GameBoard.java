@@ -186,4 +186,4 @@ public class GameBoard {//start GameBoard class
 		return isEmpty;
 	}//end isGameBoardEmpty method
 	
-}//end class GameBoardModel
+}//end GameBoardModel class

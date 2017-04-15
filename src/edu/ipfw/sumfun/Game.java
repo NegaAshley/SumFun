@@ -49,7 +49,8 @@ public abstract class Game extends Observable{//start Game class
 	/**
 	 * Populates the tileQueue with some values
 	 */
-	public void populateQueue(){//initializes tileQueue with random values in the allowed range (inclusive)
+	public void populateQueue(){//start populateQueue method
+		//Initializes tileQueue with random values in the allowed range (inclusive)
 		int num;
 		for(int i = 0; i < QUEUE_LENGTH ; i++){
 			num = LOW_THRESHOLD + (int) (Math.random() * ((HIGH_THRESHOLD - LOW_THRESHOLD) + 1));
@@ -59,12 +60,12 @@ public abstract class Game extends Observable{//start Game class
 		}
 		setChanged();
 		notifyObservers();
-	}//end populateQueue
+	}//end populateQueue method
 	
 	/*
 	 * Adds a new tile to the queue after one has been removed
 	 */
-	public void pushQueue(){//start pushQueue start
+	public void pushQueue(){//start pushQueue method
 		TileModel t;//the tile to be added to the queue
 		tileQueue.remove(0);
 		int num = LOW_THRESHOLD + (int) (Math.random() * ((HIGH_THRESHOLD - LOW_THRESHOLD) + 1));
@@ -153,7 +154,7 @@ public abstract class Game extends Observable{//start Game class
 	}//end processMove method
 	
 	/**
-	 * set value of current tile and all adjacent tiles to -1
+	 * Set value of current tile and all adjacent tiles to -1
 	 * @param t, the tile that has been placed
 	 */
 	private void removeAdjacentTiles(TileModel t) {//start removeAdjacentTiles method
@@ -210,6 +211,7 @@ public abstract class Game extends Observable{//start Game class
 	public void setIsActive(boolean newIsActive){//start setIsActive method
 		isActive = newIsActive;
 	}//end setIsActive method
+	
 	/*
 	 * Creates a new GameBoard
 	 */

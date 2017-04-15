@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Jake
  *
  */
-public class TopPointPlayers implements Serializable {
+public class TopPointPlayers implements Serializable {//start TopPointPlayers class
 	
 	//The number of records we are maintaining
 	private static final int NUM_RECORDS = 10;
@@ -17,15 +17,15 @@ public class TopPointPlayers implements Serializable {
 	private ArrayList<UntimedRecord> records;
 	
 	/**
-	 * Constructor
+	 * Constructor for the TopPointPlayers class
 	 */
-	public TopPointPlayers() {
+	public TopPointPlayers() {//start TopPointPlayers constructor
 		records = new ArrayList<UntimedRecord>();
-	}//end Constructor
+	}//end TopPointsPlayers nstructor
 	
 	/**
 	 * Returns the record found in ArrayList records at index
-	 * @param index, the index of a desired record
+	 * @param index - the index of a desired record
 	 * @return the record found at index
 	 */
 	public UntimedRecord getRecord(int index) {
@@ -35,26 +35,26 @@ public class TopPointPlayers implements Serializable {
 	/**
 	 * Print all records contained in ArrayList records to console
 	 */
-	public void printRecords() {
+	public void printRecords() {//start printRecords method
 		for(UntimedRecord u : records) {
 			System.out.println(u.toString());
 		}
 		System.out.println();
-	}//end printRecords
+	}//end printRecords method
 	
 	/**
 	 * Access method for the size of ArrayList records
 	 * @return the size of ArrayList records
 	 */
-	public int getNumRecords() {
+	public int getNumRecords() {//start getNumRecords method
 		return records.size();
-	}//end getNumRecords
+	}//end getNumRecords method
 	
 	/**
 	 * Attempts to add a record to ArrayList records
-	 * @param record, a record to attempt to add
+	 * @param record - a record to attempt to add
 	 */
-	public void addRecord(UntimedRecord record) {
+	public void addRecord(UntimedRecord record) {//start addRecord method
 		
 		//If records is empty, just add and move along
 		if(records.isEmpty()) {
@@ -102,7 +102,7 @@ public class TopPointPlayers implements Serializable {
 				break;
 			}
 		}
-	}//end addRecord
+	}//end addRecord method
 
-}//end class TopPlayers
+}//end TopPointPlayer class
 
