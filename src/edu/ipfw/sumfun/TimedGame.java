@@ -69,14 +69,14 @@ public class TimedGame extends Game {
 	
 	/**
 	 * 
-	 * Setter method fo duration, to restart timed game
+	 * Setter method for duration, to restart timed game
 	 * 
 	 * @return n/a 
 	 */
-	public void resetTimer(int newTime){//start resetTimer method
+	public void resetTimer(){//start resetTimer method
 		
-		DURATION = newTime;
-		t.cancel();
+
+		//t.cancel();
 		t.scheduleAtFixedRate(new TimerTask() {
 
 			@Override
@@ -107,4 +107,11 @@ public class TimedGame extends Game {
 	public Timer getTimer(){//start getTimer method
 		return t;
 	}//end getTimer method
+	
+	/*
+	 * Starts the timer
+	 */
+	public void startTimer(){//start startTimer method
+		t = new Timer();
+	}//end startTimer method
 }// end TimedGame class

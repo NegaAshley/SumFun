@@ -24,6 +24,7 @@ public abstract class Game extends Observable{//start Game class
 	
 	public Game(){//start Game constructor
 		points = INITIAL_POINTS;
+		isActive = true;
 		gameBoard = new GameBoard();
 		populateQueue();
 	}//end Game constructor

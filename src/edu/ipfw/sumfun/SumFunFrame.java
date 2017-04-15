@@ -467,9 +467,10 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		}
 		
 		if(model.getIsActive() == false){
+			model.setIsActive(true);
 			//Tried this to stop updating each second with popup, but it resulted in
 			//"Fatal error.  No controller registered for tile."
-//			((TimedGame) model).getTimer().cancel();
+			((TimedGame) model).getTimer().cancel();
 			gUND = new GetUserNameDialog();
 			gUND.setVisible(true);
 			getSumFunFrame().setVisible(false);
