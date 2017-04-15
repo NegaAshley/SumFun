@@ -6,12 +6,12 @@ package edu.ipfw.sumfun;
  *
  */
 public class GameBoard {//start GameBoard class
+	
 	//Various constants for use in GameBoard
 	static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
 	
 	private TileModel [][] tileGrid;//the grid of TileModels representing the game board
-
 	
 	/**
 	 * Constructor that populates the board and sets directional references via helper methods
@@ -72,8 +72,6 @@ public class GameBoard {//start GameBoard class
 	public TileModel[][] getTileGrid(){//start getTileGrid method
 		return tileGrid;
 	}//end getTileGrid method
-	
-
 	
 	/*
 	 * Sets the directional references of the tileGrid
@@ -187,4 +185,5 @@ public class GameBoard {//start GameBoard class
 		}
 		return isEmpty;
 	}//end isGameBoardEmpty method
+	
 }//end class GameBoardModel

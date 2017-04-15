@@ -74,7 +74,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private JMenu gameMenu;//menu option holding game options
 	private JMenu helpMenu;//menu options holding help options
 	private JMenu topMenu;//menu options to view top ten players
-	private final JMenuItem newGame;//menu option in gameMenu that will create a new game
 	private final JMenuItem resetQueue;//menu option in gameMenu to reset queue once
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem help;//menu option in helpMenu that will bring up help features
@@ -131,7 +130,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		bar.add(helpMenu);
 
 		//Creates menu items for menus
-		newGame = new JMenuItem("New Game");
 		newUntimedGame = new JMenuItem("New Untimed Game");
 		newTimedGame = new JMenuItem("New Timed Game");
 		resetQueue = new JMenuItem("Reset Queue");
@@ -140,7 +138,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		mostPoints = new JMenuItem("Most Points");
 
 		//Adds menu items to menus
-		gameMenu.add(newGame);
 		gameMenu.add(newUntimedGame);
 		gameMenu.add(newTimedGame);
 		gameMenu.addSeparator();
@@ -187,6 +184,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			TimedGame temp = (TimedGame) model;
 			time = temp.getTime();
 			timeString += time;
+		} else {
+			timeString += "N/A";
 		}
 
 		scoreLabel = new JLabel(scoreString);
@@ -213,14 +212,6 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		newTimedGame.setActionCommand(NEW_TIMED);
 		newTimedGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//start actionPerformed method
-				controller.actionPerformed(e);
-			}//end actionPerformed method
-		});
-		
-		//Resets board when new game is selected
-		newGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {//start actionPerformed method
-				newGame.setActionCommand(NEW_GAME);
 				controller.actionPerformed(e);
 			}//end actionPerformed method
 		});
@@ -390,20 +381,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	}//end setQp method
 
 	/**
-	 * Getter for newGame
-	 * @return newGame
-	 */
-	public JMenuItem getNewGame() {//start getNewGame method
-		return newGame;
-	}//end getNewGame method
-
-	/**
 	 * Getter for resetQueue
 	 * @return resetQueue
 	 */
 	public JMenuItem getResetQueue() {//start getResetQueue method
 		return resetQueue;
 	}//end getResetQueue method
+	
 	/**
 	 * Getter for exit
 	 * @return exit
@@ -470,7 +454,11 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			model.setIsActive(true);
 			//Tried this to stop updating each second with popup, but it resulted in
 			//"Fatal error.  No controller registered for tile."
-			((TimedGame) model).getTimer().cancel();
+			if(model instanceof TimedGame) {
+				TimedGame temp = (TimedGame) model;
+			    temp.stopTimer();
+			}
+
 			gUND = new GetUserNameDialog();
 			gUND.setVisible(true);
 			getSumFunFrame().setVisible(false);
@@ -692,6 +680,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			userName = userNameTextField.getText();
 			System.out.println(userName);
 		}//end assignUserName method
+		
 		/*
 		 * Returns the username
 		 * @returns userName - the name of the user
@@ -700,6 +689,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			System.out.println(userName);
 			return userName;
 		}//end getUserName method
+		
 		/*
 		 * Returns true if the textbox is empty.
 		 * @returns true if textbox is empty

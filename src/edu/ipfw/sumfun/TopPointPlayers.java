@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class TopPointPlayers implements Serializable {
 	
+	//The number of records we are maintaining
 	private static final int NUM_RECORDS = 10;
 	
 	//Contains the top 10 records of players with the highest score
@@ -99,12 +100,8 @@ public class TopPointPlayers implements Serializable {
 				
 				//We are done processing
 				break;
- 				
 			}
-		
-			
 		}
-		
 	}//end addRecord
 
 }//end class TopPlayers

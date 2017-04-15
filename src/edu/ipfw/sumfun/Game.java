@@ -22,7 +22,7 @@ public abstract class Game extends Observable{//start Game class
 	public static final int TILE_SCORE_VALUE = 10;//the value given per tile when points are scored
 	public static final int MOD_VALUE = 10;//the modulus value to calculate with
 	
-	public Game(){//start Game constructor
+	public Game() {//start Game constructor
 		points = INITIAL_POINTS;
 		isActive = true;
 		gameBoard = new GameBoard();
@@ -72,7 +72,6 @@ public abstract class Game extends Observable{//start Game class
 		tileQueue.add(t);
 		setChanged();
 		notifyObservers();
-		//this method is assuming that the GUI will automatically update itself with the queue methods. If it doesn't, this method will have to adjust. It has been tested with printouts, and does work, however.
 	}//end pushQueue method
 	
 	/**
@@ -81,7 +80,7 @@ public abstract class Game extends Observable{//start Game class
 	 * @param j the column of the clicked tile
 	 * @param mod the queue value placed
 	 */
-	public void calculateSum(int i, int j, int mod){//start calculateSum method
+	public void processMove(int i, int j, int mod){//start calculateSum method
 		//Retrieval of tile referenced by i and j
 		TileModel t = gameBoard.getTile(i, j);
 		
@@ -141,11 +140,7 @@ public abstract class Game extends Observable{//start Game class
 			
 			//Update tile and adjacent tiles
 			removeAdjacentTiles(t);
-			
-			//Test print statement
-			//System.out.println("Move successful");
-			
-			//Make calls to notifyObservers, etc
+
 		}	
 		
 		if(gameBoard.isGameBoardEmpty() || gameBoard.isGameBoardFull()){
@@ -155,7 +150,7 @@ public abstract class Game extends Observable{//start Game class
 		setChanged();
 		notifyObservers();
 		
-	}//end calculateSum method
+	}//end processMove method
 	
 	/**
 	 * set value of current tile and all adjacent tiles to -1
@@ -225,6 +220,5 @@ public abstract class Game extends Observable{//start Game class
 		setChanged();
 		notifyObservers();
 	}//end createNewGameBoard method
-	
 	
 }//end Game class

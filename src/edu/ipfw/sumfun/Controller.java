@@ -24,10 +24,7 @@ public class Controller implements ActionListener {
 	private static final String NEW_GAME = "New Game";
 	private static final String GET_USER_NAME = "Get User Name";
 	
-	//References to model and view
-	//Change model type
-	//$ private TimedGame model;
-	//$ private UntimedGame model; 
+	//References to model, view, and TopPointPlayers objects
 	private Game model;
 	private SumFunFrame view;
 	private TopPointPlayers tpp;
@@ -36,8 +33,6 @@ public class Controller implements ActionListener {
 	 * Constructor
 	 * @param u, an instance of UntimedGame (the system's model)
 	 */
-	//$ public Controller(TimedGame t) {
-		//$ model = t;
 	public Controller(Game game, TopPointPlayers tpp) {
 		model = game;
 		this.tpp = tpp;
@@ -101,12 +96,11 @@ public class Controller implements ActionListener {
 			view.getUserNameDialog().dispose();
 			//Starts a new game
 			if(model instanceof UntimedGame){
+				System.out.println("Starting new untimed game");
 				startNewUntimedGame();
-			}
-			if(model instanceof TimedGame){
+			} else if(model instanceof TimedGame){
 				startNewTimedGame();
 			}
-			startNewGame();
 			view.setVisible(true);
 			return;
 		}
@@ -141,26 +135,30 @@ public class Controller implements ActionListener {
 		model.createNewGameBoard();	
 	}//end startNewGame method
 	
+	/**
+	 * Initiates a new UntimedGame
+	 */
 	private void startNewUntimedGame() {
 		model = UntimedGame.getInstance();
 		view.setModel(UntimedGame.getInstance());
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
 		model.createNewGameBoard();
-	}
+	}//end startNewUntimedGame
 	
+	/**
+	 * Initiates a new TimedGame
+	 */
 	private void startNewTimedGame() {
 		System.out.println("Starting a new timed game");
 		model = TimedGame.getInstance();
 		TimedGame temp = (TimedGame) model;
-		temp.setTimer();
-		temp.startTimer();
-		temp.resetTimer();
+		temp.setNewTimer();
 		view.setModel(model);
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
 		model.createNewGameBoard();
-	}
+	}//end startNewTimedGame
 
 	/**
 	 * Parses the coordinates of a tile that was clicked, and updates model accordingly
@@ -182,7 +180,7 @@ public class Controller implements ActionListener {
 		if(value == -1) {
 			int mod = model.selectQueueTile(0).getValue();
 			model.getGameBoard().getTile(row, col).setValue(mod);
-			model.calculateSum(row, col, mod);
+			model.processMove(row, col, mod);
 			model.pushQueue();
 		} else {
 			//Alert user that move is invalid

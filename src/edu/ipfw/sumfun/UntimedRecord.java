@@ -71,9 +71,14 @@ public class UntimedRecord implements Serializable {
 		return playerName;
 	}//end getName
 	
+	/**
+	 * Determines if an UntimedRecord object and this object are equal based on relevant data fields
+	 * @param other, an UntimedRecord object
+	 * @return true if they are equal, false if not
+	 */
 	public boolean equals(UntimedRecord other) {
 		return points == other.getPoints();
-	}
+	}//end equals
 	
 	/**
 	 * Compares two UntimedRecord objects
@@ -104,8 +109,11 @@ public class UntimedRecord implements Serializable {
 		
 	}//end compareTo
 	
+	/**
+	 * String representation of UntimedRecord
+	 */
 	public String toString() {
 		return playerName + " " + points + " " + date;
-	}
+	}//end toString
 
 }//end class Record
