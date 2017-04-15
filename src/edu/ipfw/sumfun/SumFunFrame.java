@@ -557,7 +557,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 */
 	class TopPointsDialog extends JDialog {//start TopPointsDialog class
 		
-		private static final int TOP_POINTS_WIDTH = 400;//the width of the top points
+		private static final int TOP_POINTS_WIDTH = 600;//the width of the top points
 		private static final int TOP_POINTS_LENGTH = 400;//the length of the top points
 		private static final int GRID_ROWS = 10;//the number of rows in the table
 		private static final int GRID_COLS = 3;//the number of columns in the table
