@@ -9,7 +9,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	private static UntimedGame untimedInstance = new UntimedGame();
 	
 	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
-	private static final int MAX_MOVES = 5000;//the max moves allowed for a game
+	private static final int MAX_MOVES = 50;//the max moves allowed for a game
 	
 	
 	/**
@@ -28,10 +28,10 @@ public class UntimedGame extends Game {//start UntimedGame class
 	 * @param j the column of the clicked tile
 	 * @param mod the queue value placed
 	 */
-	public void calculateSum(int i, int j, int mod){//start calculateSum method
+	public void processMove(int i, int j, int mod){//start calculateSum method
 		//decrement movesRemaining
 		decrementMoves();
-		super.calculateSum(i, j, mod);
+		super.processMove(i, j, mod);
 	}//end calculateSum method
 	
 	/**

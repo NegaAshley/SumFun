@@ -45,15 +45,10 @@ public class Application {//start Application class
 		//Attempt to load saved data
 		deserialize();
 		
-	// adds some sample UntimedRecords to TopPointsPlayers	
-	// tpp.addRecord(new UntimedRecord("Rhiannon", 0, 66));
-	// tpp.addRecord(new UntimedRecord("Freya", 0, 77);
-		
-		//Instantiate a model and a controller, passing the model reference to the controller
-		//$ timedGame = TimedGame.getInstance();
+		//Get references to both model instances, and instantiate a controller using UntimedGame as the initial model
 		untimedGame = UntimedGame.getInstance();
 		timedGame = TimedGame.getInstance();
-		//$ Controller controller = new Controller(timedGame);
+
 		Controller controller = new Controller(untimedGame, tpp);
 
 	}//end main method

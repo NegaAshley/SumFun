@@ -198,4 +198,4 @@ public class TileModel extends Observable{//start TileModel class
 		this.northWest = givenTile;
 	}//end setNorthWest method
 	
-}//end ConceptualTile class
+}//end TileModel

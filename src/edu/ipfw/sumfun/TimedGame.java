@@ -10,41 +10,73 @@ import java.util.TimerTask;
  */
 public class TimedGame extends Game {
 	
+	//Singleton instance of TimedGame
 	private static TimedGame timedInstance = new TimedGame();
 
-	private static int DURATION = 300000;// Duration of timed game in millis
-	private static final int TICK = 1000; // Number of milliseconds per tick (1
-											// second)
-	private static Timer t;// Timer for timed game
+	//The initial time that the timer will start out, in milliseconds
+	private static final int INITIAL_TIME = 300000;
+	
+	//The tick of the timer, in milliseconds 
+	private static final int TICK = 1000;
+	
+	//The current state of the timer
+	private static int duration;
+	
+	//Timer object to handle timer countdown
+	private static Timer t;
 
 	/**
 	 * Constructor for TimedGame class
 	 */
 	private TimedGame() {
-
 		super();
-		t = new Timer();
+	}// end TimedGame constructor
+	
+	/**
+	 * Resets the timer by instantiating a new one to default values
+	 */
+	public void setNewTimer() {
+		
+		stopTimer();
+		t = null;
+		setTimer();
+		startTimer();
 		t.scheduleAtFixedRate(new TimerTask() {
 
 			@Override
 			public void run() {
-				DURATION = DURATION - TICK;
-				if (DURATION <= 0) {
-					DURATION = 300000;
-				}
+				duration = duration - TICK;
 				setChanged();
 				notifyObservers();
+				if (duration == 0) {
+					setIsActive(false);
+					t.cancel();
+					setChanged();
+					notifyObservers();
+				} 
 			}
 		}, 0, 1000);
-	}// end TimedGame constructor
 	
+	}//end setNewTimer
+	
+	/**
+	 * 
+	 */
 	public void setTimer() {
-		DURATION = 300000;
+		duration = INITIAL_TIME;
 	}
+	//end setTimer
 	
+	/**
+	 * Attempts to stop 
+	 */
 	public void stopTimer() {
-		t.cancel();
-	}
+		try {
+			t.cancel();
+		} catch (Exception e) {
+			
+		}
+	}//end stopTimer
 	
 	/**
 	 * Return singleton instance of TimedGame
@@ -60,36 +92,12 @@ public class TimedGame extends Game {
 	 * @return a string format of time remaining
 	 */
 	public String getTime() {
-		int minutes = DURATION / (60 * 1000);
-		int seconds = (DURATION / 1000) % 60;
+		int minutes = duration / (60 * 1000);
+		int seconds = (duration / 1000) % 60;
 		String str = String.format("%d:%02d", minutes, seconds);
 		System.out.println(str);
 		return str;
 	}// end getStartTime
-	
-	/**
-	 * 
-	 * Setter method for duration, to restart timed game
-	 * 
-	 * @return n/a 
-	 */
-	public void resetTimer(){//start resetTimer method
-		
-
-		//t.cancel();
-		t.scheduleAtFixedRate(new TimerTask() {
-
-			@Override
-			public void run() {
-				DURATION = DURATION - TICK;
-				setChanged();
-				notifyObservers();
-				if (DURATION <= 0) {
-					t.cancel();
-				}
-			}
-		}, 0, 1000);	
-	}//end resetTimer method
 	
 	/**
 	 * Accessor method for set increment of time
@@ -114,4 +122,5 @@ public class TimedGame extends Game {
 	public void startTimer(){//start startTimer method
 		t = new Timer();
 	}//end startTimer method
+	
 }// end TimedGame class

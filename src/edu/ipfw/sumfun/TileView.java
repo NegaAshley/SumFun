@@ -50,7 +50,7 @@ class TileView {//start Tile class
     		
     	} catch(Exception e){
     		System.out.println("Fatal error. No controller registered for tile.");
-    		System.exit(1);
+    		return;
     	}
     	
     }//end processEvent
