@@ -549,7 +549,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 */
 	class TopPointsDialog extends JDialog {
 		
-		private static final int TOP_POINTS_WIDTH = 400;
+		private static final int TOP_POINTS_WIDTH = 600;
 		private static final int TOP_POINTS_LENGTH = 400;
 		private static final int GRID_ROWS = 10;
 		private static final int GRID_COLS = 3;
