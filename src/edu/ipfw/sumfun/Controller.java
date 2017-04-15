@@ -100,6 +100,12 @@ public class Controller implements ActionListener {
 			//Disposes the dialog box
 			view.getUserNameDialog().dispose();
 			//Starts a new game
+			if(model instanceof UntimedGame){
+				startNewUntimedGame();
+			}
+			if(model instanceof TimedGame){
+				startNewTimedGame();
+			}
 			startNewGame();
 			view.setVisible(true);
 			return;
@@ -128,6 +134,7 @@ public class Controller implements ActionListener {
 	private void startNewGame(){//start startNewGame method
 		//Resets queue
 		resetQueue();
+		model.setIsActive(true);
 		//Enables queue reset option
 		view.getResetQueue().setEnabled(true);
 		//Repopulate board
@@ -147,6 +154,8 @@ public class Controller implements ActionListener {
 		model = TimedGame.getInstance();
 		TimedGame temp = (TimedGame) model;
 		temp.setTimer();
+		temp.startTimer();
+		temp.resetTimer();
 		view.setModel(model);
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
