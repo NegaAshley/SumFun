@@ -21,19 +21,25 @@ class QueueTileView {//start QueueTileView class
     
     /*
      * Constructor method of QueueTileView class
+     * @param row - the row the tile is in
+     * @param col - the column the tile is in
+     * @param tileOutlineColor - the outline color of the tile
      */
-    public QueueTileView(int row, int col, Color tileOutlineColor){//start Tile constructor
+    public QueueTileView(int row, int col, Color tileOutlineColor){//start QueueTileView 
+    	//constructor
         this.tileOutlineColor = tileOutlineColor;
-        xval = row * SIZE;//since the queue is vertical and 1D, row corresponds to x, unlike in the main TileView class
+        //since the queue is vertical and 1D, row corresponds to x, unlike in the main 
+        //TileView class
+        xval = row * SIZE;
         yval = col * SIZE;//similarly for y
         this.row = row;
         this.col = col;
-    }//end Tile constructor
+    }//end QueueTileView constructor
     
     /**
      * Draw method for QueueTileView
-     * @param g2 the Graphics2D object
-     * @param tile the TileModel desired
+     * @param g2 - the Graphics2D object
+     * @param tile - the TileModel desired
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
     	
@@ -55,6 +61,9 @@ class QueueTileView {//start QueueTileView class
     /**
      * Checks to see if a tile contains given coordinates.  Returns true if tile 
      * contains given coordinates and false if not.
+     * @param newx - the new x value
+     * @param newy - the new y value
+     * @returns true if tile contains given coordinates
      */
     public boolean contains(int newx, int newy){//start contains method
     	
@@ -70,6 +79,7 @@ class QueueTileView {//start QueueTileView class
     
     /**
      * Returns row as an int.
+     * @return row - the row the tile is in
      */
     public int getRow(){//start getRow method
         return row;
@@ -77,6 +87,7 @@ class QueueTileView {//start QueueTileView class
     
     /**
      * Returns column as an int.
+     * @return col - the column the tile is in
      */
     public int getCol(){//start getCol method
         return col;

@@ -16,7 +16,7 @@ import edu.ipfw.sumfun.SumFunFrame.GetUserNameDialog;
  * @author Jake
  *
  */
-public class Controller implements ActionListener {
+public class Controller implements ActionListener {//start Controller class
 	
 	//Various constants for use throughout Controller
 	private static final boolean GUI_VISIBLE = true;
@@ -30,34 +30,31 @@ public class Controller implements ActionListener {
 	private TopPointPlayers tpp;
 	
 	/**
-	 * Constructor
+	 * Constructor for the Controller class
 	 * @param u, an instance of UntimedGame (the system's model)
 	 */
-	public Controller(Game game, TopPointPlayers tpp) {
+	public Controller(Game game, TopPointPlayers tpp) {//start Controller constructor
 		model = game;
 		this.tpp = tpp;
 		view = new SumFunFrame(model, this, tpp);
 		view.setVisible(GUI_VISIBLE);
-	}//end Constructor
+	}//end Constructor method
 
 	/**
 	 * Process all actions that need to occur due to user input
 	 * Uses event.getActionCommand to determine what changes need to occur
+	 * @param event - the event occuring
 	 */
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent event) {//start actionPerformed method
 		
-		//Check for an event that needs to start a new game
-		if(event.getActionCommand().equals(NEW_GAME)){
-			startNewGame();
-			return;
-		}
-		
+		//Starts a new UntimedGame
 		if(event.getActionCommand().equals("Untimed")) {
 			startNewUntimedGame();
 			return;
 		}
 		
+		//Starts a new TimedGame
 		if(event.getActionCommand().equals("Timed")) {
 			startNewTimedGame();
 			return;
@@ -77,10 +74,13 @@ public class Controller implements ActionListener {
 			
 			//Assigns the username to a variable from the text box
 			view.getUserNameDialog().assignUserName();
-			//sets the local variable username
+			
+			//Sets the local variable username
 			userName = view.getUserNameDialog().getUserName();
+			
 			//Sets the local variable points
 			points = model.getPoints();
+			
 			//Sets the local variable moves
 			if(model instanceof UntimedGame) {
 				UntimedGame temp = (UntimedGame) model;
@@ -89,14 +89,15 @@ public class Controller implements ActionListener {
 			
 			//Creates the record with given variables
 			UntimedRecord record = new UntimedRecord(userName, moves, points);
+			
 			//Adds a record to the top point players
 			tpp.addRecord(record);
 			
 			//Disposes the dialog box
 			view.getUserNameDialog().dispose();
-			//Starts a new game
+			
+			//Starts a new game of chosen type
 			if(model instanceof UntimedGame){
-				System.out.println("Starting new untimed game");
 				startNewUntimedGame();
 			} else if(model instanceof TimedGame){
 				startNewTimedGame();
@@ -128,9 +129,12 @@ public class Controller implements ActionListener {
 	private void startNewGame(){//start startNewGame method
 		//Resets queue
 		resetQueue();
+		
 		model.setIsActive(true);
+		
 		//Enables queue reset option
 		view.getResetQueue().setEnabled(true);
+		
 		//Repopulate board
 		model.createNewGameBoard();	
 	}//end startNewGame method
@@ -138,19 +142,18 @@ public class Controller implements ActionListener {
 	/**
 	 * Initiates a new UntimedGame
 	 */
-	private void startNewUntimedGame() {
+	private void startNewUntimedGame() {//start startNewUntimedGame method
 		model = UntimedGame.getInstance();
 		view.setModel(UntimedGame.getInstance());
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
 		model.createNewGameBoard();
-	}//end startNewUntimedGame
+	}//end startNewUntimedGame method
 	
 	/**
 	 * Initiates a new TimedGame
 	 */
-	private void startNewTimedGame() {
-		System.out.println("Starting a new timed game");
+	private void startNewTimedGame() {//start startNewTimedGame method
 		model = TimedGame.getInstance();
 		TimedGame temp = (TimedGame) model;
 		temp.setNewTimer();
@@ -158,16 +161,17 @@ public class Controller implements ActionListener {
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
 		model.createNewGameBoard();
-	}//end startNewTimedGame
+	}//end startNewTimedGame method
 
 	/**
 	 * Parses the coordinates of a tile that was clicked, and updates model accordingly
 	 */
-	private void placeTile(ActionEvent event) {
+	private void placeTile(ActionEvent event) {//start placeTile method
 		//Doesn't allow tiles to be placed if board is inactive
 		if(model.getIsActive() == false){
 			return;
 		}
+		
 		//Parse the coordinates of the tile and sparked the ActionEvent
 		int[] coordinates = parseActionCommand(event);
 		int row = coordinates[0];
@@ -187,14 +191,14 @@ public class Controller implements ActionListener {
 			view.invalidMoveEvent();
 		}
 		
-	}//end placeTile
+	}//end placeTile method
 	
 	/**
 	 * Parse int coordinates from ActionEvent
 	 * @param event, an ActionEvent
 	 * @return coordinates[], an array of 2 elements containing row and col in index 0 and 1, respectively
 	 */
-	private int[] parseActionCommand(ActionEvent event) {
+	private int[] parseActionCommand(ActionEvent event) {//start parseActionCommand method
 		
 		int row = 0;
 		int col = 0;
@@ -222,6 +226,6 @@ public class Controller implements ActionListener {
 		
 		return coordinates;
 		
-	}//end parseActionCommand
+	}//end parseActionCommand method
 
-}//end class Controller
+}//end Controller class

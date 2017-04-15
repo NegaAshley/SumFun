@@ -8,7 +8,7 @@ import java.util.TimerTask;
  * 
  * @author Connor
  */
-public class TimedGame extends Game {
+public class TimedGame extends Game {//start TimedGame class
 	
 	//Singleton instance of TimedGame
 	private static TimedGame timedInstance = new TimedGame();
@@ -28,14 +28,14 @@ public class TimedGame extends Game {
 	/**
 	 * Constructor for TimedGame class
 	 */
-	private TimedGame() {
+	private TimedGame() {//start TimedGame constructor
 		super();
 	}// end TimedGame constructor
 	
 	/**
 	 * Resets the timer by instantiating a new one to default values
 	 */
-	public void setNewTimer() {
+	public void setNewTimer() {//start setNewTimer method
 		
 		stopTimer();
 		t = null;
@@ -57,56 +57,53 @@ public class TimedGame extends Game {
 			}
 		}, 0, 1000);
 	
-	}//end setNewTimer
+	}//end setNewTimer method
 	
 	/**
 	 * 
 	 */
-	public void setTimer() {
+	public void setTimer() {//start setTimer method
 		duration = INITIAL_TIME;
-	}
-	//end setTimer
+	}//end setTimer method
 	
 	/**
 	 * Attempts to stop 
 	 */
-	public void stopTimer() {
+	public void stopTimer() {//start stopTimer method
 		try {
 			t.cancel();
 		} catch (Exception e) {
 			
 		}
-	}//end stopTimer
+	}//end stopTimer method
 	
 	/**
 	 * Return singleton instance of TimedGame
-	 * @return timedInstance
+	 * @return timedInstance - this instance of the timed game
 	 */
-	public static TimedGame getInstance() {
+	public static TimedGame getInstance() {//start getInstance method
 		return timedInstance;
-	}//end getInstance
+	}//end getInstance method
 
 	/**
 	 * Access method for current time remaining
-	 * 
 	 * @return a string format of time remaining
 	 */
-	public String getTime() {
+	public String getTime() {//start getTime method
 		int minutes = duration / (60 * 1000);
 		int seconds = (duration / 1000) % 60;
 		String str = String.format("%d:%02d", minutes, seconds);
 		System.out.println(str);
 		return str;
-	}// end getStartTime
+	}// end getStartTime method
 	
 	/**
 	 * Accessor method for set increment of time
-	 * 
-	 * @return DURATION
+	 * @return TICK - the amount of time decremented in the timer
 	 */
-	public int getTick() {// start getTick
+	public int getTick() {// start getTick method
 		return TICK;
-	}// end getTick
+	}// end getTick method
 
 	/*
 	 * Accessor method to get the timer

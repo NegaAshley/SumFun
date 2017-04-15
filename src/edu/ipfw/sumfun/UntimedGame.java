@@ -24,9 +24,9 @@ public class UntimedGame extends Game {//start UntimedGame class
 	/**
 	 * Calculates the sum of the tiles around the one at the given coordinates, and compares it to the given queue value, mod
 	 * Just decrements the moves remaining, then calls the method from the super class
-	 * @param i the row of the clicked tile
-	 * @param j the column of the clicked tile
-	 * @param mod the queue value placed
+	 * @param i - the row of the clicked tile
+	 * @param j - the column of the clicked tile
+	 * @param mod - the queue value placed
 	 */
 	public void processMove(int i, int j, int mod){//start calculateSum method
 		//decrement movesRemaining
@@ -36,7 +36,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	
 	/**
 	 * Access method for field movesRemaining
-	 * @return movesRemaining, a member field 
+	 * @return movesRemaining - a member field 
 	 */
 	public int getMovesRemaining() {//start get movesRemaining method
 		return movesRemaining;
@@ -66,11 +66,11 @@ public class UntimedGame extends Game {//start UntimedGame class
 	
 	/**
 	 * Returns the singleton instance of UntimedGame
-	 * @return untimedInstance
+	 * @return untimedInstance - this instance of the UntimedGame
 	 */
-	public static UntimedGame getInstance() {
+	public static UntimedGame getInstance() {//start getInstance method
 		return untimedInstance;
-	}//end getInstance
+	}//end getInstance method
 	
 	/*
 	 * Checks to see if moves remaining is less than or equal to zero.  
