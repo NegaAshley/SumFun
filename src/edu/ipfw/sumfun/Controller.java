@@ -2,14 +2,6 @@ package edu.ipfw.sumfun;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
-import edu.ipfw.sumfun.SumFunFrame.GetUserNameDialog;
 
 /**
  * 
