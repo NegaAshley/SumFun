@@ -28,7 +28,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	 * @param j - the column of the clicked tile
 	 * @param mod - the queue value placed
 	 */
-	public void processMove(int i, int j, int mod){//start calculateSum method
+	public void processMove(int i, int j, int mod){//start processMove method
 		//decrement movesRemaining
 		decrementMoves();
 		super.processMove(i, j, mod);

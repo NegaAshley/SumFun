@@ -88,7 +88,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private JLabel scoreLabel;//label for the score
 	private JLabel moveLabel;//label for the moves remaining
 	private JLabel timeLabel;//label for the time remaining
-	private GetUserNameDialog gUND;//the GetUserNameDialog 
+	private GetUserNameDialog gund;//the GetUserNameDialog 
 	
 	/**
 	 * Constructor for the SumFunFrame
@@ -424,7 +424,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 * @returns this.GetUserNameDialog
 	 */
 	public GetUserNameDialog getUserNameDialog(){//start getUserNameDialog method
-		return gUND;
+		return gund;
 	}//end getUserNameDialog method
 	
 	/**
@@ -468,8 +468,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			    temp.stopTimer();
 			}
 
-			gUND = new GetUserNameDialog();
-			gUND.setVisible(true);
+			gund = new GetUserNameDialog();
+			gund.setVisible(true);
 			getSumFunFrame().setVisible(false);
 			
 		}

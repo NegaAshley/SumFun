@@ -81,7 +81,7 @@ public abstract class Game extends Observable{//start Game class
 	 * @param j the column of the clicked tile
 	 * @param mod the queue value placed
 	 */
-	public void processMove(int i, int j, int mod){//start calculateSum method
+	public void processMove(int i, int j, int mod){//start processMove method
 		//Retrieval of tile referenced by i and j
 		TileModel t = gameBoard.getTile(i, j);
 		
