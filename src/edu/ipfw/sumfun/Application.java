@@ -7,6 +7,7 @@
 package edu.ipfw.sumfun;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -20,8 +21,8 @@ import javax.swing.JOptionPane;
  *
  */
 public class Application {//start Application class
-	
-	private static final String path = "sumfun.csv";
+	private static  String path = "/sumfun.csv";
+	private static FileReader reader=new FileReader(path);
 	
 	//Reference to the model
 	private static UntimedGame untimedGame;
@@ -54,7 +55,8 @@ public class Application {//start Application class
 	 */
     public static void serialize() {//start serialize method
 
-            try (FileOutputStream fos = new FileOutputStream(path)) {
+            try (FileOutputStream fos = new FileOutputStream(reader.returnPath())) {
+            	System.out.println(reader.returnPath());
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(tpp);
             } catch (Exception ex0111111111) {
@@ -69,7 +71,8 @@ public class Application {//start Application class
      */
     public static void deserialize() {//start deserialize method
         JFileChooser fc = new JFileChooser();
-            try (FileInputStream fis = new FileInputStream(path)) {
+            try (FileInputStream fis = new FileInputStream(reader.returnPath())) {
+            	System.out.println(reader.returnPath());
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 tpp = (TopPointPlayers) ois.readObject();
 
