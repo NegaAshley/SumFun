@@ -51,6 +51,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
     
     //Strings to pass to actionPerformed
 	private static final String RESET_QUEUE = "Reset Queue";
+	private static final String REMOVE_NUMBER = "Remove Number";
 	private static final String NEW_UNTIMED = "Untimed";
 	private static final String NEW_TIMED = "Timed";
 	private static final String GET_USER_NAME = "Get User Name";
@@ -78,6 +79,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private JMenu helpMenu;//menu options holding help options
 	private JMenu topMenu;//menu options to view top ten players
 	private final JMenuItem resetQueue;//menu option in gameMenu to reset queue once
+	private final JMenuItem removeNumber;//menu op;tin in gameMenu to remove all of one number from board
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem hint;//menu option in helpMenu that will bring up hint feature
 	private final JMenuItem mostPoints;
@@ -141,6 +143,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		newUntimedGame = new JMenuItem("New Untimed Game");
 		newTimedGame = new JMenuItem("New Timed Game");
 		resetQueue = new JMenuItem("Reset Queue");
+		removeNumber = new JMenuItem("Remove Number");
 		exit = new JMenuItem("Exit");
 		hint = new JMenuItem("Hint");
 		mostPoints = new JMenuItem("Most Points");
@@ -150,6 +153,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		gameMenu.add(newTimedGame);
 		gameMenu.addSeparator();
 		gameMenu.add(resetQueue);
+		gameMenu.add(removeNumber);
 		gameMenu.add(exit);
 		helpMenu.add(hint);
 		topMenu.add(mostPoints);
@@ -248,6 +252,15 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 				controller.actionPerformed(e);
 				
 			}
+		});
+		
+		//Removes all of one number on the game board
+		removeNumber.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				resetQueue.setActionCommand(REMOVE_NUMBER);
+				controller.actionPerformed(e);
+						
+				}
 		});
 		
 		//gets a hint
