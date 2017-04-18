@@ -122,6 +122,9 @@ public class Controller implements ActionListener {//start Controller class
 	 */
 	private void resetQueue() {//start resetQueue method
 		//Refreshes the queue the size of the queue panel
+		//clear out any hint tile that is present
+		int[] rowAndCol=model.getHint();
+		view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
 		for(int i = 0; i < QueuePanel.GRID_COLS; i++){
 			model.pushQueue();
 		}
