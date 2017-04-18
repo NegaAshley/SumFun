@@ -1,5 +1,6 @@
 package edu.ipfw.sumfun;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,10 @@ public class Controller implements ActionListener {//start Controller class
 	private static final String RESET_QUEUE = "Reset Queue";
 	private static final String NEW_GAME = "New Game";
 	private static final String GET_USER_NAME = "Get User Name";
+	private static final String HINT = "Hint";
+    public static final String GREEN_HEX_VALUE="0x00cc00";
+	public static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
+	public static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
 	
 	//References to model, view, and TopPointPlayers objects
 	private Game model;
@@ -55,6 +60,15 @@ public class Controller implements ActionListener {//start Controller class
 		//Check for an event that needs to reset the queue
 		if(event.getActionCommand().equals(RESET_QUEUE)){
 			resetQueue();
+			return;
+		}
+		
+		//Check for an event that needs to give a hint
+		if (event.getActionCommand().equals(HINT)) {
+			int[] rowAndCol=model.getHint();
+			System.out.println("Row: "+ rowAndCol[0] + " and Col: "+ rowAndCol[1]);
+			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setColor(Color.decode(GREEN_HEX_VALUE));
+			view.repaint();
 			return;
 		}
 
@@ -174,6 +188,9 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//If value equals -1, then the move is valid
 		if(value == -1) {
+			//clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not
+			int[] rowAndCol=model.getHint();
+			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setColor(Color.GRAY);
 			int mod = model.selectQueueTile(0).getValue();
 			model.getGameBoard().getTile(row, col).setValue(mod);
 			model.processMove(row, col, mod);
