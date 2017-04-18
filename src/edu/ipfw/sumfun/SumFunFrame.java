@@ -54,6 +54,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private static final String NEW_UNTIMED = "Untimed";
 	private static final String NEW_TIMED = "Timed";
 	private static final String GET_USER_NAME = "Get User Name";
+	private static final String HINT = "Hint";
 	
     //The model
 	//$ private UntimedGame untimedGame;
@@ -78,7 +79,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private JMenu topMenu;//menu options to view top ten players
 	private final JMenuItem resetQueue;//menu option in gameMenu to reset queue once
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
-	private final JMenuItem help;//menu option in helpMenu that will bring up help features
+	private final JMenuItem hint;//menu option in helpMenu that will bring up hint feature
 	private final JMenuItem mostPoints;
 	private final JMenuItem newUntimedGame;
 	private final JMenuItem newTimedGame;
@@ -141,7 +142,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		newTimedGame = new JMenuItem("New Timed Game");
 		resetQueue = new JMenuItem("Reset Queue");
 		exit = new JMenuItem("Exit");
-		help = new JMenuItem("Help");
+		hint = new JMenuItem("Hint");
 		mostPoints = new JMenuItem("Most Points");
 
 		//Adds menu items to menus
@@ -150,7 +151,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		gameMenu.addSeparator();
 		gameMenu.add(resetQueue);
 		gameMenu.add(exit);
-		helpMenu.add(help);
+		helpMenu.add(hint);
 		topMenu.add(mostPoints);
 
 		//Creates and adds SumFunPanel
@@ -246,6 +247,15 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 				resetQueue.setActionCommand(RESET_QUEUE);
 				controller.actionPerformed(e);
 				
+			}
+		});
+		
+		//gets a hint
+		hint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hint.setActionCommand(HINT);
+				controller.actionPerformed(e);
+
 			}
 		});
 		
@@ -407,8 +417,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 * Setter for help
 	 * @return help - the help menu item
 	 */
-	public JMenuItem getHelp() {//start getHelp method
-		return help;
+	public JMenuItem getHint() {//start getHint method
+		return hint;
 	}//end getHelp method
 	
 	/*
@@ -426,6 +436,10 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	public GetUserNameDialog getUserNameDialog(){//start getUserNameDialog method
 		return gund;
 	}//end getUserNameDialog method
+	
+	public TileView[][] getTileGrid(){
+		return tiles;
+	}
 	
 	/**
 	 * Updates each GUI component with corresponding model element

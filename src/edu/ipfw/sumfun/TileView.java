@@ -65,7 +65,7 @@ class TileView {//start Tile class
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
     	
-        g2.setPaint(Color.GRAY);
+        g2.setPaint(tileOutlineColor);
         Rectangle2D r = new Rectangle2D.Double(xval, yval, SIZE, SIZE);
         g2.draw(r);
         
@@ -113,5 +113,9 @@ class TileView {//start Tile class
     public int getCol(){//start getCol method
         return col;
     }//end getCol method
+    
+    public void setColor(Color newColor){
+    	this.tileOutlineColor=newColor;
+    }
     
 }//end Tile class

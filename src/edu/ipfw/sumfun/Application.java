@@ -56,7 +56,6 @@ public class Application {//start Application class
     public static void serialize() {//start serialize method
 
             try (FileOutputStream fos = new FileOutputStream(reader.returnPath())) {
-            	System.out.println(reader.returnPath());
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(tpp);
             } catch (Exception ex0111111111) {
@@ -72,7 +71,6 @@ public class Application {//start Application class
     public static void deserialize() {//start deserialize method
         JFileChooser fc = new JFileChooser();
             try (FileInputStream fis = new FileInputStream(reader.returnPath())) {
-            	System.out.println(reader.returnPath());
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 tpp = (TopPointPlayers) ois.readObject();
 
