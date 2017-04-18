@@ -19,6 +19,7 @@ class TileView {//start Tile class
     private int xval;//Physical x coordinate of Tile
     private int yval;//Physical y coordinate of Tile
     private Color tileOutlineColor;//Color outline of Tile
+    private Color tileBackgroundColor;
     private static int counter = 0;
     
     /*
@@ -27,8 +28,9 @@ class TileView {//start Tile class
      * @param col - the column of the tile
      * @param tileOutlineColor - the color of the outline of the tile
      */
-    public TileView(int row, int col, Color tileOutlineColor){//start Tile constructor
+    public TileView(int row, int col, Color tileOutlineColor, Color tileBackgroundColor){//start Tile constructor
         this.tileOutlineColor = tileOutlineColor;
+        this.tileBackgroundColor=tileBackgroundColor;
         xval = col * TileView.SIZE;//x corresponds to col instead of row because it is the horizontal value, just like col
         yval = row * TileView.SIZE;//y corresponds to row instead of col because it is the vertical value, just like row
         this.row = row;
@@ -64,15 +66,15 @@ class TileView {//start Tile class
      * @param tile - the backend tile
      */
     public void draw(Graphics2D g2, TileModel tile){//start draw method
-    	
+    	Rectangle2D r = new Rectangle2D.Double(xval, yval, SIZE, SIZE);
+        g2.setPaint(tileBackgroundColor);
+        g2.fill(r);
         g2.setPaint(tileOutlineColor);
-        Rectangle2D r = new Rectangle2D.Double(xval, yval, SIZE, SIZE);
         g2.draw(r);
         
         Font myFont = new Font(Font.DIALOG, Font.PLAIN, 20);
         g2.setFont(myFont);
         g2.setPaint(Color.BLACK);
-        
         if(tile.getValue() == -1) {
         	g2.drawString("", xval + (SIZE / 2) - 4, yval + (SIZE / 2) + 4);
         } else {
@@ -114,8 +116,21 @@ class TileView {//start Tile class
         return col;
     }//end getCol method
     
-    public void setColor(Color newColor){
+    /**
+     * set the outline color of the Tile
+     * @param newColor
+     */
+    public void setOutlineColor(Color newColor){
     	this.tileOutlineColor=newColor;
     }
     
+    /**
+     * set the background color of the Tile
+     * @param newColor
+     */
+    public void setBackgroundColor(Color newColor){
+    	this.tileBackgroundColor=newColor;
+    }
+    
+   
 }//end Tile class
