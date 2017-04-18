@@ -67,7 +67,7 @@ public class Controller implements ActionListener {//start Controller class
 		if (event.getActionCommand().equals(HINT)) {
 			int[] rowAndCol=model.getHint();
 			System.out.println("Row: "+ rowAndCol[0] + " and Col: "+ rowAndCol[1]);
-			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setColor(Color.decode(GREEN_HEX_VALUE));
+			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.decode(GREEN_HEX_VALUE));
 			view.repaint();
 			return;
 		}
@@ -190,7 +190,7 @@ public class Controller implements ActionListener {//start Controller class
 		if(value == -1) {
 			//clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not
 			int[] rowAndCol=model.getHint();
-			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setColor(Color.GRAY);
+			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
 			int mod = model.selectQueueTile(0).getValue();
 			model.getGameBoard().getTile(row, col).setValue(mod);
 			model.processMove(row, col, mod);

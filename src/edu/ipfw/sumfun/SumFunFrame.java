@@ -520,7 +520,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	            for (int col = 0; col < GRID_COLS; col++) {
 	            	
 	            	//Create a new tile and add it to the 2D array
-	                final TileView tile = new TileView(row, col, Color.GRAY);
+	                final TileView tile = new TileView(row, col, Color.GRAY, Color.WHITE);
 	                tile.addActionListener(controller);
 	                tiles[row][col] = tile;
 
