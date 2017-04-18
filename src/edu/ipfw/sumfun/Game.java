@@ -236,7 +236,7 @@ public abstract class Game extends Observable {// start Game class
 		}
 	}// end removeAdjacentTiles method
 
-	public int[] getHint() {
+	public int[] getHint() {//start getHint method
 		// array holding the values for total and score, returned from sumAdjacentTiles with total at index 0 and score at index 0
 		int[] totalAndScore;
 		int[] rowAndCol={0, 0};
@@ -295,8 +295,31 @@ public abstract class Game extends Observable {// start Game class
 		rowAndCol[0]=bestRow;
 		rowAndCol[1]=bestCol;
 		return rowAndCol;
-	}
+	}//end getHint method
 
+	/*
+	 * Removes all tiles with value givenNum from the gameBoard.  A precondition is that 
+	 * input is within bounds of tiles in game.
+	 * @param givenNum
+	 * 		the value of the tiles that we want to remove from the board
+	 */
+	public void removeNumFromGame(int givenNum){//start removeNumFromGame
+		//Create the tile to be referenced here so there is not a new one created for every single tile on the board
+		TileModel currentTile;
+		
+		for(int row = 0; row < TILE_GRID_WIDTH; row++){
+			for(int col = 0; col < TILE_GRID_LENGTH; col++){
+				// Retrieval of tile referenced by row and col
+				currentTile= gameBoard.getTile(row, col);
+				if(currentTile.getValue() == givenNum){
+					//sets the tile to an empty tile
+					currentTile.setValue(-1);
+				}
+			}
+		}
+		//TODO keep coding
+	}//end removeNumFromGame
+	
 	/**
 	 * Accessor method for gameBoard
 	 * 

@@ -14,6 +14,7 @@ public class Controller implements ActionListener {//start Controller class
 	//Various constants for use throughout Controller
 	private static final boolean GUI_VISIBLE = true;
 	private static final String RESET_QUEUE = "Reset Queue";
+	private static final String REMOVE_NUMBER = "Remove Number";
 	private static final String NEW_GAME = "New Game";
 	private static final String GET_USER_NAME = "Get User Name";
 	private static final String HINT = "Hint";
@@ -63,10 +64,17 @@ public class Controller implements ActionListener {//start Controller class
 			return;
 		}
 		
+		//Check for an event that needs to remove all of one number from the board
+		if(event.getActionCommand().equals(REMOVE_NUMBER)){
+			
+			removeNumber(event);
+			return;
+		}
+		
 		//Check for an event that needs to give a hint
 		if (event.getActionCommand().equals(HINT)) {
 			int[] rowAndCol=model.getHint();
-			System.out.println("Row: "+ rowAndCol[0] + " and Col: "+ rowAndCol[1]);
+			//System.out.println("Row: "+ rowAndCol[0] + " and Col: "+ rowAndCol[1]);
 			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.decode(GREEN_HEX_VALUE));
 			view.repaint();
 			return;
@@ -131,6 +139,31 @@ public class Controller implements ActionListener {//start Controller class
 		//Makes the resetQueue menu item disabled
 		view.getResetQueue().setEnabled(false);
 	}//end resetQueue
+	
+	/*
+	 * Removes selected number from the board
+	 */
+	private void removeNumber(ActionEvent event){//start removeNumber method
+		//Doesn't allow action to happen is board is inactive
+		if(model.getIsActive() == false){
+			return;
+		}
+		//Parse the coordinates of the tile and sparked the ActionEvent
+	    int[] coordinates = parseActionCommand(event);
+		int row = coordinates[0];
+		int col = coordinates[1];
+		
+		//Get value of tile
+		int value = model.getGameBoard().getTile(row, col).getValue();
+		
+		if(value != -1){
+			model.removeNumFromGame(value);
+			view.repaint();
+		}else{
+			//Alert user that move is invalid
+			view.invalidMoveEvent();
+		}
+	}//end removeNumber method
 	
 	/*
 	 * Resets the variables of the game and creates a new board
