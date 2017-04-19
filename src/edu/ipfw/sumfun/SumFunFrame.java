@@ -477,6 +477,12 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			removeNumber.setEnabled(false);
 		}
 		
+		//Disable queue refresh option from menu
+		//if it has been used already
+		if(!model.getQueueResetAvailable()) {
+			resetQueue.setEnabled(false);
+		}
+		
 		//Update score
 		String score = "Score: " + model.getPoints();
 		scoreLabel.setText(score);

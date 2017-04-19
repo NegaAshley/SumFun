@@ -20,6 +20,7 @@ public abstract class Game extends Observable {// start Game class
 	private boolean isActive;// boolean to keep track of whether the game is active
 	private boolean removeNumAvailable;//boolean to keep track of whether remove number option was used
 	private boolean removeNumActive;//boolean to keep track of whether remove number action is active currently
+	private boolean queueResetAvailable;
 	public static final int LOW_THRESHOLD = 0;// the lowest number that be randomly generated
 	public static final int HIGH_THRESHOLD = 9;// the highest number that be randomly generated
 	public static final int INITIAL_POINTS = 0;// the number of points the user starts with
@@ -35,6 +36,7 @@ public abstract class Game extends Observable {// start Game class
 		isActive = true;
 		removeNumAvailable = true;
 		removeNumActive = false;
+		queueResetAvailable = true;
 		gameBoard = new GameBoard();
 		populateQueue();
 	}// end Game constructor
@@ -378,6 +380,15 @@ public abstract class Game extends Observable {// start Game class
 	public boolean getRemoveNumActive(){//start getRemoveNumActive method
 		return removeNumActive;
 	}//end getRemoveNumActivemethod
+	
+	/*
+	 * Setter for removeNumActive
+	 * 
+	 * @param newRemoveNumActive
+	 */
+	public boolean getQueueResetAvailable(){//start setRemoveNumActive method
+		return queueResetAvailable;
+	}//end setRemoveNumActive method
 
 	/*
 	 * Setter for removeNumActive
@@ -389,12 +400,24 @@ public abstract class Game extends Observable {// start Game class
 	}//end setRemoveNumActive method
 	
 	/*
+	 * Setter for removeNumActive
+	 * 
+	 * @param newRemoveNumActive
+	 */
+	public void setQueueResetAvailable(boolean queueResetAvailable){//start setRemoveNumActive method
+		this.queueResetAvailable = queueResetAvailable;
+	}//end setRemoveNumActive method
+	
+	/*
 	 * Creates a new GameBoard
 	 */
 	public void createNewGameBoard() {// start createNewGameBoard method
 		gameBoard = new GameBoard();
 		points = INITIAL_POINTS;
 		isActive = true;
+		queueResetAvailable = true;
+		removeNumAvailable = true;
+		removeNumActive = true;
 		setChanged();
 		notifyObservers();
 	}// end createNewGameBoard method
