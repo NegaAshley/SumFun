@@ -18,6 +18,8 @@ public abstract class Game extends Observable {// start Game class
 	private GameBoard gameBoard;// handles details of board state
 	private int points;// holds the player's score
 	private boolean isActive;// boolean to keep track of whether the game is active
+	private boolean removeNumAvailable;//boolean to keep track of whether remove number option was used
+	private boolean removeNumActive;//boolean to keep track of whether remove number action is active currently
 	public static final int LOW_THRESHOLD = 0;// the lowest number that be randomly generated
 	public static final int HIGH_THRESHOLD = 9;// the highest number that be randomly generated
 	public static final int INITIAL_POINTS = 0;// the number of points the user starts with
@@ -31,6 +33,8 @@ public abstract class Game extends Observable {// start Game class
 	public Game() {// start Game constructor
 		points = INITIAL_POINTS;
 		isActive = true;
+		removeNumAvailable = true;
+		removeNumActive = false;
 		gameBoard = new GameBoard();
 		populateQueue();
 	}// end Game constructor
@@ -317,7 +321,6 @@ public abstract class Game extends Observable {// start Game class
 				}
 			}
 		}
-		//TODO keep coding
 	}//end removeNumFromGame
 	
 	/**
@@ -346,7 +349,43 @@ public abstract class Game extends Observable {// start Game class
 	public void setIsActive(boolean newIsActive) {// start setIsActive method
 		isActive = newIsActive;
 	}// end setIsActive method
+	
+	/*
+	 * Acessor method for removeNumAvailable
+	 * 
+	 * @return removeNumAvailable - boolean to keep track of whether remove number option was used
+	 */
+	public boolean getRemoveNumAvailable(){//start getRemoveNumAvailable method
+		return removeNumAvailable;
+	}//end getRemoveNumAvailable method
 
+	/*
+	 * Setter for removeNumAvailable
+	 * 
+	 * @param newRemoveNumAvailable
+	 */
+	public void setRemoveNumAvailable(boolean newRemoveNumAvailable){//start setRemoveNumAvailable method
+		removeNumAvailable = newRemoveNumAvailable;
+	}//end setRemoveNumAvailable method
+	
+	/*
+	 * Acessor method for removeNumActive
+	 * 
+	 * @return removeNumActive - boolean to keep track of whether remove number option was used
+	 */
+	public boolean getRemoveNumActive(){//start getRemoveNumActive method
+		return removeNumActive;
+	}//end getRemoveNumActivemethod
+
+	/*
+	 * Setter for removeNumActive
+	 * 
+	 * @param newRemoveNumActive
+	 */
+	public void setRemoveNumActive(boolean newRemoveNumActive){//start setRemoveNumActive method
+		removeNumActive = newRemoveNumActive;
+	}//end setRemoveNumActive method
+	
 	/*
 	 * Creates a new GameBoard
 	 */
