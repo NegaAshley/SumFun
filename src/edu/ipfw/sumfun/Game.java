@@ -321,6 +321,8 @@ public abstract class Game extends Observable {// start Game class
 				}
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}//end removeNumFromGame
 	
 	/**

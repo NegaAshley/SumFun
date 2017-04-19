@@ -121,6 +121,7 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//If the Remove Number menu option is active, process that event
 		if(model.getRemoveNumActive() == true){
+			model.setRemoveNumAvailable(false);
 			removeNumber(event);
 			model.setRemoveNumActive(false);
 			return;
@@ -170,8 +171,8 @@ public class Controller implements ActionListener {//start Controller class
 		
 		if(value != -1){
 			model.removeNumFromGame(value);
-			view.getRemoveNumber().setEnabled(false);
-			view.repaint();
+	//		view.getRemoveNumber().setEnabled(false);
+		//	view.repaint();
 		}else{
 			//Alert user that move is invalid
 			view.invalidRemoveNumMoveEvent();

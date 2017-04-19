@@ -471,6 +471,12 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	@Override
 	public void update(Observable arg0, Object arg1) {//start update method
 		
+		//Disable the removeNumber option from the menu
+		//if it has been used already
+		if(!model.getRemoveNumAvailable()) {
+			removeNumber.setEnabled(false);
+		}
+		
 		//Update score
 		String score = "Score: " + model.getPoints();
 		scoreLabel.setText(score);
@@ -486,6 +492,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			moveLabel.setText(move);
 		}
 		
+		//Update time remaining
+		//if the model is a TimedGame
 		if(model instanceof TimedGame) {
 			TimedGame temp = (TimedGame) model;
 			String time = "Time Remaining: " + temp.getTime();
@@ -495,6 +503,9 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			timeLabel.setText(time);
 		}
 		
+		//Here we are checking if the game is active or not
+		//If it isn't, we have reached the game's end and should
+		//Process things accordingly
 		if(model.getIsActive() == false){
 			model.setIsActive(true);
 			//Tried this to stop updating each second with popup, but it resulted in
@@ -509,6 +520,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			getSumFunFrame().setVisible(false);
 			
 		}
+		
 		//Repaint the frame
 		repaint();
 		
