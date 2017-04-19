@@ -60,7 +60,11 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//Check for an event that needs to reset the queue
 		if(event.getActionCommand().equals(RESET_QUEUE)){
-			resetQueue();
+			if(model.getQueueResetAvailable()) {
+				model.setQueueResetAvailable(false);
+				resetQueue();
+			}
+
 			return;
 		}
 		
@@ -135,15 +139,17 @@ public class Controller implements ActionListener {//start Controller class
 	 * Resets the value of each tile in the queue
 	 */
 	private void resetQueue() {//start resetQueue method
-		//Refreshes the queue the size of the queue panel
-		//clear out any hint tile that is present
-		int[] rowAndCol=model.getHint();
-		view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
-		for(int i = 0; i < QueuePanel.GRID_COLS; i++){
-			model.pushQueue();
-		}
-		//Makes the resetQueue menu item disabled
-		view.getResetQueue().setEnabled(false);
+			
+			//Refreshes the queue the size of the queue panel
+			//clear out any hint tile that is present
+			int[] rowAndCol=model.getHint();
+			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+			for(int i = 0; i < QueuePanel.GRID_COLS; i++){
+				model.pushQueue();
+			}
+		
+		
+
 	}//end resetQueue
 	
 	/*
