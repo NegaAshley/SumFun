@@ -18,9 +18,11 @@ public class Controller implements ActionListener {//start Controller class
 	private static final String NEW_GAME = "New Game";
 	private static final String GET_USER_NAME = "Get User Name";
 	private static final String HINT = "Hint";
-    public static final String GREEN_HEX_VALUE="0x00cc00";
+    public static final String GREEN_HEX_VALUE="0x00cc00";//the color green used for hint tiles
 	public static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	public static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
+	public static final int MAX_HINTS=3000;//the number of hints available
+	private int hintsUsed=0;//the number of hints currently used
 	
 	//References to model, view, and TopPointPlayers objects
 	private Game model;
@@ -77,7 +79,8 @@ public class Controller implements ActionListener {//start Controller class
 		//Check for an event that needs to give a hint
 		if (event.getActionCommand().equals(HINT)) {
 			int[] rowAndCol=model.getHint();
-			//System.out.println("Row: "+ rowAndCol[0] + " and Col: "+ rowAndCol[1]);
+			hintsUsed++;
+			view.getHint().setEnabled(false);
 			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.decode(GREEN_HEX_VALUE));
 			view.repaint();
 			return;
@@ -143,7 +146,11 @@ public class Controller implements ActionListener {//start Controller class
 			//Refreshes the queue the size of the queue panel
 			//clear out any hint tile that is present
 			int[] rowAndCol=model.getHint();
-			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+				view.getHint().setEnabled(false);
+			}else{
+				view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+			}
 			for(int i = 0; i < QueuePanel.GRID_COLS; i++){
 				model.pushQueue();
 			}
@@ -173,7 +180,11 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//Clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not
 		int[] rowAndCol=model.getHint();
-		view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+		if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+			view.getHint().setEnabled(false);
+		}else{
+			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+		}
 		
 		if(value != -1){
 			model.removeNumFromGame(value);
@@ -197,6 +208,10 @@ public class Controller implements ActionListener {//start Controller class
 		//Enables queue reset option
 		view.getResetQueue().setEnabled(true);
 		
+		//resets the hint button and number used
+		view.getHint().setEnabled(true);
+		hintsUsed=0;
+		
 		//Repopulate board
 		model.createNewGameBoard();	
 	}//end startNewGame method
@@ -211,6 +226,11 @@ public class Controller implements ActionListener {//start Controller class
 		view.getResetQueue().setEnabled(true);
 		view.getRemoveNumber().setEnabled(true);
 		model.createNewGameBoard();
+		hintsUsed=0;
+		int[] rowAndCol=model.getHint();
+		if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+			view.getHint().setEnabled(false);
+		}
 	}//end startNewUntimedGame method
 	
 	/**
@@ -225,6 +245,11 @@ public class Controller implements ActionListener {//start Controller class
 		view.getResetQueue().setEnabled(true);
 		view.getRemoveNumber().setEnabled(true);
 		model.createNewGameBoard();
+		hintsUsed=0;
+		int[] rowAndCol=model.getHint();
+		if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+			view.getHint().setEnabled(false);
+		}
 	}//end startNewTimedGame method
 
 	/**
@@ -247,13 +272,26 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//If value equals -1, then the move is valid
 		if(value == -1) {
-			//clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not
+			//clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not and make sure button is disabled is needed
 			int[] rowAndCol=model.getHint();
-			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+				view.getHint().setEnabled(false);
+			}else{
+				view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+			}
+			
 			int mod = model.selectQueueTile(0).getValue();
 			model.getGameBoard().getTile(row, col).setValue(mod);
 			model.processMove(row, col, mod);
 			model.pushQueue();
+			
+			//check the move for the next turn, and turn off or on the hint button accordingly
+			rowAndCol=model.getHint();
+			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+				view.getHint().setEnabled(false);
+			}else if(hintsUsed<MAX_HINTS){
+					view.getHint().setEnabled(true);
+			}
 		} else {
 			//Alert user that move is invalid
 			view.invalidMoveEvent();
