@@ -47,6 +47,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
     
     //Error messages
     private static final String INVALID_MOVE_MESSAGE = "Cannot place tile here!";
+    private static final String INVALID_REMOVE_NUM_MOVE_MESSAGE = "Cannot remove an empty tile!";
     private static final String EMPTY_TEXT_MESSAGE = "Please enter a name!";
     
     //Strings to pass to actionPerformed
@@ -427,13 +428,21 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	}//end getExit method
 
 	/**
-	 * Setter for help
+	 * Getter for help
 	 * @return help - the help menu item
 	 */
 	public JMenuItem getHint() {//start getHint method
 		return hint;
 	}//end getHelp method
 	
+	/*
+	 * Getter for removeNumber menu
+	 * 
+	 * @return removeNumber - the menu to remove numbers
+	 */
+	public JMenuItem getRemoveNumber(){//start getRemoveNumber method
+		return removeNumber;
+	}//end getRemoveNumber method
 	/*
 	 * Getter for this SumFunFrame
 	 * @returns this.SumFunFrame
@@ -511,6 +520,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	public void invalidMoveEvent() {//start invalidMoveEvent method
 		JOptionPane.showMessageDialog(this, INVALID_MOVE_MESSAGE);
 	}//end invalidMoveEvent method
+	
+	/**
+	 * Display an alert that an the player cannot remove an empty tile
+	 */
+	public void invalidRemoveNumMoveEvent() {//start invalidRemoveNumMoveEvent method
+		JOptionPane.showMessageDialog(this, INVALID_REMOVE_NUM_MOVE_MESSAGE);
+	}//end invalidRemoveNumMoveEvent method
 	
 	/**
 	 * GameBoardPanel is the panel which holds the game grid
@@ -717,7 +733,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		 */
 		public void assignUserName(){//start assignUserName method
 			userName = userNameTextField.getText();
-			System.out.println(userName);
+			//System.out.println(userName);
 		}//end assignUserName method
 		
 		/*
@@ -725,7 +741,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		 * @returns userName - the name of the user
 		 */
 		public String getUserName(){//start getUserName method
-			System.out.println(userName);
+			//System.out.println(userName);
 			return userName;
 		}//end getUserName method
 		

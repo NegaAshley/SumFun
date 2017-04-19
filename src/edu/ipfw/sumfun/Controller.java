@@ -66,8 +66,7 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//Check for an event that needs to remove all of one number from the board
 		if(event.getActionCommand().equals(REMOVE_NUMBER)){
-			
-			removeNumber(event);
+			model.setRemoveNumActive(true);
 			return;
 		}
 		
@@ -120,6 +119,12 @@ public class Controller implements ActionListener {//start Controller class
 			return;
 		}
 		
+		//If the Remove Number menu option is active, process that event
+		if(model.getRemoveNumActive() == true){
+			removeNumber(event);
+			model.setRemoveNumActive(false);
+			return;
+		}
 		//Process a move
 		placeTile(event);
 		
@@ -142,12 +147,15 @@ public class Controller implements ActionListener {//start Controller class
 	
 	/*
 	 * Removes selected number from the board
+	 * 
+	 * @param - event - the mouse click
 	 */
 	private void removeNumber(ActionEvent event){//start removeNumber method
 		//Doesn't allow action to happen is board is inactive
 		if(model.getIsActive() == false){
 			return;
 		}
+		
 		//Parse the coordinates of the tile and sparked the ActionEvent
 	    int[] coordinates = parseActionCommand(event);
 		int row = coordinates[0];
@@ -156,12 +164,17 @@ public class Controller implements ActionListener {//start Controller class
 		//Get value of tile
 		int value = model.getGameBoard().getTile(row, col).getValue();
 		
+		//Clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not
+		int[] rowAndCol=model.getHint();
+		view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
+		
 		if(value != -1){
 			model.removeNumFromGame(value);
+			view.getRemoveNumber().setEnabled(false);
 			view.repaint();
 		}else{
 			//Alert user that move is invalid
-			view.invalidMoveEvent();
+			view.invalidRemoveNumMoveEvent();
 		}
 	}//end removeNumber method
 	
@@ -189,6 +202,7 @@ public class Controller implements ActionListener {//start Controller class
 		view.setModel(UntimedGame.getInstance());
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
+		view.getRemoveNumber().setEnabled(true);
 		model.createNewGameBoard();
 	}//end startNewUntimedGame method
 	
@@ -202,6 +216,7 @@ public class Controller implements ActionListener {//start Controller class
 		view.setModel(model);
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
+		view.getRemoveNumber().setEnabled(true);
 		model.createNewGameBoard();
 	}//end startNewTimedGame method
 
@@ -213,6 +228,7 @@ public class Controller implements ActionListener {//start Controller class
 		if(model.getIsActive() == false){
 			return;
 		}
+		
 		
 		//Parse the coordinates of the tile and sparked the ActionEvent
 		int[] coordinates = parseActionCommand(event);

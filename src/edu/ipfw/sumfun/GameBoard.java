@@ -63,6 +63,8 @@ public class GameBoard {//start GameBoard class
 	 * @return the TileModel found at the coordinates
 	 */
 	public TileModel getTile(int row, int col) {//start getTile method
+		//System.out.println(row);
+		//System.out.println(col);
 		return tileGrid[row][col];
 	}//end getTile method
 
