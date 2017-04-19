@@ -256,9 +256,9 @@ public abstract class Game extends Observable {// start Game class
 		//keep track of the best score, corresponding with the best tile to make a move at
 		int bestScore=0;
 		
-		int bestRow=0;
-		
-		int bestCol=0;
+		//if -1, -1 is returned, the Controller knows there is no good move and handles the results accordingly
+		int bestRow=-1;
+		int bestCol=-1;
 
 		//create the tile to be referenced here so there is not a new one created for every single tile on the board
 		TileModel currentTile;
