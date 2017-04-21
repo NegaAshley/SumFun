@@ -191,7 +191,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			moves = temp.getMovesRemaining();
 			moveString = "Moves Remaining: " + moves;
 		} else {
-			moveString = "Moves Remaining: N/A";
+			moveString = "";
 		}
 		
 		int score = model.getPoints();
@@ -200,13 +200,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		
 		String time;
 		
-		String timeString = "Time Remaining: ";
+		String timeString = "";
 		if(model instanceof TimedGame) {
 			TimedGame temp = (TimedGame) model;
 			time = temp.getTime();
-			timeString += time;
+			timeString += "Time Remaining: " + time;
 		} else {
-			timeString += "N/A";
+			timeString = "";
 		}
 
 		scoreLabel = new JLabel(scoreString);
@@ -473,8 +473,30 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		return gund;
 	}//end getUserNameDialog method
 	
-	public TileView[][] getTileGrid(){
+	/*
+	 * Getter for the tiles.
+	 * @returns tiles 
+	 */
+	public TileView[][] getTileGrid(){//start getTileGrid method
 		return tiles;
+	}//end getTileGrid method
+	
+	/*
+	 * Makes moveLabel visible if true is given ore invisible if false is given.
+	 * @param visible
+	 * 		true if visibility desired
+	 */
+	public void setMoveLabelVisible(boolean visible){
+		moveLabel.setVisible(visible);
+	}
+	
+	/*
+	 * Makes timeLabel visible if true is given ore invisible if false is given.
+	 * @param visible
+	 * 		true if visibility desired
+	 */
+	public void setTimeLabelVisible(boolean visible){
+		timeLabel.setVisible(visible);
 	}
 	
 	/**
