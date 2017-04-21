@@ -14,7 +14,7 @@ public class TimedGame extends Game {//start TimedGame class
 	private static TimedGame timedInstance = new TimedGame();
 
 	//The initial time that the timer will start out, in milliseconds
-	private static final int INITIAL_TIME = 300000;
+	private static final int INITIAL_TIME = 3000;
 	
 	//The tick of the timer, in milliseconds 
 	private static final int TICK = 1000;
@@ -50,6 +50,7 @@ public class TimedGame extends Game {//start TimedGame class
 				notifyObservers();
 				if (duration == 0) {
 					setIsActive(false);
+					setGameWon(false);
 					t.cancel();
 					setChanged();
 					notifyObservers();
