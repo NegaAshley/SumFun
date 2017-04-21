@@ -33,6 +33,8 @@ public class Application {//start Application class
 	//Reference to a structure containing the top 10 player records by points earned
 	private static TopPointPlayers tpp;
 	
+	private static TopTimePlayers ttp;
+	
 	/**
 	 * Instantiate untimedGame and frame to run game logic and GUI.
 	 * @param args, the command line arguments
@@ -42,11 +44,13 @@ public class Application {//start Application class
 		//Attempt to load saved data
 		deserialize();
 		
+		ttp.printRecords();
+		
 		//Get references to both model instances, and instantiate a controller using UntimedGame as the initial model
 		untimedGame = UntimedGame.getInstance();
 		timedGame = TimedGame.getInstance();
 
-		Controller controller = new Controller(untimedGame, tpp);
+		Controller controller = new Controller(untimedGame, tpp, ttp);
 
 	}//end main method
 	
@@ -59,6 +63,7 @@ public class Application {//start Application class
             	System.out.println(reader.returnPath());
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(tpp);
+                oos.writeObject(ttp);
             } catch (Exception ex0111111111) {
                 JOptionPane.showMessageDialog(null, "Error writing to file! Work not saved!");
             }
@@ -75,10 +80,12 @@ public class Application {//start Application class
             	System.out.println(reader.returnPath());
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 tpp = (TopPointPlayers) ois.readObject();
+                ttp = (TopTimePlayers) ois.readObject();
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error reading file! Loading to default settings!");
                 tpp = new TopPointPlayers();
+                ttp = new TopTimePlayers();
             }
         
     }//end deserialize method

@@ -93,7 +93,7 @@ public class TimedGame extends Game {//start TimedGame class
 		int minutes = duration / (60 * 1000);
 		int seconds = (duration / 1000) % 60;
 		String str = String.format("%d:%02d", minutes, seconds);
-		System.out.println(str);
+		System.out.println(duration);
 		return str;
 	}// end getStartTime method
 	
@@ -106,12 +106,24 @@ public class TimedGame extends Game {//start TimedGame class
 	}// end getTick method
 
 	/*
-	 * Accessor method to get the timer
+	 * Access method to get the timer
 	 * @return t - the timer
 	 */
 	public Timer getTimer(){//start getTimer method
 		return t;
 	}//end getTimer method
+	
+	/**
+	 * Access method for duration
+	 * @return
+	 */
+	public int getDuration() {
+		return duration;
+	}//end getDuration
+	
+	public static int getInitialTime() {
+		return INITIAL_TIME;
+	}
 	
 	/*
 	 * Starts the timer

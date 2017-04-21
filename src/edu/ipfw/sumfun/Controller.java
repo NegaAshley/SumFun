@@ -28,15 +28,17 @@ public class Controller implements ActionListener {//start Controller class
 	private Game model;
 	private SumFunFrame view;
 	private TopPointPlayers tpp;
+	private TopTimePlayers ttp;
 	
 	/**
 	 * Constructor for the Controller class
 	 * @param u, an instance of UntimedGame (the system's model)
 	 */
-	public Controller(Game game, TopPointPlayers tpp) {//start Controller constructor
+	public Controller(Game game, TopPointPlayers tpp, TopTimePlayers ttp) {//start Controller constructor
 		model = game;
 		this.tpp = tpp;
-		view = new SumFunFrame(model, this, tpp);
+		this.ttp = ttp;
+		view = new SumFunFrame(model, this, tpp, ttp);
 		view.setVisible(GUI_VISIBLE);
 	}//end Constructor method
 
@@ -85,12 +87,23 @@ public class Controller implements ActionListener {//start Controller class
 			view.repaint();
 			return;
 		}
+		
+		if(event.getActionCommand().equals("Game Over")) {
+			
+			if(model instanceof UntimedGame) {
+				startNewUntimedGame();
+			} else if (model instanceof TimedGame) {
+				startNewTimedGame();
+			}
+			
+		}
 
 		//Checks for an event that needs to grab user name and closes popup
 		if(event.getActionCommand().equals(GET_USER_NAME)){
 			String userName;//the name of the user
 			int moves = 0;//the number of moves left
-			int points;//the number of points
+			int points = 0;//the number of points
+			int time = 0;
 			
 			//Assigns the username to a variable from the text box
 			view.getUserNameDialog().assignUserName();
@@ -105,13 +118,19 @@ public class Controller implements ActionListener {//start Controller class
 			if(model instanceof UntimedGame) {
 				UntimedGame temp = (UntimedGame) model;
 				moves = temp.getMovesRemaining();
+				//Creates the record with given variables
+				ScoreRecord record = new ScoreRecord(userName, points, time);
+				
+				//Adds a record to the top point players
+				tpp.addRecord(record);
+			} else if(model instanceof TimedGame) {
+				TimedGame temp = (TimedGame) model;
+				time = temp.getDuration();
+				TimeRecord record = new TimeRecord(userName, time, TimedGame.getInitialTime());
+				ttp.addRecord(record);
 			}
 			
-			//Creates the record with given variables
-			UntimedRecord record = new UntimedRecord(userName, moves, points);
-			
-			//Adds a record to the top point players
-			tpp.addRecord(record);
+
 			
 			//Disposes the dialog box
 			view.getUserNameDialog().dispose();
@@ -154,8 +173,6 @@ public class Controller implements ActionListener {//start Controller class
 			for(int i = 0; i < QueuePanel.GRID_COLS; i++){
 				model.pushQueue();
 			}
-		
-		
 
 	}//end resetQueue
 	
@@ -188,33 +205,12 @@ public class Controller implements ActionListener {//start Controller class
 		
 		if(value != -1){
 			model.removeNumFromGame(value);
-	//		view.getRemoveNumber().setEnabled(false);
-		//	view.repaint();
 		}else{
 			//Alert user that move is invalid
 			view.invalidRemoveNumMoveEvent();
 		}
 	}//end removeNumber method
 	
-	/*
-	 * Resets the variables of the game and creates a new board
-	 */
-	private void startNewGame(){//start startNewGame method
-		//Resets queue
-		resetQueue();
-		
-		model.setIsActive(true);
-		
-		//Enables queue reset option
-		view.getResetQueue().setEnabled(true);
-		
-		//resets the hint button and number used
-		view.getHint().setEnabled(true);
-		hintsUsed=0;
-		
-		//Repopulate board
-		model.createNewGameBoard();	
-	}//end startNewGame method
 	
 	/**
 	 * Initiates a new UntimedGame

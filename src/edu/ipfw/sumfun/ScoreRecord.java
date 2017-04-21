@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Jake
  *
  */
-public class UntimedRecord implements Serializable {//start UntimedRecord method
+public class ScoreRecord implements Serializable {//start UntimedRecord method
 	
 	private final String playerName;//the name of the player
 	private final Date date;//the date of the win
@@ -22,7 +22,7 @@ public class UntimedRecord implements Serializable {//start UntimedRecord method
 	 * @param playerName - the name of the player associated with this record
 	 * @param moves - the number of moves the untimed game was completed in
 	 */
-	public UntimedRecord(String playerName, int moves, int points) {//start UntimedGame 
+	public ScoreRecord(String playerName, int moves, int points) {//start UntimedGame 
 		//constructor
 		date = new Date();
 		this.moves = moves;
@@ -78,7 +78,7 @@ public class UntimedRecord implements Serializable {//start UntimedRecord method
 	 * @param other - an UntimedRecord object
 	 * @return true - if they are equal, false if not
 	 */
-	public boolean equals(UntimedRecord other) {//start equals method
+	public boolean equals(ScoreRecord other) {//start equals method
 		return points == other.getPoints();
 	}//end equals method
 	
@@ -87,7 +87,7 @@ public class UntimedRecord implements Serializable {//start UntimedRecord method
 	 * @param other - the other UntimedRecord
 	 * @return comparison
 	 */
-	public int compareTo(UntimedRecord other) {//start compareTo method
+	public int compareTo(ScoreRecord other) {//start compareTo method
 		
 		if(this.equals(other)) {
 			
