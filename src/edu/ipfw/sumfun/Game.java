@@ -21,6 +21,7 @@ public abstract class Game extends Observable {// start Game class
 	private boolean removeNumAvailable;//boolean to keep track of whether remove number option was used
 	private boolean removeNumActive;//boolean to keep track of whether remove number action is active currently
 	private boolean queueResetAvailable;
+	private boolean gameWon;
 	public static final int LOW_THRESHOLD = 0;// the lowest number that be randomly generated
 	public static final int HIGH_THRESHOLD = 9;// the highest number that be randomly generated
 	public static final int INITIAL_POINTS = 0;// the number of points the user starts with
@@ -37,6 +38,7 @@ public abstract class Game extends Observable {// start Game class
 		removeNumAvailable = true;
 		removeNumActive = false;
 		queueResetAvailable = true;
+		gameWon = false;
 		gameBoard = new GameBoard();
 		populateQueue();
 	}// end Game constructor
@@ -141,9 +143,13 @@ public abstract class Game extends Observable {// start Game class
 			removeAdjacentTiles(t);
 
 		}
-
-		if (gameBoard.isGameBoardEmpty() || gameBoard.isGameBoardFull()) {
+		
+		if(gameBoard.isGameBoardEmpty()) {
 			isActive = false;
+			gameWon = true;
+		} else if (gameBoard.isGameBoardFull()) {
+			isActive = false;
+			gameWon = false;
 		}
 
 		setChanged();
@@ -344,6 +350,15 @@ public abstract class Game extends Observable {// start Game class
 	public boolean getIsActive() {// start getIsActive method
 		return isActive;
 	}// end getIsActive method
+	
+	/**
+	 * Access method for getGameWon
+	 * @return gameWon, a boolean that keeps track of whether or not the game has been won
+	 */
+	public boolean getGameWon() {
+		return gameWon;
+	}//end getGameWon
+	
 	/*
 	 * Setter for isActive
 	 * 
@@ -417,7 +432,7 @@ public abstract class Game extends Observable {// start Game class
 		isActive = true;
 		queueResetAvailable = true;
 		removeNumAvailable = true;
-		removeNumActive = true;
+		removeNumActive = false;
 		setChanged();
 		notifyObservers();
 	}// end createNewGameBoard method

@@ -73,6 +73,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	
 	private TopPointPlayers tpp;//the top points players GUI
 	
+	private TopTimePlayers ttp;
+	
     //A two-dimensional array of TileView tiles for easy access
     private TileView[][] tiles = new TileView[GRID_ROWS][GRID_COLS];//2D Array where tiles are located
 	private JMenuBar bar;//main menu bar
@@ -84,6 +86,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	private final JMenuItem exit;//menu option in gameMenu that will exit the game
 	private final JMenuItem hint;//menu option in helpMenu that will bring up hint feature
 	private final JMenuItem mostPoints;
+	private final JMenuItem fastestTime;
 	private final JMenuItem newUntimedGame;
 	private final JMenuItem newTimedGame;
 	private JPanel initialPanel;//panel to build from
@@ -102,7 +105,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	 */
 	//Add TimedGame here
 	//$ public SumFunFrame(TimedGame timedGame, final Controller controller) {
-	public SumFunFrame(Game game, final Controller controller, TopPointPlayers tpp) {
+	public SumFunFrame(Game game, final Controller controller, TopPointPlayers tpp, TopTimePlayers ttp) {
 		//start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
@@ -115,6 +118,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		
 		//Set reference to TopPointPlayers object
 		this.tpp = tpp;
+		
+		this.ttp = ttp;
 		
 		//Set the model to whatever game was passed to the frame's constructor
 		this.model = game;
@@ -148,6 +153,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		exit = new JMenuItem("Exit");
 		hint = new JMenuItem("Hint");
 		mostPoints = new JMenuItem("Most Points");
+		fastestTime = new JMenuItem("Fastest Time");
 
 		//Adds menu items to menus
 		gameMenu.add(newUntimedGame);
@@ -158,6 +164,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		gameMenu.add(exit);
 		helpMenu.add(hint);
 		topMenu.add(mostPoints);
+		topMenu.add(fastestTime);
 
 		//Creates and adds SumFunPanel
 		GameBoardPanel panel = new GameBoardPanel();
@@ -234,6 +241,13 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			public void actionPerformed(ActionEvent e) {
 				TopPointsDialog tpd = new TopPointsDialog();
 				tpd.setVisible(true);
+			}
+		});
+		
+		fastestTime.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FastestTimeDialog ftd = new FastestTimeDialog();
+				ftd.setVisible(true);
 			}
 		});
 		
@@ -471,6 +485,8 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 	@Override
 	public void update(Observable arg0, Object arg1) {//start update method
 		
+		repaint();
+		
 		//Disable the removeNumber option from the menu
 		//if it has been used already
 		if(!model.getRemoveNumAvailable()) {
@@ -512,10 +528,9 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		//Here we are checking if the game is active or not
 		//If it isn't, we have reached the game's end and should
 		//Process things accordingly
-		if(model.getIsActive() == false){
+		if(!model.getIsActive() && model.getGameWon()) {
+			
 			model.setIsActive(true);
-			//Tried this to stop updating each second with popup, but it resulted in
-			//"Fatal error.  No controller registered for tile."
 			if(model instanceof TimedGame) {
 				TimedGame temp = (TimedGame) model;
 			    temp.stopTimer();
@@ -524,6 +539,19 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			gund = new GetUserNameDialog();
 			gund.setVisible(true);
 			getSumFunFrame().setVisible(false);
+			
+		} else if(model.getIsActive() == false){
+			model.setIsActive(true);
+			
+			if(model instanceof TimedGame) {
+				TimedGame temp = (TimedGame) model;
+			    temp.stopTimer();
+			}
+			
+			JOptionPane.showMessageDialog(this, "Game Over!");
+    		int id = ActionEvent.ACTION_FIRST;
+    		String eventString = "Game Over";
+    		controller.actionPerformed(new ActionEvent(this, id, eventString));
 			
 		}
 		
@@ -660,7 +688,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 				//If exception is thrown, there is an insufficient number of records
 				//And we must display empty records
 				try {
-					UntimedRecord currentRecord = tpp.getRecord(i);
+					ScoreRecord currentRecord = tpp.getRecord(i);
 					name = currentRecord.getName();
 					score = "" + currentRecord.getPoints();
 					date = currentRecord.getDateString();
@@ -694,6 +722,89 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		}//end TopPoints dialog constructor
 
 	}//end class TopPointsDialog
+	
+	/**
+	 * Dialog box to display the top 10 players by lowest completion time
+	 * @author Jake
+	 *
+	 */
+	class FastestTimeDialog extends JDialog {
+		
+		private static final int TOP_POINTS_WIDTH = 600;//the width of the top points
+		private static final int TOP_POINTS_LENGTH = 400;//the length of the top points
+		private static final int GRID_ROWS = 10;//the number of rows in the table
+		private static final int GRID_COLS = 3;//the number of columns in the table
+		private static final boolean RESIZABLE = false;//whether or not the JDialog is
+		
+        private ArrayList<JLabel> nameList = new ArrayList<>();//keeps the list of winner
+        //names
+        private ArrayList<JLabel> timeList = new ArrayList<>();//keeps the list of
+        //winner times
+        private ArrayList<JLabel> dateList = new ArrayList<>();//keeps the list of winner
+        //dates
+		
+        /**
+         * Constructor
+         */
+		public FastestTimeDialog() {
+			
+			//Set some properties of the dialog box
+			setSize(TOP_POINTS_WIDTH, TOP_POINTS_LENGTH);
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			setTitle("Top 10 Players - Fastest Completion Time");
+			setResizable(RESIZABLE);
+			
+			JPanel listPanel = new JPanel();
+			listPanel.setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
+			String name = "";
+			String time = "";
+			String date = "";
+			
+			for(int i = 0; i < GRID_ROWS; i++) {
+				
+				//Add new JLabels to each of the arraylists
+				nameList.add(i, new JLabel());
+				timeList.add(i, new JLabel());
+				dateList.add(i, new JLabel());
+				
+				//Populate labels with appropriate records as long as they exist
+				//If exception is thrown, there is an insufficient number of records
+				//And we must display empty records
+				try {
+					TimeRecord currentRecord = ttp.getRecord(i);
+					name = currentRecord.getName();
+					time = "" + currentRecord.getFormattedTime();
+					date = currentRecord.getDateString();
+				} catch (IndexOutOfBoundsException e) {
+					name = "";
+					time = "";
+					date = "";
+					
+				} finally {
+					
+					if(i < 9) {
+						nameList.get(i).setText(" " + (i+1) + ".    " + "Name: " + name);
+						timeList.get(i).setText("Time: " + time);
+						dateList.get(i).setText("Date: " + date);
+					} else {
+						nameList.get(i).setText(" " + (i+1) + ".  " + "Name: " + name);
+						timeList.get(i).setText("Time: " + time);
+						dateList.get(i).setText("Date: " + date);
+					}
+				
+					
+					listPanel.add(nameList.get(i));
+					listPanel.add(timeList.get(i));
+					listPanel.add(dateList.get(i));
+				}
+				
+			}
+			
+			add(listPanel);
+			
+		}
+		
+	}//end class TopTimeDialog
 	
 	/*
 	 * This class is a dialog box used to get the name of the user at the end of the

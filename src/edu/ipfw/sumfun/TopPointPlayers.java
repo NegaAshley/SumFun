@@ -14,13 +14,13 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 	private static final int NUM_RECORDS = 10;
 	
 	//Contains the top 10 records of players with the highest score
-	private ArrayList<UntimedRecord> records;
+	private ArrayList<ScoreRecord> records;
 	
 	/**
 	 * Constructor for the TopPointPlayers class
 	 */
 	public TopPointPlayers() {//start TopPointPlayers constructor
-		records = new ArrayList<UntimedRecord>();
+		records = new ArrayList<ScoreRecord>();
 	}//end TopPointsPlayers nstructor
 	
 	/**
@@ -28,7 +28,7 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 	 * @param index - the index of a desired record
 	 * @return the record found at index
 	 */
-	public UntimedRecord getRecord(int index) {
+	public ScoreRecord getRecord(int index) {
 		return records.get(index);
 	}//end getRecord
 	
@@ -36,7 +36,7 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 	 * Print all records contained in ArrayList records to console
 	 */
 	public void printRecords() {//start printRecords method
-		for(UntimedRecord u : records) {
+		for(ScoreRecord u : records) {
 			System.out.println(u.toString());
 		}
 		System.out.println();
@@ -54,7 +54,7 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 	 * Attempts to add a record to ArrayList records
 	 * @param record - a record to attempt to add
 	 */
-	public void addRecord(UntimedRecord record) {//start addRecord method
+	public void addRecord(ScoreRecord record) {//start addRecord method
 		
 		//If records is empty, just add and move along
 		if(records.isEmpty()) {
@@ -77,7 +77,7 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 				
 				//Create a temporary array of size records.size() - i
 				//This is the number of records that need to be shifted
-				UntimedRecord[] tempRecords = new UntimedRecord[records.size() - i];
+				ScoreRecord[] tempRecords = new ScoreRecord[records.size() - i];
 				
 				//Pull all of the records out of ArrayList records on and after the insertion point
 				for(int j = 0; j < tempRecords.length; j++) {
