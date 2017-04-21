@@ -21,8 +21,8 @@ public class Controller implements ActionListener {//start Controller class
     public static final String GREEN_HEX_VALUE="0x00cc00";//the color green used for hint tiles
 	public static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	public static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
-	public static final int MAX_HINTS=3000;//the number of hints available
-	private int hintsUsed=0;//the number of hints currently used
+	public static final int MAX_HINTS = 3;//the number of hints available
+	private int hintsUsed = 0;//the number of hints currently used
 	
 	//References to model, view, and TopPointPlayers objects
 	private Game model;
@@ -223,6 +223,8 @@ public class Controller implements ActionListener {//start Controller class
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
 		view.getRemoveNumber().setEnabled(true);
+		view.setMoveLabelVisible(true);
+		view.setTimeLabelVisible(false);
 		model.createNewGameBoard();
 		hintsUsed=0;
 		int[] rowAndCol=model.getHint();
@@ -242,6 +244,8 @@ public class Controller implements ActionListener {//start Controller class
 		resetQueue();
 		view.getResetQueue().setEnabled(true);
 		view.getRemoveNumber().setEnabled(true);
+		view.setMoveLabelVisible(false);
+		view.setTimeLabelVisible(true);
 		model.createNewGameBoard();
 		hintsUsed=0;
 		int[] rowAndCol=model.getHint();
