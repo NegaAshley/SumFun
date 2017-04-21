@@ -96,6 +96,8 @@ public class Controller implements ActionListener {//start Controller class
 				startNewTimedGame();
 			}
 			
+			return;
+			
 		}
 
 		//Checks for an event that needs to grab user name and closes popup

@@ -540,7 +540,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 			gund.setVisible(true);
 			getSumFunFrame().setVisible(false);
 			
-		} else if(model.getIsActive() == false){
+		} else if(model.getIsActive() == false && !model.getGameWon()){
 			model.setIsActive(true);
 			
 			if(model instanceof TimedGame) {
