@@ -21,7 +21,7 @@ public class Controller implements ActionListener {//start Controller class
     public static final String GREEN_HEX_VALUE="0x00cc00";//the color green used for hint tiles
 	public static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	public static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
-	public static final int MAX_HINTS = 3;//the number of hints available
+	public static final int MAX_HINTS = 500;//the number of hints available
 	private int hintsUsed = 0;//the number of hints currently used
 	
 	//References to model, view, and TopPointPlayers objects
@@ -121,7 +121,7 @@ public class Controller implements ActionListener {//start Controller class
 				UntimedGame temp = (UntimedGame) model;
 				moves = temp.getMovesRemaining();
 				//Creates the record with given variables
-				ScoreRecord record = new ScoreRecord(userName, points, time);
+				ScoreRecord record = new ScoreRecord(userName, moves, points);
 				
 				//Adds a record to the top point players
 				tpp.addRecord(record);

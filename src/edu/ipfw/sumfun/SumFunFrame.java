@@ -214,7 +214,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		timeLabel = new JLabel(timeString);
 		scoreBoardPanel.add(scoreLabel);
 		scoreBoardPanel.add(moveLabel);
-		scoreBoardPanel.add(timeLabel);
+//		scoreBoardPanel.add(timeLabel);
 		
 		//Add score board panel to the north of initialPanel
 		initialPanel.add(scoreBoardPanel, BorderLayout.NORTH);
