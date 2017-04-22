@@ -329,6 +329,13 @@ public abstract class Game extends Observable {// start Game class
 				}
 			}
 		}
+		if(gameBoard.isGameBoardEmpty()) {
+			isActive = false;
+			gameWon = true;
+		} else if (gameBoard.isGameBoardFull()) {
+			isActive = false;
+			gameWon = false;
+		}
 		setChanged();
 		notifyObservers();
 	}//end removeNumFromGame

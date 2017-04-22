@@ -203,7 +203,7 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//Clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not
 		int[] rowAndCol=model.getHint();
-		if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+		if(rowAndCol[0] == -1 || rowAndCol[1] == -1){
 			view.getHint().setEnabled(false);
 		}else{
 			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.WHITE);
@@ -278,7 +278,8 @@ public class Controller implements ActionListener {//start Controller class
 		
 		//If value equals -1, then the move is valid
 		if(value == -1) {
-			//clear out hint coloring every time a move is placed, no matter whether they chose to listen to the hint or not and make sure button is disabled is needed
+			//Clear out hint coloring every time a move is placed, no matter whether they chose 
+			//to listen to the hint or not and make sure button is disabled as needed
 			int[] rowAndCol=model.getHint();
 			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
 				view.getHint().setEnabled(false);
