@@ -81,9 +81,13 @@ public class Controller implements ActionListener {//start Controller class
 		//Check for an event that needs to give a hint
 		if (event.getActionCommand().equals(HINT)) {
 			int[] rowAndCol=model.getHint();
-			hintsUsed++;
+			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+				view.getHint().setEnabled(false);
+			}else{
+				hintsUsed++;
+				view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.decode(GREEN_HEX_VALUE));
+			}
 			view.getHint().setEnabled(false);
-			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.decode(GREEN_HEX_VALUE));
 			view.repaint();
 			return;
 		}
