@@ -107,7 +107,9 @@ public abstract class Game extends Observable {// start Game class
 	public void processMove(int i, int j, int mod) {// start processMove method
 		// Retrieval of tile referenced by i and j
 		TileModel t = gameBoard.getTile(i, j);
-
+		
+		gameBoard.getTile(i, j).setValue(mod);
+		
 		// array holding the values for total and score, returned from
 		// sumAdjacentTiles with total at index 0 and score at index 0
 		int[] totalAndScore;
