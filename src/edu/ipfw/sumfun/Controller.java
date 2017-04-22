@@ -288,7 +288,6 @@ public class Controller implements ActionListener {//start Controller class
 			}
 			
 			int mod = model.selectQueueTile(0).getValue();
-			model.getGameBoard().getTile(row, col).setValue(mod);
 			model.processMove(row, col, mod);
 			model.pushQueue();
 			
