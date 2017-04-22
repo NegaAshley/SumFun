@@ -14,7 +14,10 @@ import java.util.Observable;
  */
 public class TileModel extends Observable{//start TileModel class
 	
-	static final  int MAX_RANDOM_VALUE = 9;//the maximum random value for a tile
+	public static final int LOW_THRESHOLD = 0;// the lowest number that be randomly 
+	//generated
+	public static final int HIGH_THRESHOLD = 9;// the highest number that be randomly 
+	//generated
 	
 	private int value;//the value of this tile
 	
@@ -42,7 +45,9 @@ public class TileModel extends Observable{//start TileModel class
 	 */
 	public static TileModel createRandomTile(){//start createRandomTile method
 		TileModel randomTile;//random tile created
-		int value = (int)(Math.random() * MAX_RANDOM_VALUE);
+		int value;//the value of the tile
+		value = LOW_THRESHOLD + (int) (Math.random() * ((HIGH_THRESHOLD - 
+				LOW_THRESHOLD) + 1));
 		randomTile = new TileModel(value);
 		return randomTile;
 	}//end createRandomTile method
