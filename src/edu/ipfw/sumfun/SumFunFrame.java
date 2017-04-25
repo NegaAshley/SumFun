@@ -534,6 +534,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		} else {
 			String move = "Moves Remaining: N/A";
 			moveLabel.setText(move);
+			moveLabel.setVisible(false);
 		}
 		
 		//Update time remaining
@@ -545,6 +546,7 @@ public class SumFunFrame extends JFrame implements Observer {// start SumFunFram
 		} else {
 			String time = "Time Remaining: N/A";
 			timeLabel.setText(time);
+			timeLabel.setVisible(false);
 		}
 		
 		//Here we are checking if the game is active or not

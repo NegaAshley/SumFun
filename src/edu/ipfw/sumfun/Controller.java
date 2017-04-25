@@ -39,6 +39,12 @@ public class Controller implements ActionListener {//start Controller class
 		this.tpp = tpp;
 		this.ttp = ttp;
 		view = new SumFunFrame(model, this, tpp, ttp);
+		int[] rowAndCol=model.getHint();
+		if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+			view.getHint().setEnabled(false);
+		}else{
+			view.getHint().setEnabled(true);
+		}
 		view.setVisible(GUI_VISIBLE);
 	}//end Constructor method
 
@@ -53,12 +59,24 @@ public class Controller implements ActionListener {//start Controller class
 		//Starts a new UntimedGame
 		if(event.getActionCommand().equals("Untimed")) {
 			startNewUntimedGame();
+			int[] rowAndCol=model.getHint();
+			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+				view.getHint().setEnabled(false);
+			}else{
+				view.getHint().setEnabled(true);
+			}
 			return;
 		}
 		
 		//Starts a new TimedGame
 		if(event.getActionCommand().equals("Timed")) {
 			startNewTimedGame();
+			int[] rowAndCol=model.getHint();
+			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
+				view.getHint().setEnabled(false);
+			}else{
+				view.getHint().setEnabled(true);
+			}
 			return;
 		}
 		
@@ -81,12 +99,8 @@ public class Controller implements ActionListener {//start Controller class
 		//Check for an event that needs to give a hint
 		if (event.getActionCommand().equals(HINT)) {
 			int[] rowAndCol=model.getHint();
-			if(rowAndCol[0]==-1 || rowAndCol[1]==-1){
-				view.getHint().setEnabled(false);
-			}else{
-				hintsUsed++;
-				view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.decode(GREEN_HEX_VALUE));
-			}
+			hintsUsed++;
+			view.getTileGrid()[rowAndCol[0]][rowAndCol[1]].setBackgroundColor(Color.decode(GREEN_HEX_VALUE));
 			view.getHint().setEnabled(false);
 			view.repaint();
 			return;
