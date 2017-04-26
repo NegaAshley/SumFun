@@ -138,7 +138,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		super("Sum Fun");// sets title of window
 
 		// Creates and regiters font from .tff file
-		Font fontA = Font.createFont(Font.TRUETYPE_FONT, new File("font/manaspc.ttf"));
+		Font fontA = Font.createFont(Font.TRUETYPE_FONT, new File("font/lunchds.ttf"));
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		ge.registerFont(fontA);
 
@@ -169,11 +169,11 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		setJMenuBar(bar);
 
 		// Creates menus
-		gameMenu = new JMenu("<html><font size = 4><b> Game</b></font></html>");
+		gameMenu = new JMenu("<html><font size = 6><b> Game</b></font></html>");
 		gameMenu.setFont(fontA);
-		helpMenu = new JMenu("<html><font size = 4><b> Help</b></font></html>");
+		helpMenu = new JMenu("<html><font size = 6><b> Help</b></font></html>");
 		helpMenu.setFont(fontA);
-		topMenu = new JMenu("<html><font size = 4><b> Top Players</b></font></html>");
+		topMenu = new JMenu("<html><font size = 6><b> Top Players</b></font></html>");
 		topMenu.setFont(fontA);
 
 		// Adds menus to menu bar
