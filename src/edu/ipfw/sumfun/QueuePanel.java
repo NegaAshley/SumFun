@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 
 /**
@@ -29,8 +32,12 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
     /**
      * Constructor for the QueuePanel class
      * @param game - this instance of game
+     * @throws IOException 
+     * @throws NumberFormatException 
+     * @throws UnsupportedAudioFileException 
+     * @throws URISyntaxException 
      */
-    public QueuePanel(Game game) {//start QueuePanel constructor
+    public QueuePanel(Game game) throws NumberFormatException, IOException, URISyntaxException, UnsupportedAudioFileException {//start QueuePanel constructor
     	
     	this.game = game;
 
@@ -67,12 +74,25 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
     	//Create brush
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        
+        ImageNSounds ins;
+		try {
+			ins = new ImageNSounds();
+			g.drawImage(ins.getLogoBack(), 0, -7, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 
         //Draw all tiles in ArrayList queueTiles onto panel
     	//g2.setBackground(Color.GRAY);
         for(int i = 0; i < queueTiles.size(); i++) {
         	QueueTileView tile = queueTiles.get(i);
-        	tile.draw(g2, game.selectQueueTile(i));
+        	try {
+				tile.draw(g2, game.selectQueueTile(i));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         } 
     }//end paintComponent method
     
