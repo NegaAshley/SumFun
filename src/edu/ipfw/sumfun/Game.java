@@ -107,7 +107,6 @@ public abstract class Game extends Observable {// start Game class
 	public void processMove(int i, int j, int mod) {// start processMove method
 		// Retrieval of tile referenced by i and j
 		TileModel t = gameBoard.getTile(i, j);
-		
 		gameBoard.getTile(i, j).setValue(mod);
 		
 		// array holding the values for total and score, returned from
@@ -153,7 +152,7 @@ public abstract class Game extends Observable {// start Game class
 			isActive = false;
 			gameWon = false;
 		}
-
+		
 		setChanged();
 		notifyObservers();
 
@@ -310,6 +309,46 @@ public abstract class Game extends Observable {// start Game class
 		rowAndCol[1]=bestCol;
 		return rowAndCol;
 	}//end getHint method
+	
+	/**
+	 * Finds the tile marked as a hint to reset
+	 * @return rowAndCol - position of hint tile
+	 */
+	public int[] getKnownHint() {//start getHint method
+		//rown and col of known hint
+		int[] rowAndCol={0, 0};
+
+	
+		
+		//if -1, -1 is returned, the Controller knows there is no hint displayed
+		int defaultRow=-1;
+		int defaultCol=-1;
+
+		//create the tile to be referenced here so there is not a new one created for every single tile on the board
+		TileModel currentTile;
+		
+		//the tile at which the best move could be made
+		TileModel markedTile;
+
+		//iterate through the board, storing the current best move
+		for (int row = 0; row < TILE_GRID_WIDTH; row++) {
+			for (int col = 0; col < TILE_GRID_LENGTH; col++) {
+				// Retrieval of tile referenced by row and col
+				currentTile= gameBoard.getTile(row, col);
+				
+				if(currentTile.getValue()==-2){//only check marked tiles
+					
+					rowAndCol[0] = row;
+					rowAndCol[1] = col;
+					return rowAndCol;
+				}
+
+			}
+		}
+		rowAndCol[0]=defaultRow;
+		rowAndCol[1]=defaultCol;
+		return rowAndCol;
+	}//end getKnownHint method
 
 	/*
 	 * Removes all tiles with value givenNum from the gameBoard.  A precondition is that 
