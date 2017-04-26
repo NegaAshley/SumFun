@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * QueueTileView is a version of TileView designed for the queue
@@ -18,14 +22,14 @@ class QueueTileView {//start QueueTileView class
     private int xval;//Physical x coordinate of Tile
     private int yval;//Physical y coordinate of Tile
     private Color tileOutlineColor;//Color outline of Tile
-    
+    private ImageNSounds ins; //Reference to images
     /*
      * Constructor method of QueueTileView class
      * @param row - the row the tile is in
      * @param col - the column the tile is in
      * @param tileOutlineColor - the outline color of the tile
      */
-    public QueueTileView(int row, int col, Color tileOutlineColor){//start QueueTileView 
+    public QueueTileView(int row, int col, Color tileOutlineColor) throws IOException, URISyntaxException, UnsupportedAudioFileException{//start QueueTileView 
     	//constructor
         this.tileOutlineColor = tileOutlineColor;
         //since the queue is vertical and 1D, row corresponds to x, unlike in the main 
@@ -34,14 +38,16 @@ class QueueTileView {//start QueueTileView class
         yval = col * SIZE;//similarly for y
         this.row = row;
         this.col = col;
+        ins = new ImageNSounds();
     }//end QueueTileView constructor
     
     /**
      * Draw method for QueueTileView
      * @param g2 - the Graphics2D object
      * @param tile - the TileModel desired
+     * @throws IOException 
      */
-    public void draw(Graphics2D g2, TileModel tile){//start draw method
+    public void draw(Graphics2D g2, TileModel tile) throws IOException{//start draw method
     	
         g2.setPaint(tileOutlineColor);
         Rectangle2D r = new Rectangle2D.Double(xval, yval, SIZE, SIZE);
@@ -51,11 +57,33 @@ class QueueTileView {//start QueueTileView class
         g2.setFont(myFont);
         
         g2.setPaint(Color.BLACK);
-        if(tile.getValue() == -1) {
-        	g2.drawString("", xval + (SIZE / 2) - 4, yval + (SIZE / 2) + 4);
-        } else {
-        	g2.drawString(String.valueOf(tile.getValue()), xval + (SIZE / 2) - 4, yval + (SIZE / 2) + 4);
-        }
+  
+
+        if (tile.getValue() == -1) {
+			g2.drawImage(ins.getBackVoid(), xval, yval ,null);
+		} else if(tile.getValue() == 0){
+			g2.drawImage(ins.getBack0(), xval, yval,null);
+		} else if(tile.getValue() == 1){
+			g2.drawImage(ins.getBack1(), xval, yval,null);
+		} else if(tile.getValue() == 2){
+			g2.drawImage(ins.getBack2(), xval, yval,null);
+		} else if(tile.getValue() == 3){
+			g2.drawImage(ins.getBack3(), xval, yval,null);
+		} else if(tile.getValue() == 4){
+			g2.drawImage(ins.getBack4(), xval, yval,null);
+		} else if(tile.getValue() == 5){
+			g2.drawImage(ins.getBack5(), xval, yval,null);
+		} else if(tile.getValue() == 6){
+			g2.drawImage(ins.getBack6(), xval, yval,null);
+		} else if(tile.getValue() == 7){
+			g2.drawImage(ins.getBack7(), xval, yval,null);
+		} else if(tile.getValue() == 8){
+			g2.drawImage(ins.getBack8(), xval, yval,null);
+		} else if(tile.getValue() == 9){
+			g2.drawImage(ins.getBack9(), xval, yval,null);
+		} else{
+			g2.drawString(String.valueOf(tile.getValue()), xval + (SIZE / 2) - 4, yval + (SIZE / 2) + 4);
+		}
     }//end draw method
     
     /**
