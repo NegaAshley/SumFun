@@ -49,7 +49,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	private static final boolean GUI_RESIZABLE = false;// whether or not the
 														// frame is
 	// resizable
-	private static final int GUI_WIDTH = 1000;// the width of the frame
+	private static final int GUI_WIDTH = 1250;// the width of the frame
 	private static final int GUI_HEIGHT = 525;// the height of the frame
 	private static final int GRID_ROWS = 9;// the number of rows
 	private static final int GRID_COLS = 9;// the number of columns
@@ -227,7 +227,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 		// Creates scoreBoardPanel
 		scoreBoardPanel = new JPanel();
-		scoreBoardPanel.setLayout(new GridLayout(2, 2));
+		scoreBoardPanel.setLayout(new GridLayout(1, 2));
 
 		// Adds JLabels and text fields for Score and Moves Remaining
 		int moves = 0;
