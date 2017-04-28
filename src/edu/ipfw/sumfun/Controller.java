@@ -1,6 +1,5 @@
 package edu.ipfw.sumfun;
 
-import java.awt.Color;
 import java.awt.FontFormatException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +37,7 @@ public class Controller implements ActionListener {// start Controller class
 	private SumFunFrame view;
 	private TopPointPlayers tpp;
 	private TopTimePlayers ttp;
-
+	
 	/**
 	 * Constructor for the Controller class
 	 * 
@@ -51,8 +50,8 @@ public class Controller implements ActionListener {// start Controller class
 	 * @throws NumberFormatException 
 	 */
 	public Controller(Game game, TopPointPlayers tpp, TopTimePlayers ttp) throws IOException, FontFormatException, NumberFormatException, URISyntaxException, UnsupportedAudioFileException {// start
-																													// Controller
-																													// constructor
+		// Controller constructor
+		Sounds.init(); // Initialize and preload sounds
 		model = game;
 		this.tpp = tpp;
 		this.ttp = ttp;
@@ -106,6 +105,7 @@ public class Controller implements ActionListener {// start Controller class
 			if (model.getQueueResetAvailable()) {
 				model.setQueueResetAvailable(false);
 				resetQueue();
+				Sounds.SHUFFLE.play();
 			}
 
 			return;
@@ -258,6 +258,7 @@ public class Controller implements ActionListener {// start Controller class
 			// Alert user that move is invalid
 			view.invalidRemoveNumMoveEvent();
 		}
+		Sounds.REMOVE.play();
 	}// end removeNumber method
 
 	/**
@@ -308,7 +309,6 @@ public class Controller implements ActionListener {// start Controller class
 	private void placeTile(ActionEvent event) {// start placeTile method
 		// Doesn't allow tiles to be placed if board is inactive
 		
-		
 		if (model.getIsActive() == false) {
 			return;
 		}
@@ -349,6 +349,7 @@ public class Controller implements ActionListener {// start Controller class
 			} else if (hintsUsed < MAX_HINTS) {
 				view.getHint().setEnabled(true);
 			}
+			Sounds.BOOP.play();
 		} else {
 			// Alert user that move is invalid
 			view.invalidMoveEvent();

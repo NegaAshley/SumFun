@@ -50,6 +50,8 @@ public class Application {//start Application class
 	 */
 	public static void main(String[] args) throws IOException, FontFormatException, NumberFormatException, URISyntaxException, UnsupportedAudioFileException{//start main method
 		
+		
+	
 		//Attempt to load saved data
 		deserialize();
 		
