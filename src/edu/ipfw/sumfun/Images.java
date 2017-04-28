@@ -6,7 +6,10 @@ package edu.ipfw.sumfun;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+
+
 import javax.imageio.ImageIO;
+
 
 /**
  * 
@@ -14,7 +17,7 @@ import javax.imageio.ImageIO;
  *
  */
 
-public class ImageNSounds {//start ImageNSounds class
+public class Images {//start ImageNSounds class
 
 	//Empty Tile image
 	private Image backVoid;
@@ -40,8 +43,9 @@ public class ImageNSounds {//start ImageNSounds class
 	//Background for a hint tile
 	private Image hintBack;
 
+	//
 	//Start Constructor - Instantiates data points to files in resource folders.
-	public ImageNSounds() throws IOException{
+	public Images() throws IOException{
 
 		backVoid = ImageIO.read(new File("images/SumFun Void.jpg"));
 		back9 = ImageIO.read(new File("images/SumFun 9.jpg"));
@@ -57,6 +61,8 @@ public class ImageNSounds {//start ImageNSounds class
 		gridBack = ImageIO.read(new File("images/gridBack.jpg"));
 		logoBack = ImageIO.read(new File("images/SumFun Logo.jpg"));
 		hintBack = ImageIO.read(new File("images/SumFun Hint.jpg"));
+		
+		
 	}
 
 	//Getters and Setters
@@ -171,4 +177,6 @@ public class ImageNSounds {//start ImageNSounds class
 	public void setBack0(Image back0) {
 		this.back0 = back0;
 	}
+	
 }
+
