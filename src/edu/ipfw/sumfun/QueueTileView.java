@@ -22,7 +22,7 @@ class QueueTileView {//start QueueTileView class
     private int xval;//Physical x coordinate of Tile
     private int yval;//Physical y coordinate of Tile
     private Color tileOutlineColor;//Color outline of Tile
-    private ImageNSounds ins; //Reference to images
+    private Images ins; //Reference to images
     /*
      * Constructor method of QueueTileView class
      * @param row - the row the tile is in
@@ -38,7 +38,7 @@ class QueueTileView {//start QueueTileView class
         yval = col * SIZE;//similarly for y
         this.row = row;
         this.col = col;
-        ins = new ImageNSounds();
+        ins = new Images();
     }//end QueueTileView constructor
     
     /**

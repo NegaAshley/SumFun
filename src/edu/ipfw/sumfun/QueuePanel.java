@@ -74,9 +74,9 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
     	//Create brush
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        ImageNSounds ins;
+        Images ins;
 		try {
-			ins = new ImageNSounds();
+			ins = new Images();
 			g.drawImage(ins.getLogoBack(), 0, -7, null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

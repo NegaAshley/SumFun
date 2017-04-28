@@ -19,7 +19,7 @@ class TileView {// start Tile class
 
 	// Reference to the controller
 	private Controller controller;
-	private ImageNSounds ins;//Reference to images
+	private Images ins;//Reference to images
 	private static final int SIZE = 50;// Size of Tile
 	private int row;// Row location of Tile
 	private int col;// Column location of Tile
@@ -40,7 +40,7 @@ class TileView {// start Tile class
 	 */
 	public TileView(int row, int col, Color tileOutlineColor, Color tileBackgroundColor) throws IOException, URISyntaxException, UnsupportedAudioFileException {// start
 																							// Tile
-		ins = new ImageNSounds();																				// constructor
+		ins = new Images();																				// constructor
 		this.tileOutlineColor = tileOutlineColor;
 		this.tileBackgroundColor = tileBackgroundColor;
 		xval = col * TileView.SIZE;// x corresponds to col instead of row
