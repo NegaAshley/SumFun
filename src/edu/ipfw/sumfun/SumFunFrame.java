@@ -739,6 +739,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 				} // end nested for
 			} // end for
 
+			Sounds.BGM1.loop();
 		}// end SumFunPanel constructor
 
 		/*
@@ -748,9 +749,9 @@ public class SumFunFrame extends JFrame implements Observer {// start
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
 			//Reference to image
-			ImageNSounds ins;
+			Images ins;
 			try {
-				ins = new ImageNSounds();
+				ins = new Images();
 				g.drawImage(ins.getGridBack(), 0, -5,null);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
