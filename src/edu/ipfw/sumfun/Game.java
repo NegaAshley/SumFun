@@ -38,6 +38,8 @@ public abstract class Game extends Observable {// start Game class
 	public static final int MOD_VALUE = 10;// the modulus value to calculate with
 	public static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	public static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
+	public static final int MAX_HINTS = 3;// the number of hints available
+	private int hintsUsed;// the number of hints currently used
 
 	public Game() {// start Game constructor
 		points = INITIAL_POINTS;
@@ -46,6 +48,7 @@ public abstract class Game extends Observable {// start Game class
 		removeNumActive = false;
 		queueResetAvailable = true;
 		gameWon = false;
+		hintsUsed=0;
 		gameBoard = new GameBoard();
 		populateQueue();
 	}// end Game constructor
@@ -262,7 +265,11 @@ public abstract class Game extends Observable {// start Game class
 	 * @return rowAndCol - the row and column representation of where the hint is 
 	 * located
 	 */
-	public int[] getHint() {//start getHint method
+	public int[] getHint(boolean buttonpressed) {//start getHint method
+		if(buttonpressed){
+			hintsUsed++;
+		}
+		
 		//Array holding the values for total and score, returned from 
 		//sumAdjacentTiles with total at index 0 and score at index 0
 		int[] totalAndScore;
@@ -328,7 +335,11 @@ public abstract class Game extends Observable {// start Game class
 	 * Finds the tile marked as a hint to reset
 	 * @return rowAndCol - position of hint tile
 	 */
-	public int[] getKnownHint() {//start getHint method
+	public int[] getKnownHint(boolean buttonpressed) {//start getHint method
+		if(buttonpressed){
+			hintsUsed++;
+		}
+		
 		//Row and col of known hint
 		int[] rowAndCol = {0, 0};
 
@@ -508,5 +519,20 @@ public abstract class Game extends Observable {// start Game class
 		setChanged();
 		notifyObservers();
 	}//end createNewGameBoard method
+	
+	/**
+	 * resets the hints used to 0
+	 */
+	public void resetHintsUsed(){
+		hintsUsed=0;
+	}
+	
+	/**
+	 * returns whether or not there are hints left
+	 * @return
+	 */
+	public boolean hintsLeft(){
+		return hintsUsed<MAX_HINTS;
+	}
 
 }//end Game class

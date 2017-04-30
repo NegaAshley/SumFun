@@ -29,8 +29,7 @@ public class Controller implements ActionListener {// start Controller class
 												// tiles
 	public static final int TILE_GRID_LENGTH = 9;// the length of the grid in
 													// tiles
-	public static final int MAX_HINTS = 3;// the number of hints available
-	private int hintsUsed = 0;// the number of hints currently used
+	
 
 	// References to model, view, and TopPointPlayers objects
 	private Game model;
@@ -58,7 +57,7 @@ public class Controller implements ActionListener {// start Controller class
 		this.tpp = tpp;
 		this.ttp = ttp;
 		view = new SumFunFrame(model, this, tpp, ttp);
-		int[] rowAndCol = model.getHint();
+		int[] rowAndCol = model.getHint(false);
 		if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 			view.getHint().setEnabled(false);
 		} else {
@@ -80,7 +79,7 @@ public class Controller implements ActionListener {// start Controller class
 		// Starts a new UntimedGame
 		if (event.getActionCommand().equals("Untimed")) {
 			startNewUntimedGame();
-			int[] rowAndCol = model.getHint();
+			int[] rowAndCol = model.getHint(false);
 			if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 				view.getHint().setEnabled(false);
 			} else {
@@ -92,7 +91,7 @@ public class Controller implements ActionListener {// start Controller class
 		// Starts a new TimedGame
 		if (event.getActionCommand().equals("Timed")) {
 			startNewTimedGame();
-			int[] rowAndCol = model.getHint();
+			int[] rowAndCol = model.getHint(false);
 			if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 				view.getHint().setEnabled(false);
 			} else {
@@ -121,12 +120,11 @@ public class Controller implements ActionListener {// start Controller class
 
 		// Check for an event that needs to give a hint
 		if (event.getActionCommand().equals(HINT)) {
-			int[] rowAndCol = model.getHint();
+			int[] rowAndCol = model.getHint(true);
 		
 			TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], 
 					rowAndCol[1]);
 			hintTile.setValue(-2);
-			hintsUsed++;
 			view.getHint().setEnabled(false);
 			view.repaint();
 			return;
@@ -211,7 +209,7 @@ public class Controller implements ActionListener {// start Controller class
 
 		// Refreshes the queue the size of the queue panel
 		// clear out any hint tile that is present
-		int[] rowAndCol = model.getKnownHint();
+		int[] rowAndCol = model.getKnownHint(false);
 		if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 			view.getHint().setEnabled(false);
 		} else {
@@ -247,7 +245,7 @@ public class Controller implements ActionListener {// start Controller class
 
 		// Clear out hint coloring every time a move is placed, no matter
 		// whether they chose to listen to the hint or not
-		int[] rowAndCol = model.getKnownHint();
+		int[] rowAndCol = model.getKnownHint(false);
 		if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 			view.getHint().setEnabled(false);
 		} else {
@@ -278,8 +276,8 @@ public class Controller implements ActionListener {// start Controller class
 		view.setMoveLabelVisible(true);
 		view.setTimeLabelVisible(false);
 		model.createNewGameBoard();
-		hintsUsed = 0;
-		int[] rowAndCol = model.getHint();
+		model.resetHintsUsed();
+		int[] rowAndCol = model.getHint(false);
 		if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 			view.getHint().setEnabled(false);
 		}
@@ -299,8 +297,8 @@ public class Controller implements ActionListener {// start Controller class
 		view.setMoveLabelVisible(false);
 		view.setTimeLabelVisible(true);
 		model.createNewGameBoard();
-		hintsUsed = 0;
-		int[] rowAndCol = model.getHint();
+		model.resetHintsUsed();
+		int[] rowAndCol = model.getHint(false);
 		if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 			view.getHint().setEnabled(false);
 		}
@@ -333,7 +331,7 @@ public class Controller implements ActionListener {// start Controller class
 			// whether they chose
 			// to listen to the hint or not and make sure button is disabled as
 			// needed
-			int[] rowAndCol = model.getKnownHint();
+			int[] rowAndCol = model.getKnownHint(false);
 			if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 				view.getHint().setEnabled(false);
 			} else {
@@ -350,10 +348,10 @@ public class Controller implements ActionListener {// start Controller class
 
 			// check the move for the next turn, and turn off or on the hint
 			// button accordingly
-			rowAndCol = model.getHint();
+			rowAndCol = model.getHint(false);
 			if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 				view.getHint().setEnabled(false);
-			} else if (hintsUsed < MAX_HINTS) {
+			} else if (model.hintsLeft()) {
 				view.getHint().setEnabled(true);
 			}
 			Sounds.BOOP.play();
