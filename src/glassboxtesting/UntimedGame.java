@@ -1,4 +1,4 @@
-package Unit;
+package glassboxtesting;
 
 /**
  * The UntimedGame class controls the untimed version of the game

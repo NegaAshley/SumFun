@@ -1,9 +1,13 @@
 package edu.ipfw.sumfun;
 
-
-import java.io.*;
+import java.io.IOException;
 import java.net.URL;
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 public enum Sounds {
 	
@@ -45,8 +49,9 @@ public enum Sounds {
 	   // Play or Re-play the sound effect from the beginning, by rewinding.
 	   public void play() {
 	      if (volume != Volume.MUTE) {
-	         if (clip.isRunning())
+	         if (clip.isRunning()){
 	            clip.stop();   // Stop the player if it is still running
+	         }
 	         clip.setFramePosition(0); // rewind to the beginning
 	         clip.start();     // Start playing
 	      }
