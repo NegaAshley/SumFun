@@ -4,25 +4,29 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class TopTimePlayers implements Serializable {
+public class TopTimePlayers implements Serializable {//start TopTimePlayers method
 	
-	private static final int NUM_RECORDS = 10;
+	private static final int NUM_RECORDS = 10;//the number of records held
 	
 	//Contains the top 10 records of players with the most time remaining
 	private ArrayList<TimeRecord> records;
 	
-	public TopTimePlayers() {
+	/*
+	 * The constructor of TopTimePlayers
+	 */
+	public TopTimePlayers() {//start TopTimePlayers constructor
 		records = new ArrayList<TimeRecord>();
-	}
+	}//end TopTimePlayers constructor
 	
 	/**
 	 * Returns the record found in ArrayList records at index
+	 * 
 	 * @param index - the index of a desired record
-	 * @return the record found at index
+	 * @return TimeRecord - the record found at index
 	 */
-	public TimeRecord getRecord(int index) {
+	public TimeRecord getRecord(int index) {//start getRecord method
 		return records.get(index);
-	}//end getRecord
+	}//end getRecord method
 	
 	/**
 	 * Print all records contained in ArrayList records to console
@@ -35,8 +39,9 @@ public class TopTimePlayers implements Serializable {
 	}//end printRecords method
 	
 	/**
-	 * Access method for the size of ArrayList records
-	 * @return the size of ArrayList records
+	 * Accessor method for the size of ArrayList records
+	 * 
+	 * @return int - the size of ArrayList records
 	 */
 	public int getNumRecords() {//start getNumRecords method
 		return records.size();
@@ -96,5 +101,4 @@ public class TopTimePlayers implements Serializable {
 		}
 	}//end addRecord method
 
-
-}
+}//end TopTimePlayers method

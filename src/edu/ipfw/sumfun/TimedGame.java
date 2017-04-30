@@ -61,14 +61,14 @@ public class TimedGame extends Game {//start TimedGame class
 	}//end setNewTimer method
 	
 	/**
-	 * 
+	 * Sets the timer to the initial time
 	 */
 	public void setTimer() {//start setTimer method
 		duration = INITIAL_TIME;
 	}//end setTimer method
 	
 	/**
-	 * Attempts to stop 
+	 * Attempts to stop the timer
 	 */
 	public void stopTimer() {//start stopTimer method
 		try {
@@ -80,6 +80,7 @@ public class TimedGame extends Game {//start TimedGame class
 	
 	/**
 	 * Return singleton instance of TimedGame
+	 * 
 	 * @return timedInstance - this instance of the timed game
 	 */
 	public static TimedGame getInstance() {//start getInstance method
@@ -87,8 +88,9 @@ public class TimedGame extends Game {//start TimedGame class
 	}//end getInstance method
 
 	/**
-	 * Access method for current time remaining
-	 * @return a string format of time remaining
+	 * Accessor method for current time remaining
+	 * 
+	 * @return str - a string format of time remaining
 	 */
 	public String getTime() {//start getTime method
 		int minutes = duration / (60 * 1000);
@@ -96,18 +98,20 @@ public class TimedGame extends Game {//start TimedGame class
 		String str = String.format("%d:%02d", minutes, seconds);
 		System.out.println(duration);
 		return str;
-	}// end getStartTime method
+	}//end getStartTime method
 	
 	/**
 	 * Accessor method for set increment of time
+	 * 
 	 * @return TICK - the amount of time decremented in the timer
 	 */
-	public int getTick() {// start getTick method
+	public int getTick() {//start getTick method
 		return TICK;
-	}// end getTick method
+	}//end getTick method
 
 	/*
-	 * Access method to get the timer
+	 * Accessor method to get the timer
+	 * 
 	 * @return t - the timer
 	 */
 	public Timer getTimer(){//start getTimer method
@@ -116,15 +120,16 @@ public class TimedGame extends Game {//start TimedGame class
 	
 	/**
 	 * Access method for duration
-	 * @return
+	 * 
+	 * @return duration - the duration of the game
 	 */
-	public int getDuration() {
+	public int getDuration() {//start getDuration method
 		return duration;
-	}//end getDuration
+	}//end getDuration method
 	
-	public static int getInitialTime() {
+	public static int getInitialTime() {//start getInitialTime method
 		return INITIAL_TIME;
-	}
+	}//end getInitialTime method
 	
 	/*
 	 * Starts the timer

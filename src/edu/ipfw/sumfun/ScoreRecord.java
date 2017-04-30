@@ -73,8 +73,8 @@ public class ScoreRecord implements Serializable {//start UntimedRecord method
 	}//end getName method
 	
 	/**
-	 * Determines if an UntimedRecord object and this object are equal based on relevant 
-	 * data fields
+	 * Determines if an UntimedRecord object and this object are equal based on 
+	 * relevant data fields
 	 * @param other - an UntimedRecord object
 	 * @return true - if they are equal, false if not
 	 */

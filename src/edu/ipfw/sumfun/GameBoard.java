@@ -11,10 +11,12 @@ public class GameBoard {//start GameBoard class
 	static final int TILE_GRID_WIDTH = 9;//the width of the grid in tiles
 	static final int TILE_GRID_LENGTH = 9;//the length of the grid in tiles
 	
-	private TileModel [][] tileGrid;//the grid of TileModels representing the game board
+	private TileModel [][] tileGrid;//the grid of TileModels representing the game 
+		//board
 	
 	/**
-	 * Constructor that populates the board and sets directional references via helper methods
+	 * Constructor that populates the board and sets directional references via helper 
+	 *methods
 	 */
 	public GameBoard(){//start GameBoard constructor
 		populateBoard();
@@ -33,7 +35,8 @@ public class GameBoard {//start GameBoard class
 		for(int row = 0; row < TILE_GRID_WIDTH; row++){
 			for(int col = 0; col < TILE_GRID_LENGTH; col++){
 				
-				if(row == 0 || row == (TILE_GRID_WIDTH - 1)|| col == 0 || col == TILE_GRID_WIDTH-1){
+				if(row == 0 || row == (TILE_GRID_WIDTH - 1)|| col == 0 || col == 
+						TILE_GRID_WIDTH-1){
 					//Then this is the surrounding part of the grid
 					//Make the value of the TileModel -1
 					tileGrid[row][col] = new TileModel(-1);
@@ -89,20 +92,25 @@ public class GameBoard {//start GameBoard class
 					tileGrid[row][col].setNorth(tileGrid[row - 1][col]);
 				}
 				
-				if((col == tileGrid[0].length - 1) || (row == 0)){//then tile is in top row or rightmost column
-					tileGrid[row][col].setNorthEast(null);//set northeast reference to null
+				if((col == tileGrid[0].length - 1) || (row == 0)){//then tile is in top 
+					//row or rightmost column
+					tileGrid[row][col].setNorthEast(null);//set northeast reference to 
+					//null
 				}else{
 					tileGrid[row][col].setNorthEast(tileGrid[row - 1][col + 1]);
 				}
 				
-				if(col == tileGrid[0].length - 1){//then tile is on right column of grid and east reference is null
+				if(col == tileGrid[0].length - 1){//then tile is on right column of 
+					//grid and east reference is null
 					tileGrid[row][col].setEast(null);//set east reference to null
 				}else{
 					tileGrid[row][col].setEast(tileGrid[row][col+1]);
 				}
 				
-				if((col == tileGrid[0].length - 1) || (row == tileGrid[0].length - 1)){//then tile is on bottom row or rightmost column
-					tileGrid[row][col].setSouthEast(null);//set southeast reference to null
+				if((col == tileGrid[0].length - 1) || (row == tileGrid[0].length - 1)){
+					//then tile is on bottom row or rightmost column
+					tileGrid[row][col].setSouthEast(null);//set southeast reference to 
+					//null
 				}else{
 					tileGrid[row][col].setSouthEast(tileGrid[row + 1][col + 1]);
 				}
@@ -113,8 +121,10 @@ public class GameBoard {//start GameBoard class
 					tileGrid[row][col].setSouth(tileGrid[row + 1][col]);
 				}
 				
-				if((row == tileGrid[0].length - 1) || (col == 0)){//then tile is leftmost column or bottom row
-					tileGrid[row][col].setSouthWest(null);//set southwest reference to null
+				if((row == tileGrid[0].length - 1) || (col == 0)){//then tile is 
+					//leftmost column or bottom row
+					tileGrid[row][col].setSouthWest(null);//set southwest reference to 
+					//null
 				}else{
 					tileGrid[row][col].setSouthWest(tileGrid[row + 1][col - 1]);
 				}
@@ -125,8 +135,10 @@ public class GameBoard {//start GameBoard class
 					tileGrid[row][col].setWest(tileGrid[row][col - 1]);
 				}
 				
-				if((row == 0) || (col == 0)){//then tile is on top row or leftmost column
-					tileGrid[row][col].setNorthWest(null);//set northwest reference to null
+				if((row == 0) || (col == 0)){//then tile is on top row or leftmost 
+					//column
+					tileGrid[row][col].setNorthWest(null);//set northwest reference to 
+					//null
 				}else{
 					tileGrid[row][col].setNorthWest(tileGrid[row - 1][col - 1]);
 				}
@@ -152,7 +164,7 @@ public class GameBoard {//start GameBoard class
 	
 	/*
 	 * Returns true if GameBoard is full of tiles
-	 * @returns true if GameBoard is full
+	 * @returns isFull - boolean representation of whether or not the board is full
 	 */
 	public boolean isGameBoardFull(){//start isGameBoardFull method
 		boolean isFull;
@@ -171,7 +183,7 @@ public class GameBoard {//start GameBoard class
 	
 	/*
 	 * Returns true if GameBoard is empty of tiles
-	 * @returns true if GameBoard is empty
+	 * @returns isEmpty - boolean representation of whether or not the board is empty
 	 */
 	public boolean isGameBoardEmpty(){//start isGameBoardEmpty method
 		boolean isEmpty;

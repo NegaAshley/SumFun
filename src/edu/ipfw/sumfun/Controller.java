@@ -49,7 +49,9 @@ public class Controller implements ActionListener {// start Controller class
 	 * @throws URISyntaxException 
 	 * @throws NumberFormatException 
 	 */
-	public Controller(Game game, TopPointPlayers tpp, TopTimePlayers ttp) throws IOException, FontFormatException, NumberFormatException, URISyntaxException, UnsupportedAudioFileException {// start
+	public Controller(Game game, TopPointPlayers tpp, TopTimePlayers ttp) throws 
+	IOException, FontFormatException, NumberFormatException, URISyntaxException, 
+	UnsupportedAudioFileException {// start
 		// Controller constructor
 		Sounds.init(); // Initialize and preload sounds
 		model = game;
@@ -73,8 +75,7 @@ public class Controller implements ActionListener {// start Controller class
 	 *            - the event occuring
 	 */
 	@Override
-	public void actionPerformed(ActionEvent event) {// start actionPerformed
-													// method
+	public void actionPerformed(ActionEvent event) {// start actionPerformed method
 
 		// Starts a new UntimedGame
 		if (event.getActionCommand().equals("Untimed")) {
@@ -122,7 +123,8 @@ public class Controller implements ActionListener {// start Controller class
 		if (event.getActionCommand().equals(HINT)) {
 			int[] rowAndCol = model.getHint();
 		
-			TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], rowAndCol[1]);
+			TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], 
+					rowAndCol[1]);
 			hintTile.setValue(-2);
 			hintsUsed++;
 			view.getHint().setEnabled(false);
@@ -170,7 +172,8 @@ public class Controller implements ActionListener {// start Controller class
 			} else if (model instanceof TimedGame) {
 				TimedGame temp = (TimedGame) model;
 				time = temp.getDuration();
-				TimeRecord record = new TimeRecord(userName, time, TimedGame.getInitialTime());
+				TimeRecord record = new TimeRecord(userName, time, 
+						TimedGame.getInitialTime());
 				ttp.addRecord(record);
 			}
 
@@ -212,7 +215,8 @@ public class Controller implements ActionListener {// start Controller class
 		if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 			view.getHint().setEnabled(false);
 		} else {
-			TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], rowAndCol[1]);
+			TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], 
+					rowAndCol[1]);
 			hintTile.setValue(-1);
 			view.repaint();
 		}
@@ -247,7 +251,8 @@ public class Controller implements ActionListener {// start Controller class
 		if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 			view.getHint().setEnabled(false);
 		} else {
-			TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], rowAndCol[1]);
+			TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], 
+					rowAndCol[1]);
 			hintTile.setValue(-1);
 			view.repaint();
 		}
@@ -304,6 +309,7 @@ public class Controller implements ActionListener {// start Controller class
 	/**
 	 * Parses the coordinates of a tile that was clicked, and updates model
 	 * accordingly
+	 * @param event - the ActionEvent of the click
 	 * @throws IOException 
 	 */
 	private void placeTile(ActionEvent event) {// start placeTile method
@@ -331,7 +337,8 @@ public class Controller implements ActionListener {// start Controller class
 			if (rowAndCol[0] == -1 || rowAndCol[1] == -1) {
 				view.getHint().setEnabled(false);
 			} else {
-				TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], rowAndCol[1]);
+				TileModel hintTile = model.getGameBoard().getTile(rowAndCol[0], 
+						rowAndCol[1]);
 				hintTile.setValue(-1);
 				view.repaint();
 				

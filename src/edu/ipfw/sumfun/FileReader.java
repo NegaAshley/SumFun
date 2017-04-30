@@ -4,35 +4,37 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
-public class FileReader {
-	private InputStream in;
-	private OutputStream out;
-	private String actualPath;
+public class FileReader {//start FileReader class
+	private InputStream in;//the input stream to read the file
+	private OutputStream out;//the output stream to write to the file
+	private String actualPath;//the String to keep track fo the path
 	
 	/**
-	 * takes the basic file path and creates the InputStream object and makes a String out the actual file path for later use
-	 * @param path the basic file path
+	 * The constructor for the FileReader class
+	 * Takes the basic file path and creates the InputStream object and makes a String 
+	 * out the actual file path for later use
+	 * @param path - the basic file path
 	 */
-	public FileReader(String path){
+	public FileReader(String path){//start FileReader constructor
 		in = this.getClass().getResourceAsStream(path+".SOURCE");
 		URL url = this.getClass().getResource(path);
 		actualPath = url.getPath();
-	}
+	}//end FileReader constructor
 	
 	/**
-	 * returns the InputStream variable
-	 * @return in
+	 * Returns the InputStream variable
+	 * @return in - the input stream to read the file
 	 */
-	public InputStream returnStream(){
+	public InputStream returnStream(){//start returnStream method
 		return in;
-	}
+	}//end returnStream method
 	
 	/**
-	 * returns the actualPath 
-	 * @return actualpath
+	 * Returns the actualPath 
+	 * @return actualpath - the String to keep track fo the path
 	 */
-	public String returnPath(){
+	public String returnPath(){//start returnPath method
 		return actualPath;
-	}
+	}//end returnPath method
 
-}
+}//end FileReader class

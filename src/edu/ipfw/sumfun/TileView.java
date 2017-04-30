@@ -15,7 +15,7 @@ import java.net.URISyntaxException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 
-class TileView {// start Tile class
+class TileView {//start Tile class
 
 	// Reference to the controller
 	private Controller controller;
@@ -38,30 +38,35 @@ class TileView {// start Tile class
 	 * 
 	 * @param tileOutlineColor - the color of the outline of the tile
 	 */
-	public TileView(int row, int col, Color tileOutlineColor, Color tileBackgroundColor) throws IOException, URISyntaxException, UnsupportedAudioFileException {// start
-																							// Tile
-		ins = new Images();																				// constructor
+	public TileView(int row, int col, Color tileOutlineColor, Color tileBackgroundColor) 
+			throws IOException, URISyntaxException, UnsupportedAudioFileException {
+			// start TileView constructor
+																							
+		ins = new Images();																				
 		this.tileOutlineColor = tileOutlineColor;
 		this.tileBackgroundColor = tileBackgroundColor;
 		xval = col * TileView.SIZE;// x corresponds to col instead of row
-									// because it is the horizontal value, just
-									// like col
+			//because it is the horizontal value, just like col
 		yval = row * TileView.SIZE;// y corresponds to row instead of col
-									// because it is the vertical value, just
-									// like row
+			//because it is the vertical value, just like row
 		this.row = row;
 		this.col = col;
-	}// end Tile constructor
+	}//end Tile constructor
 
-	// Adds controller
-	public void addActionListener(Controller controller) {
+	/*
+	 * Adds controller
+	 * 
+	 * @param controller - the controller of the game
+	 */
+	public void addActionListener(Controller controller) {//start addActionListener
+		//method
 		this.controller = controller;
-	}// end addActionListener
+	}// end addActionListener method
 
 	/**
 	 * Processes tile click event
 	 */
-	public void processEvent() {// start processEvent method
+	public void processEvent() {//start processEvent method
 
 		try {
 
@@ -74,7 +79,7 @@ class TileView {// start Tile class
 			return;
 		}
 
-	}// end processEvent method
+	}//end processEvent method
 
 	/**
 	 * Draws the tiles onto the grid.
@@ -85,10 +90,8 @@ class TileView {// start Tile class
 	 *            - the backend tile
 	 * @throws IOException
 	 */
-	public void draw(Graphics2D g2, TileModel tile) throws IOException {// start
-																		// draw
-																		// method
-
+	public void draw(Graphics2D g2, TileModel tile) throws IOException {//start
+		//draw method
 
 		Rectangle2D r = new Rectangle2D.Double(xval, yval, SIZE, SIZE);
 		g2.setPaint(tileBackgroundColor);
@@ -127,18 +130,16 @@ class TileView {// start Tile class
 			g2.drawString(String.valueOf(tile.getValue()), xval + (SIZE / 2) - 4, yval + (SIZE / 2) + 4);
 		}
 
-	}// end draw method
+	}//end draw method
 
 	/**
 	 * Checks to see if a tile contains given coordinates. Returns true if tile
 	 * contains given coordinates and false if not.
 	 * 
-	 * @param newx
-	 *            - the x-coordinate
-	 * @param newy
-	 *            - the y-coordinate
+	 * @param newx - the x-coordinate
+	 * @param newy - the y-coordinate
 	 */
-	public boolean contains(int newx, int newy) {// start contains method
+	public boolean contains(int newx, int newy) {//start contains method
 
 		if (newx >= xval && newx <= xval + SIZE) {
 
@@ -147,42 +148,42 @@ class TileView {// start Tile class
 			}
 		}
 		return false;
-	}// end contains method
+	}//end contains method
 
 	/**
 	 * Returns row as an int.
 	 * 
 	 * @return row - the row of the tile
 	 */
-	public int getRow() {// start getRow method
+	public int getRow() {//start getRow method
 		return row;
-	}// end getRow method
+	}//end getRow method
 
 	/**
 	 * Returns column as an int.
 	 * 
 	 * @return col - the column of the tile
 	 */
-	public int getCol() {// start getCol method
+	public int getCol() {//start getCol method
 		return col;
-	}// end getCol method
+	}//end getCol method
 
 	/**
-	 * set the outline color of the Tile
+	 * Set the outline color of the Tile
 	 * 
-	 * @param newColor
+	 * @param newColor - the new outline color of the Tile
 	 */
-	public void setOutlineColor(Color newColor) {
+	public void setOutlineColor(Color newColor) {//start setOutlineColor method
 		this.tileOutlineColor = newColor;
-	}
+	}//end setOutlineColor method
 
 	/**
-	 * set the background color of the Tile
+	 * Set the background color of the Tile
 	 * 
-	 * @param newColor
+	 * @param newColor - the new background color
 	 */
-	public void setBackgroundColor(Color newColor) {
+	public void setBackgroundColor(Color newColor) {//start setBackgroundColor method
 		this.tileBackgroundColor = newColor;
-	}
+	}//end setBackgroundColor method
 
-}// end Tile class
+}//end Tile class

@@ -33,6 +33,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * The constructor for the ConceptualTile class.  Sets value to given value.
+	 * 
 	 * @param givenValue - the new value for the TileModel
 	 */
 	public TileModel(int givenValue){//start ConceptualTile constructor
@@ -41,6 +42,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Creates a tile with a value between 0 and MAX_RANDOM_VALUE
+	 * 
 	 * @returns TileModel - the TileModel created
 	 */
 	public static TileModel createRandomTile(){//start createRandomTile method
@@ -54,7 +56,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for value
-	 * @returns value
+	 * 
+	 * @return value - the value of the tile
 	 */
 	public int getValue(){//start getValue method
 		return this.value;
@@ -62,7 +65,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for value
-	 * @param givenValue
+	 * 
+	 * @param givenValue - the new value of the tile
 	 */
 	public void setValue(int givenValue){//start setValue method
 		this.value = givenValue;
@@ -77,7 +81,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for north tile reference
-	 * @returns north - the north directional reference
+	 * 
+	 * @return north - the north directional reference
 	 */
 	public TileModel getNorth(){//start getNorth method
 		return this.north;
@@ -85,7 +90,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for northEast tile reference
-	 * @returns northEast - the northeast directional reference
+	 * 
+	 * @return northEast - the northeast directional reference
 	 */
 	public TileModel getNorthEast(){//start getNorthEast method
 		return this.northEast;
@@ -93,7 +99,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for east tile reference
-	 * @returns east - the east directional reference
+	 * 
+	 * @return east - the east directional reference
 	 */
 	public TileModel getEast(){//start getEast method
 		return this.east;
@@ -101,7 +108,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for southEast tile reference
-	 * @returns southEast - the southeast directional reference
+	 * 
+	 * @return southEast - the southeast directional reference
 	 */
 	public TileModel getSouthEast(){//start getSouthEast method
 		return this.southEast;
@@ -109,7 +117,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for south tile reference
-	 * @returns south - the south directional reference
+	 * 
+	 * @return south - the south directional reference
 	 */
 	public TileModel getSouth(){//start getSouth method
 		return this.south;
@@ -117,7 +126,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for southWest tile reference
-	 * @returns southWest - the southwest directional reference
+	 * 
+	 * @return southWest - the southwest directional reference
 	 */
 	public TileModel getSouthWest(){//start getSouthWest method
 		return this.southWest;
@@ -125,7 +135,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for west tile reference
-	 * @returns west - the west directional reference
+	 * 
+	 * @return west - the west directional reference
 	 */
 	public TileModel getWest(){//start getWest method
 		return this.west;
@@ -133,7 +144,8 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Getter for northWest tile reference
-	 * @returns northWest - the northwest directional reference
+	 * 
+	 * @return northWest - the northwest directional reference
 	 */
 	public TileModel getNorthWest(){//start getNorthWest method
 		return this.northWest;
@@ -141,6 +153,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for north tile reference
+	 * 
 	 * @param givenTile - the tile that north will be set to
 	 */
 	public void setNorth(TileModel givenTile){//start setNorth method
@@ -149,6 +162,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for northEast tile reference
+	 * 
 	 * @param givenTile - the tile that northeast will be set to
 	 */
 	public void setNorthEast(TileModel givenTile){//start setNorthEast method
@@ -157,6 +171,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for east tile reference
+	 * 
 	 * @param givenTile - the tile that east will be set to
 	 */
 	public void setEast(TileModel givenTile){//start setEast method
@@ -165,6 +180,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for southEast tile reference
+	 * 
 	 * @param givenTile - the tile that southeast will be set to
 	 */
 	public void setSouthEast(TileModel givenTile){//start setSouthEast method
@@ -173,6 +189,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for south tile reference
+	 * 
 	 * @param givenTile - the tile that south will be set to
 	 */
 	public void setSouth(TileModel givenTile){//start setSouth method
@@ -181,6 +198,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for southWest tile reference
+	 * 
 	 * @param givenTile - the tile that southwest will be set to
 	 */
 	public void setSouthWest(TileModel givenTile){//start setSouthWest method
@@ -189,6 +207,7 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for west tile reference
+	 * 
 	 * @param givenTile - the tile that west will be set to
 	 */
 	public void setWest(TileModel givenTile){//start setWest method
@@ -197,10 +216,11 @@ public class TileModel extends Observable{//start TileModel class
 	
 	/*
 	 * Setter for northWest tile reference
+	 * 
 	 * @param givenTile - the tile that northwest will be set to
 	 */
 	public void setNorthWest(TileModel givenTile){//start setNorthWest method
 		this.northWest = givenTile;
 	}//end setNorthWest method
 	
-}//end TileModel
+}//end TileModel class

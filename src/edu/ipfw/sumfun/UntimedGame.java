@@ -8,7 +8,8 @@ public class UntimedGame extends Game {//start UntimedGame class
 	
 	private static UntimedGame untimedInstance = new UntimedGame();
 	
-	private int movesRemaining;//counter of number of moves remaining, decrements with each successful move
+	private int movesRemaining;//counter of number of moves remaining, decrements with
+		//each successful move
 	private static final int MAX_MOVES = 50;//the max moves allowed for a game
 	
 	
@@ -22,8 +23,10 @@ public class UntimedGame extends Game {//start UntimedGame class
 	}//end UntimedGame constructor method
 	
 	/**
-	 * Calculates the sum of the tiles around the one at the given coordinates, and compares it to the given queue value, mod
-	 * Just decrements the moves remaining, then calls the method from the super class
+	 * Calculates the sum of the tiles around the one at the given coordinates, and 
+	 * compares it to the given queue value, mod.
+	 * Decrements the moves remaining, then calls the method from the super class.
+	 * 
 	 * @param i - the row of the clicked tile
 	 * @param j - the column of the clicked tile
 	 * @param mod - the queue value placed
@@ -36,6 +39,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	
 	/**
 	 * Access method for field movesRemaining
+	 * 
 	 * @return movesRemaining - a member field 
 	 */
 	public int getMovesRemaining() {//start get movesRemaining method
@@ -57,7 +61,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	
 	/*
 	 * Creates a new GameBoard
-	 * just sets the moves remaining then calls the method from the super class
+	 * Sets the moves remaining then calls the method from the super class
 	 */
 	public void createNewGameBoard(){//start createNewGameBoard method
 		movesRemaining = MAX_MOVES;
@@ -66,6 +70,7 @@ public class UntimedGame extends Game {//start UntimedGame class
 	
 	/**
 	 * Returns the singleton instance of UntimedGame
+	 * 
 	 * @return untimedInstance - this instance of the UntimedGame
 	 */
 	public static UntimedGame getInstance() {//start getInstance method
@@ -74,9 +79,10 @@ public class UntimedGame extends Game {//start UntimedGame class
 	
 	/*
 	 * Checks to see if moves remaining is less than or equal to zero.  
-	 * @returns true if movesRemaining is less than or equal to zero
+	 * @return boolean -  true if movesRemaining is less than or equal to zero
 	 */
 	public boolean isZeroMovesRemaining(){//start isZeroMovesRemaining method
 		return (movesRemaining <= 0);
 	}//end isZeroMovesRemaining method
+	
 }//end UntimedGame class
