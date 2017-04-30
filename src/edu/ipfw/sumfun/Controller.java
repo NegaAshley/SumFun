@@ -29,7 +29,7 @@ public class Controller implements ActionListener {// start Controller class
 												// tiles
 	public static final int TILE_GRID_LENGTH = 9;// the length of the grid in
 													// tiles
-	public static final int MAX_HINTS = 500;// the number of hints available
+	public static final int MAX_HINTS = 3;// the number of hints available
 	private int hintsUsed = 0;// the number of hints currently used
 
 	// References to model, view, and TopPointPlayers objects

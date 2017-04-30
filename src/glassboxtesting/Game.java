@@ -1,4 +1,4 @@
-package Unit;
+package glassboxtesting;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -418,8 +418,8 @@ public abstract class Game extends Observable {// start Game class
 	}// end setIsActive method
 	
 	public void setGameWon(boolean gameWon) {
-		this.gameWon = gameWon
-;	}
+		this.gameWon = gameWon;	
+		}
 	
 	/*
 	 * Acessor method for removeNumAvailable

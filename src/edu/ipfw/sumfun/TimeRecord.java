@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class TimeRecord implements Serializable {
 	
-	private final String PLAYER_NAME;
-	private final Date DATE;
-	private final int TIME;
-	private final int START_TIME;
+	private final String playerName;
+	private final Date date;
+	private final int time;
+	private final int startTime;
 	
 	/**
 	 * TimeRecord constructor
@@ -18,10 +18,10 @@ public class TimeRecord implements Serializable {
 	 * @param time, the game completion time associated with the record
 	 */
 	public TimeRecord(String playerName, int time, int startTime) {
-		this.PLAYER_NAME = playerName;
-		this.TIME = time;
-		this.START_TIME = startTime;
-		DATE = new Date();
+		this.playerName = playerName;
+		this.time = time;
+		this.startTime = startTime;
+		date = new Date();
 	}//end Constructor
 	
 	/**
@@ -31,7 +31,7 @@ public class TimeRecord implements Serializable {
 	 */
 	public String getDateString() {//start getDateString method
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-		return df.format(DATE);
+		return df.format(date);
 	}//end getDateString method
 	
 	/**
@@ -39,7 +39,7 @@ public class TimeRecord implements Serializable {
 	 * @return date - the date of the win
 	 */
 	public Date getDate() {//start getDate method
-		return DATE;
+		return date;
 	}//end getDate method
 	
 	/**
@@ -47,7 +47,7 @@ public class TimeRecord implements Serializable {
 	 * @return playerName - the name of the winning player
 	 */
 	public String getName() {//start getName method
-		return PLAYER_NAME;
+		return playerName;
 	}//end getName method
 	
 	/**
@@ -55,7 +55,7 @@ public class TimeRecord implements Serializable {
 	 * @return time, the record's completion time
 	 */
 	public int getTime() {
-		return TIME;
+		return time;
 	}//end getTime
 	
 	/**
@@ -63,7 +63,7 @@ public class TimeRecord implements Serializable {
 	 * @return
 	 */
 	public String getFormattedTime() {
-		int tempTime = START_TIME - TIME;
+		int tempTime = startTime - time;
 		int minutes = tempTime / (60 * 1000);
 		int seconds = (tempTime / 1000) % 60;
 		return String.format("%d:%02d", minutes, seconds);
@@ -76,7 +76,7 @@ public class TimeRecord implements Serializable {
 	 * @return true if they are equal, false if not
 	 */
 	public boolean equals(TimeRecord other) {//start equals method
-		return TIME == other.getTime();
+		return time == other.getTime();
 	}//end equals method
 	
 	/**
@@ -88,7 +88,7 @@ public class TimeRecord implements Serializable {
 		
 		if(this.equals(other)) {
 			
-			long thisDate = DATE.getTime();
+			long thisDate = date.getTime();
 			long otherDate = other.getDate().getTime();
 			
 			//Scores are equal, so lets see who was first
@@ -109,7 +109,7 @@ public class TimeRecord implements Serializable {
 	}//end compareTo method
 	
 	public String toString() {
-		return PLAYER_NAME + " " + getFormattedTime() + " " + DATE;
+		return playerName + " " + getFormattedTime() + " " + date;
 	}
 
 }

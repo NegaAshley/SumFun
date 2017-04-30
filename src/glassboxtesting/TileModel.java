@@ -3,7 +3,7 @@
  * the value of the TileModel as well as the references to the TileModels surrounding
  * this TileModel.
  */
-package Unit;
+package glassboxtesting;
 
 import java.util.Observable;
 
