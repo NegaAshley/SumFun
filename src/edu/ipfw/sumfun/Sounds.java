@@ -59,6 +59,13 @@ public enum Sounds {
 		   }
 	   }
 	   
+	   public void stopLoop(){
+		   if(volume != Volume.MUTE){
+			   
+			   clip.stop();
+		   }
+	   }
+	   
 	   // Optional static method to pre-load all the sound files.
 	   static void init() {
 	      values(); // calls the constructor for all the elements

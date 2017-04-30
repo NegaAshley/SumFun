@@ -306,6 +306,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 			public void actionPerformed(ActionEvent e) {// start actionPerformed
 														// method
 				TimedGame.getInstance().stopTimer();
+				Sounds.BGM1.stopLoop();
 				Application.serialize();
 				dispose();
 			}// end actionPerformed method

@@ -148,9 +148,11 @@ public abstract class Game extends Observable {// start Game class
 		if(gameBoard.isGameBoardEmpty()) {
 			isActive = false;
 			gameWon = true;
+			Sounds.BGM1.stopLoop();
 		} else if (gameBoard.isGameBoardFull()) {
 			isActive = false;
 			gameWon = false;
+			Sounds.BGM1.stopLoop();
 		}
 		
 		setChanged();
