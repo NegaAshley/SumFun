@@ -29,7 +29,8 @@ class QueueTileView {//start QueueTileView class
      * @param col - the column the tile is in
      * @param tileOutlineColor - the outline color of the tile
      */
-    public QueueTileView(int row, int col, Color tileOutlineColor) throws IOException, URISyntaxException, UnsupportedAudioFileException{//start QueueTileView 
+    public QueueTileView(int row, int col, Color tileOutlineColor) throws IOException, 
+    URISyntaxException, UnsupportedAudioFileException{//start QueueTileView 
     	//constructor
         this.tileOutlineColor = tileOutlineColor;
         //since the queue is vertical and 1D, row corresponds to x, unlike in the main 
@@ -47,7 +48,8 @@ class QueueTileView {//start QueueTileView class
      * @param tile - the TileModel desired
      * @throws IOException 
      */
-    public void draw(Graphics2D g2, TileModel tile) throws IOException{//start draw method
+    public void draw(Graphics2D g2, TileModel tile) throws IOException{//start draw 
+    	//method
     	
         g2.setPaint(tileOutlineColor);
         Rectangle2D r = new Rectangle2D.Double(xval, yval, SIZE, SIZE);
@@ -82,7 +84,8 @@ class QueueTileView {//start QueueTileView class
 		} else if(tile.getValue() == 9){
 			g2.drawImage(ins.getBack9(), xval, yval,null);
 		} else{
-			g2.drawString(String.valueOf(tile.getValue()), xval + (SIZE / 2) - 4, yval + (SIZE / 2) + 4);
+			g2.drawString(String.valueOf(tile.getValue()), xval + (SIZE / 2) - 4, yval 
+					+ (SIZE / 2) + 4);
 		}
     }//end draw method
     

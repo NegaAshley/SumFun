@@ -19,14 +19,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- * Application class contains the main method, which initiates the MVC relationship by instantiating
- * a model and the controller
+ * Application class contains the main method, which initiates the MVC relationship
+ *  by instantiating a model and the controller
  * @author Jake
  *
  */
 public class Application {//start Application class
-	private static  String path = "/sumfun.csv";
-	private static FileReader reader=new FileReader(path);
+	private static  String path = "/sumfun.csv";//the file path for the records
+	private static FileReader reader = new FileReader(path);//the file reader for the
+	//records
 	
 	//Reference to the model
 	private static UntimedGame untimedGame;
@@ -37,6 +38,7 @@ public class Application {//start Application class
 	//Reference to a structure containing the top 10 player records by points earned
 	private static TopPointPlayers tpp;
 	
+	//Reference to a structure containing the top 10 player records by time completed
 	private static TopTimePlayers ttp;
 	
 	/**
@@ -48,16 +50,17 @@ public class Application {//start Application class
 	 * @throws UnsupportedAudioFileException 
 	 * @throws URISyntaxException 
 	 */
-	public static void main(String[] args) throws IOException, FontFormatException, NumberFormatException, URISyntaxException, UnsupportedAudioFileException{//start main method
+	public static void main(String[] args) throws IOException, FontFormatException, 
+	NumberFormatException, URISyntaxException, UnsupportedAudioFileException{//start 
+		//main method
 		
-		
-	
 		//Attempt to load saved data
 		deserialize();
 		
 		ttp.printRecords();
 		
-		//Get references to both model instances, and instantiate a controller using UntimedGame as the initial model
+		//Get references to both model instances, and instantiate a controller using 
+		//UntimedGame as the initial model
 		untimedGame = UntimedGame.getInstance();
 		timedGame = TimedGame.getInstance();
 
@@ -76,7 +79,8 @@ public class Application {//start Application class
                 oos.writeObject(tpp);
                 oos.writeObject(ttp);
             } catch (Exception ex0111111111) {
-                JOptionPane.showMessageDialog(null, "Error writing to file! Work not saved!");
+                JOptionPane.showMessageDialog(null, "Error writing to file! Work "
+                		+ "not saved!");
             }
             
     }//end serialize method
@@ -94,7 +98,8 @@ public class Application {//start Application class
                 ttp = (TopTimePlayers) ois.readObject();
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error reading file! Loading to default settings!");
+                JOptionPane.showMessageDialog(null, "Error reading file! Loading to "
+                		+ "default settings!");
                 tpp = new TopPointPlayers();
                 ttp = new TopTimePlayers();
             }

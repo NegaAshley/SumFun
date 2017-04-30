@@ -25,12 +25,13 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 	
 	/**
 	 * Returns the record found in ArrayList records at index
+	 * 
 	 * @param index - the index of a desired record
-	 * @return the record found at index
+	 * @return ScoreRecord - the record found at index
 	 */
-	public ScoreRecord getRecord(int index) {
+	public ScoreRecord getRecord(int index) {//start getRecord method
 		return records.get(index);
-	}//end getRecord
+	}//end getRecord method
 	
 	/**
 	 * Print all records contained in ArrayList records to console
@@ -44,7 +45,8 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 	
 	/**
 	 * Access method for the size of ArrayList records
-	 * @return the size of ArrayList records
+	 * 
+	 * @return int - the size of ArrayList records
 	 */
 	public int getNumRecords() {//start getNumRecords method
 		return records.size();
@@ -52,6 +54,7 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 	
 	/**
 	 * Attempts to add a record to ArrayList records
+	 * 
 	 * @param record - a record to attempt to add
 	 */
 	public void addRecord(ScoreRecord record) {//start addRecord method
@@ -88,7 +91,8 @@ public class TopPointPlayers implements Serializable {//start TopPointPlayers cl
 				//Add the new record to records
 				records.add(i, record);
 				
-				//Put all of the new records back into place, shifted to the right by 1
+				//Put all of the new records back into place, shifted to the right 
+					//by 1
 				for(int j = 1; j <= tempRecords.length; j++) {
 					records.add(i+j, tempRecords[j-1]);
 				}

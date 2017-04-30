@@ -19,10 +19,10 @@ import javax.swing.JPanel;
 public class QueuePanel extends JPanel {//start the QueuePanel class
 	
 	//Number of rows and columns in the grid
-	//Queue grid is simply one column of squares
-    public static final int GRID_ROWS = 1;
-    public static final int GRID_COLS = 5;
-    public static final String GREEN_HEX_VALUE="0x00cc00";
+	//Queue grid is one column of squares
+    public static final int GRID_ROWS = 1;//the number of rows in the queue
+    public static final int GRID_COLS = 5;//the number of columns in the queue
+    public static final String GREEN_HEX_VALUE="0x00cc00";//
     
     private Game game;//this instance of Game
     
@@ -37,7 +37,8 @@ public class QueuePanel extends JPanel {//start the QueuePanel class
      * @throws UnsupportedAudioFileException 
      * @throws URISyntaxException 
      */
-    public QueuePanel(Game game) throws NumberFormatException, IOException, URISyntaxException, UnsupportedAudioFileException {//start QueuePanel constructor
+    public QueuePanel(Game game) throws NumberFormatException, IOException, 
+    URISyntaxException, UnsupportedAudioFileException {//start QueuePanel constructor
     	
     	this.game = game;
 

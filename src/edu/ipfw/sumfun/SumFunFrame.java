@@ -43,12 +43,10 @@ import javax.swing.SwingConstants;
  * @author Jake
  * 
  */
-public class SumFunFrame extends JFrame implements Observer {// start
-																// SumFunFrame
+public class SumFunFrame extends JFrame implements Observer {// start SumFunFrame
 
 	private static final boolean GUI_RESIZABLE = false;// whether or not the
-														// frame is
-	// resizable
+														// frame is resizable
 	private static final int GUI_WIDTH = 1250;// the width of the frame
 	private static final int GUI_HEIGHT = 525;// the height of the frame
 	private static final int GRID_ROWS = 9;// the number of rows
@@ -56,7 +54,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 	// Error messages
 	private static final String INVALID_MOVE_MESSAGE = "Cannot place tile here!";
-	private static final String INVALID_REMOVE_NUM_MOVE_MESSAGE = "Cannot remove an empty tile!";
+	private static final String INVALID_REMOVE_NUM_MOVE_MESSAGE = "Cannot remove an "
+			+ "empty tile!";
 	private static final String EMPTY_TEXT_MESSAGE = "Please enter a name!";
 
 	// Strings to pass to actionPerformed
@@ -86,9 +85,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 	// A two-dimensional array of TileView tiles for easy access
 	private TileView[][] tiles = new TileView[GRID_ROWS][GRID_COLS];// 2D Array
-																	// where
-																	// tiles are
-																	// located
+	//where tiles are located
 	private JMenuBar bar;// main menu bar
 	private JMenu gameMenu;// menu option holding game options
 	private JMenu helpMenu;// menu options holding help options
@@ -131,8 +128,10 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	 */
 	// Add TimedGame here
 	// $ public SumFunFrame(TimedGame timedGame, final Controller controller) {
-	public SumFunFrame(Game game, final Controller controller, TopPointPlayers tpp, TopTimePlayers ttp)
-			throws IOException, FontFormatException, NumberFormatException, URISyntaxException, UnsupportedAudioFileException {
+	public SumFunFrame(Game game, final Controller controller, TopPointPlayers tpp, 
+			TopTimePlayers ttp)
+			throws IOException, FontFormatException, NumberFormatException, 
+			URISyntaxException, UnsupportedAudioFileException {
 		// start SumFunFrame constructor
 
 		super("Sum Fun");// sets title of window
@@ -235,13 +234,15 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		if (model instanceof UntimedGame) {
 			UntimedGame temp = (UntimedGame) model;
 			moves = temp.getMovesRemaining();
-			moveString = "<html><font size = +1>Moves Remaining: " + moves + " </font></html>";
+			moveString = "<html><font size = +1>Moves Remaining: " + moves + 
+					" </font></html>";
 		} else {
 			moveString = "";
 		}
 
 		int score = model.getPoints();
-		String scoreString = "<html><font size = +1>Score: " + score + "</font></html>";
+		String scoreString = "<html><font size = +1>Score: " + score + 
+				"</font></html>";
 
 		String time;
 
@@ -249,7 +250,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		if (model instanceof TimedGame) {
 			TimedGame temp = (TimedGame) model;
 			time = temp.getTime();
-			timeString += "<html><font size =0.5>Time Remaining: " + time + "</font></html>";
+			timeString += "<html><font size =0.5>Time Remaining: " + time + 
+					"</font></html>";
 		} else {
 			timeString = "";
 		}
@@ -273,8 +275,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 		newUntimedGame.setActionCommand(NEW_UNTIMED);
 		newUntimedGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {// start actionPerformed
-														// method
+			public void actionPerformed(ActionEvent e) {//start actionPerformed
+			//method
 				controller.actionPerformed(e);
 			}// end actionPerformed method
 		});
@@ -282,7 +284,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		newTimedGame.setActionCommand(NEW_TIMED);
 		newTimedGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {// start actionPerformed
-														// method
+			//method
 				controller.actionPerformed(e);
 			}// end actionPerformed method
 		});
@@ -303,8 +305,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 		// Closes game when exit menu option is selected
 		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {// start actionPerformed
-														// method
+			public void actionPerformed(ActionEvent e) {//start actionPerformed
+			//method
 				TimedGame.getInstance().stopTimer();
 				Sounds.BGM1.stopLoop();
 				Application.serialize();
@@ -344,8 +346,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	/**
 	 * Set the model to specified Game
 	 * 
-	 * @param game
-	 *            - the instance of Game to use as model
+	 * @param game - the instance of Game to use as model
 	 */
 	public void setModel(Game game) {// start setModel method
 		model = game;
@@ -399,25 +400,28 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		return bar;
 	}// start getBar method
 
-	/**
+	/*
 	 * Setter for bar
 	 * 
-	 * @param bar
-	 *            - the menu bar public void setBar(JMenuBar bar) {//start
-	 *            setBar method this.bar = bar; }//end setBar method
+	 * @param bar - the menu bar
+	 */
+	public void setBar(JMenuBar bar) {//start  setBar method 
+		this.bar = bar; 
+	}//end setBar method
+
+	/* 
+	 * Getter for gameMenu
 	 * 
-	 *            /** Getter for gameMenu
-	 * @return gameMenu
+	 * @return gameMenu - the menu for Game
 	 */
 	public JMenu getGameMenu() {// start getGameMenu method
 		return gameMenu;
-	}// end getGameMenu method
+	}//end getGameMenu method
 
 	/**
 	 * Setter for gameMenu
 	 * 
-	 * @param gameMenu
-	 *            - the menu for game
+	 * @param gameMenu - the menu for game
 	 */
 	public void setGameMenu(JMenu gameMenu) {// start setGameMenu method
 		this.gameMenu = gameMenu;
@@ -435,8 +439,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	/**
 	 * Setter for helpMenu
 	 * 
-	 * @param helpMenu
-	 *            - the menu for help
+	 * @param helpMenu - the menu for help
 	 */
 	public void setHelpMenu(JMenu helpMenu) {// start setHelpMenu method
 		this.helpMenu = helpMenu;
@@ -454,11 +457,10 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	/**
 	 * Setter for initialPanel
 	 * 
-	 * @param initialPanel
-	 *            - the first panel
+	 * @param initialPanel - the first panel
 	 */
 	public void setInitialPanel(JPanel initialPanel) {// start setInitialPanel
-														// method
+	//method
 		this.initialPanel = initialPanel;
 	}// end setInitialPanel method
 
@@ -474,12 +476,10 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	/**
 	 * Setter for scoreBoardPanel
 	 * 
-	 * @param scoreBoardPanel
-	 *            - the panel for the scoreboard
+	 * @param scoreBoardPanel - the panel for the scoreboard
 	 */
 	public void setScoreBoardPanel(JPanel scoreBoardPanel) {// start
-															// setScoreBoardPanel
-															// method
+	//setScoreBoardPanel method
 		this.scoreBoardPanel = scoreBoardPanel;
 	}// end setScoreBoardPanel method
 
@@ -488,110 +488,111 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	 * 
 	 * @return qp - the queue panel
 	 */
-	public QueuePanel getQp() {// start getQp method
+	public QueuePanel getQp() {//start getQp method
 		return qp;
-	}// end getQp method
+	}//end getQp method
 
 	/**
 	 * Setter for qp
 	 * 
-	 * @param qp
-	 *            - the queue panel
+	 * @param qp - the queue panel
 	 */
-	public void setQp(QueuePanel qp) {// start setQp method
+	public void setQp(QueuePanel qp) {//start setQp method
 		this.qp = qp;
-	}// end setQp method
+	}//end setQp method
 
 	/**
 	 * Getter for resetQueue
 	 * 
 	 * @return resetQueue - the reset queue menu item
 	 */
-	public JMenuItem getResetQueue() {// start getResetQueue method
+	public JMenuItem getResetQueue() {//start getResetQueue method
 		return resetQueue;
-	}// end getResetQueue method
+	}//end getResetQueue method
 
 	/**
 	 * Getter for exit
 	 * 
 	 * @return exit - the exit menu item
 	 */
-	public JMenuItem getExit() {// start getExit method
+	public JMenuItem getExit() {//start getExit method
 		return exit;
-	}// end getExit method
+	}//end getExit method
 
 	/**
 	 * Getter for help
 	 * 
 	 * @return help - the help menu item
 	 */
-	public JMenuItem getHint() {// start getHint method
+	public JMenuItem getHint() {//start getHint method
 		return hint;
-	}// end getHelp method
+	}//end getHelp method
 
 	/*
 	 * Getter for removeNumber menu
 	 * 
 	 * @return removeNumber - the menu to remove numbers
 	 */
-	public JMenuItem getRemoveNumber() {// start getRemoveNumber method
+	public JMenuItem getRemoveNumber() {//start getRemoveNumber method
 		return removeNumber;
-	}// end getRemoveNumber method
+	}//end getRemoveNumber method
+	
 	/*
 	 * Getter for this SumFunFrame
 	 * 
 	 * @returns this.SumFunFrame
 	 */
-
-	public SumFunFrame getSumFunFrame() {// start getSumFunFrame method
+	public SumFunFrame getSumFunFrame() {//start getSumFunFrame method
 		return this;
-	}// end getSumFunFrame method
+	}//end getSumFunFrame method
 
 	/*
 	 * Getter for GetUserNameDialog
 	 * 
 	 * @returns this.GetUserNameDialog
 	 */
-	public GetUserNameDialog getUserNameDialog() {// start getUserNameDialog
-													// method
+	public GetUserNameDialog getUserNameDialog() {//start getUserNameDialog
+		//method
 		return gund;
-	}// end getUserNameDialog method
+	}//end getUserNameDialog method
 
 	/*
 	 * Getter for the tiles.
 	 * 
 	 * @returns tiles
 	 */
-	public TileView[][] getTileGrid() {// start getTileGrid method
+	public TileView[][] getTileGrid() {//start getTileGrid method
 		return tiles;
-	}// end getTileGrid method
+	}//end getTileGrid method
 
 	/*
 	 * Makes moveLabel visible if true is given ore invisible if false is given.
 	 * 
-	 * @param visible true if visibility desired
+	 * @param visible - true if visibility desired
 	 */
-	public void setMoveLabelVisible(boolean visible) {
+	public void setMoveLabelVisible(boolean visible) {//start setMoveLabelVisible 
+		//method
 		moveLabel.setVisible(visible);
-	}
+	}//end setMoveLabelVisibile method
 
 	/*
 	 * Makes timeLabel visible if true is given ore invisible if false is given.
 	 * 
-	 * @param visible true if visibility desired
+	 * @param visible - true if visibility desired
 	 */
-	public void setTimeLabelVisible(boolean visible) {
+	public void setTimeLabelVisible(boolean visible) {//start setTimeLabelVisible 
+		//method
 		timeLabel.setVisible(visible);
-	}
+	}//end setTimeLabelVisible method
 
 	/**
 	 * Updates each GUI component with corresponding model element
 	 * 
-	 * @param arg0
-	 * @param arg1
+	 * @param arg0 - the first argument
+	 * @param arg1 - the second arguement
 	 */
 	@Override
-	public void update(Observable arg0, Object arg1) {// start update method
+	public void update(Observable arg0, Object arg1) {//start update method
 
 		repaint();
 
@@ -608,14 +609,16 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		}
 
 		// Update score
-		String score = "<html><font size = +1>Score: " + model.getPoints() + "</font></html>";
+		String score = "<html><font size = +1>Score: " + model.getPoints() + 
+				"</font></html>";
 		scoreLabel.setText(score);
 
 		// Update moves remaining
 		// if the model is an UntimedGame
 		if (model instanceof UntimedGame) {
 			UntimedGame temp = (UntimedGame) model;
-			String move = "<html><font size = +1>Moves Remaining: " + temp.getMovesRemaining() + " </font></html>";
+			String move = "<html><font size = +1>Moves Remaining: " + 
+			temp.getMovesRemaining() + " </font></html>";
 			moveLabel.setText(move);
 		} else {
 			String move = "Moves Remaining: N/A";
@@ -627,7 +630,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		// if the model is a TimedGame
 		if (model instanceof TimedGame) {
 			TimedGame temp = (TimedGame) model;
-			String time = "<html><font size = +1>Time Remaining: " + temp.getTime() + "</font></html>";
+			String time = "<html><font size = +1>Time Remaining: " + temp.getTime() 
+			+ "</font></html>";
 			timeLabel.setText(time);
 		} else {
 			String time = "Time Remaining: N/A";
@@ -673,17 +677,17 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	/**
 	 * Display an alert that an invalid move was attempted by the player
 	 */
-	public void invalidMoveEvent() {// start invalidMoveEvent method
+	public void invalidMoveEvent() {//start invalidMoveEvent method
 		JOptionPane.showMessageDialog(this, INVALID_MOVE_MESSAGE);
-	}// end invalidMoveEvent method
+	}//end invalidMoveEvent method
 
 	/**
 	 * Display an alert that an the player cannot remove an empty tile
 	 */
-	public void invalidRemoveNumMoveEvent() {// start invalidRemoveNumMoveEvent
-												// method
+	public void invalidRemoveNumMoveEvent() {//start invalidRemoveNumMoveEvent
+		//method
 		JOptionPane.showMessageDialog(this, INVALID_REMOVE_NUM_MOVE_MESSAGE);
-	}// end invalidRemoveNumMoveEvent method
+	}//end invalidRemoveNumMoveEvent method
 
 	/**
 	 * GameBoardPanel is the panel which holds the game grid GameBoardPanel is
@@ -692,7 +696,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	 * @author Ashley
 	 *
 	 */
-	public class GameBoardPanel extends JPanel {// start GameBoardPanel class
+	public class GameBoardPanel extends JPanel {//start GameBoardPanel class
 
 		/**
 		 * GameBoardPanel constructor
@@ -701,8 +705,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		 * @throws UnsupportedAudioFileException 
 		 * @throws URISyntaxException 
 		 */
-		public GameBoardPanel() throws IOException, URISyntaxException, UnsupportedAudioFileException {// start GameBoardPanel
-													// constructor
+		public GameBoardPanel() throws IOException, URISyntaxException, 
+		UnsupportedAudioFileException {//start GameBoardPanel constructor
 
 		
 			// Creates grid of size GRID_ROWS by GRID_COLS
@@ -713,7 +717,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 				for (int col = 0; col < GRID_COLS; col++) {
 
 					// Create a new tile and add it to the 2D array
-					final TileView tile = new TileView(row, col, Color.GRAY, Color.WHITE);
+					final TileView tile = new TileView(row, col, Color.GRAY, 
+							Color.WHITE);
 					tile.addActionListener(controller);
 					tiles[row][col] = tile;
 
@@ -731,7 +736,8 @@ public class SumFunFrame extends JFrame implements Observer {// start
 							 * Checks to see left mouse button was clicked and
 							 * tile contains the x,y coordinates
 							 */
-							if (e.getButton() == 1 && tile.contains(e.getX(), e.getY())) {
+							if (e.getButton() == 1 && tile.contains(e.getX(), 
+									e.getY())) {
 								tile.processEvent();
 							}
 						}// end mouseClicked method
@@ -745,8 +751,10 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 		/*
 		 * Paints components
+		 * 
+		 * @param g - the graphics component
 		 */
-		public void paintComponent(Graphics g) {// start paintComponent method
+		public void paintComponent(Graphics g) {//start paintComponent method
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
 			//Reference to image
@@ -755,7 +763,6 @@ public class SumFunFrame extends JFrame implements Observer {// start
 				ins = new Images();
 				g.drawImage(ins.getGridBack(), 0, -5,null);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
@@ -763,16 +770,16 @@ public class SumFunFrame extends JFrame implements Observer {// start
 			for (int row = 0; row < GRID_ROWS; row++) {
 				for (int col = 0; col < GRID_COLS; col++) {
 					try {
-						tiles[row][col].draw(g2, model.getGameBoard().getTileGrid()[row][col]);
+						tiles[row][col].draw(g2, 
+								model.getGameBoard().getTileGrid()[row][col]);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
-		}// end paintComponent method
+		}//end paintComponent method
 
-	}// end SumFunPanel class
+	}//end SumFunPanel class
 
 	/**
 	 * Dialog box to display the top 10 players by points earned
@@ -780,36 +787,32 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	 * @author Jake
 	 *
 	 */
-	class TopPointsDialog extends JDialog {// start TopPointsDialog class
+	class TopPointsDialog extends JDialog {//start TopPointsDialog class
 
-		private static final int TOP_POINTS_WIDTH = 600;// the width of the top
-														// points
-		private static final int TOP_POINTS_LENGTH = 400;// the length of the
-															// top points
-		private static final int GRID_ROWS = 10;// the number of rows in the
-												// table
-		private static final int GRID_COLS = 3;// the number of columns in the
-												// table
-		private static final boolean RESIZABLE = false;// whether or not the
-														// JDialog is
-		// resizeable
+		private static final int TOP_POINTS_WIDTH = 600;//the width of the top 
+			//points
+		private static final int TOP_POINTS_LENGTH = 400;//the length of the
+			//top points
+		private static final int GRID_ROWS = 10;//the number of rows in the
+			//table
+		private static final int GRID_COLS = 3;//the number of columns in the
+			//table
+		private static final boolean RESIZABLE = false;//whether or not the
+			//JDialog is resizeable
 
 		private ArrayList<JLabel> nameList = new ArrayList<>();// keeps the list
-																// of winner
-		// names
+			//of winner names
 		private ArrayList<JLabel> scoreList = new ArrayList<>();// keeps the
-																// list of
-		// winner scores
+			//list of winner scores
 		private ArrayList<JLabel> dateList = new ArrayList<>();// keeps the list
-																// of winner
-		// dates
+			//of winner dates
 
 		/**
-		 * Constructor
+		 * Constructor for TopPoints Dialog
 		 */
-		public TopPointsDialog() {// start TopPointsDialog constructor
+		public TopPointsDialog() {//start TopPointsDialog constructor
 
-			// Set some properties of the dialog box
+			//Set some properties of the dialog box
 			setSize(TOP_POINTS_WIDTH, TOP_POINTS_LENGTH);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setTitle("Top 10 Players - Most Points");
@@ -846,11 +849,13 @@ public class SumFunFrame extends JFrame implements Observer {// start
 				} finally {
 
 					if (i < 9) {
-						nameList.get(i).setText(" " + (i + 1) + ".    " + "Name: " + name);
+						nameList.get(i).setText(" " + (i + 1) + ".    " + "Name: " 
+					+ name);
 						scoreList.get(i).setText("Score: " + score);
 						dateList.get(i).setText("Date: " + date);
 					} else {
-						nameList.get(i).setText(" " + (i + 1) + ".  " + "Name: " + name);
+						nameList.get(i).setText(" " + (i + 1) + ".  " + "Name: " 
+					+ name);
 						scoreList.get(i).setText("Score: " + score);
 						dateList.get(i).setText("Date: " + date);
 					}
@@ -864,9 +869,9 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 			add(listPanel);
 
-		}// end TopPoints dialog constructor
+		}//end TopPoints dialog constructor
 
-	}// end class TopPointsDialog
+	}//end class TopPointsDialog
 
 	/**
 	 * Dialog box to display the top 10 players by lowest completion time
@@ -874,7 +879,7 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	 * @author Jake
 	 *
 	 */
-	class FastestTimeDialog extends JDialog {
+	class FastestTimeDialog extends JDialog {//start FastestTimeDialog class
 
 		private static final int TOP_POINTS_WIDTH = 600;// the width of the top
 														// points
@@ -898,9 +903,9 @@ public class SumFunFrame extends JFrame implements Observer {// start
 		// dates
 
 		/**
-		 * Constructor
+		 * Constructor for FastestTimeDialog
 		 */
-		public FastestTimeDialog() {
+		public FastestTimeDialog() {//start FastestTimeDialog constructor
 
 			// Set some properties of the dialog box
 			setSize(TOP_POINTS_WIDTH, TOP_POINTS_LENGTH);
@@ -939,11 +944,13 @@ public class SumFunFrame extends JFrame implements Observer {// start
 				} finally {
 
 					if (i < 9) {
-						nameList.get(i).setText(" " + (i + 1) + ".    " + "Name: " + name);
+						nameList.get(i).setText(" " + (i + 1) + ".    " + "Name: " 
+					+ name);
 						timeList.get(i).setText("Time: " + time);
 						dateList.get(i).setText("Date: " + date);
 					} else {
-						nameList.get(i).setText(" " + (i + 1) + ".  " + "Name: " + name);
+						nameList.get(i).setText(" " + (i + 1) + ".  " + "Name: " 
+					+ name);
 						timeList.get(i).setText("Time: " + time);
 						dateList.get(i).setText("Date: " + date);
 					}
@@ -957,9 +964,9 @@ public class SumFunFrame extends JFrame implements Observer {// start
 
 			add(listPanel);
 
-		}
+		}//end FastestTimeDialog constructor
 
-	}// end class TopTimeDialog
+	}//end FastestTimeDialog class
 
 	/*
 	 * This class is a dialog box used to get the name of the user at the end of
@@ -967,23 +974,23 @@ public class SumFunFrame extends JFrame implements Observer {// start
 	 */
 	class GetUserNameDialog extends JDialog {// start getUserNameDialog class
 		private static final int GET_USER_WIDTH = 400;// the width of the dialog
-														// box
+			//box
 		private static final int GET_USER_LENGTH = 100;// the length of the
-														// dialog box
+			//dialog box
 		private static final boolean RESIZABLE = false;// whether or not box is
-														// resizeable
+			//resizeable
 		// The text for the JLabel preceding the text box
 		private static final String GET_USER_DIALOG = "Game over!  Enter name:";
 		private JLabel userDialogLabel;// the label before the text box
 		private JTextField userNameTextField;// the text field where user enters
-												// name
+			//name
 		private JButton okButton;// the button to confirm
 		private String userName;// the entered name of the user
+		
 		/*
 		 * The constructor for the getUserNameDialog class.
 		 */
-
-		public GetUserNameDialog() {// start getUserNameDialog constructor
+		public GetUserNameDialog() {//start getUserNameDialog constructor
 			// Set some properties of the dialog box
 			setSize(GET_USER_WIDTH, GET_USER_LENGTH);
 			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -1010,52 +1017,52 @@ public class SumFunFrame extends JFrame implements Observer {// start
 					// If textbox is empty, show a dialog and return to
 					// GetUserNameDialog
 					if (isTextBoxEmpty() == true) {
-						JOptionPane.showMessageDialog(getGetUserNameDialog(), EMPTY_TEXT_MESSAGE);
+						JOptionPane.showMessageDialog(getGetUserNameDialog(), 
+								EMPTY_TEXT_MESSAGE);
 						return;
 					}
 					controller.actionPerformed(e);
 				}
 			});
-		}// end getUserNameDialog constructor
+		}//end getUserNameDialog constructor
 
 		/*
 		 * Assigns username from text box
 		 */
-		public void assignUserName() {// start assignUserName method
+		public void assignUserName() {//start assignUserName method
 			userName = userNameTextField.getText();
 			// System.out.println(userName);
-		}// end assignUserName method
+		}//end assignUserName method
 
 		/*
 		 * Returns the username
 		 * 
 		 * @returns userName - the name of the user
 		 */
-		public String getUserName() {// start getUserName method
+		public String getUserName() {//start getUserName method
 			// System.out.println(userName);
 			return userName;
-		}// end getUserName method
+		}//end getUserName method
 
 		/*
 		 * Returns true if the textbox is empty.
 		 * 
 		 * @returns true if textbox is empty
 		 */
-		public boolean isTextBoxEmpty() {
+		public boolean isTextBoxEmpty() {//start isTextBoxEmpty method
 			return userNameTextField.getText().equals("");
-		}
+		}//end isTextBoxEmpty method
 
 		/*
 		 * Returns this dialog
 		 * 
 		 * @returns this.GetUserNameDialog
 		 */
-		public GetUserNameDialog getGetUserNameDialog() {// start
-															// getGetUserNameDialog
-															// method
+		public GetUserNameDialog getGetUserNameDialog() {//start
+			//getGetUserNameDialog method
 			return this;
-		}// end getGetUserNameDialog method
+		}//end getGetUserNameDialog method
 
-	}// end getUserNameDialog class
+	}//end getUserNameDialog class
 
-}// end SumFunFrame class
+}//end SumFunFrame class

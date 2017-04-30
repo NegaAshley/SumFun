@@ -5,29 +5,32 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TimeRecord implements Serializable {
+public class TimeRecord implements Serializable {//start TimedRecord class
 	
-	private final String playerName;
-	private final Date date;
-	private final int time;
-	private final int startTime;
+	private final String playerName;//the name of the player
+	private final Date date;//the date of the record
+	private final int time;//the time duration of the game
+	private final int startTime;//the start time
 	
 	/**
 	 * TimeRecord constructor
+	 * 
 	 * @param playerName, the name of the player associated with the record
 	 * @param time, the game completion time associated with the record
 	 */
-	public TimeRecord(String playerName, int time, int startTime) {
+	public TimeRecord(String playerName, int time, int startTime) {//start TimeRecord
+		//constructor
 		this.playerName = playerName;
 		this.time = time;
 		this.startTime = startTime;
 		date = new Date();
-	}//end Constructor
+	}//end TimeRecord onstructor
 	
 	/**
 	 * Returns a String containing the associated date, in the format
 	 * mm/dd/yyyy
-	 * @return a String containing the formatted date
+	 * 
+	 * @return String - containing the formatted date
 	 */
 	public String getDateString() {//start getDateString method
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -35,7 +38,8 @@ public class TimeRecord implements Serializable {
 	}//end getDateString method
 	
 	/**
-	 * Access method for field date
+	 * Accessor method for field date
+	 * 
 	 * @return date - the date of the win
 	 */
 	public Date getDate() {//start getDate method
@@ -43,7 +47,8 @@ public class TimeRecord implements Serializable {
 	}//end getDate method
 	
 	/**
-	 * Access method for field playerName
+	 * Accessor method for field playerName
+	 * 
 	 * @return playerName - the name of the winning player
 	 */
 	public String getName() {//start getName method
@@ -51,29 +56,32 @@ public class TimeRecord implements Serializable {
 	}//end getName method
 	
 	/**
-	 * Access method for field time
-	 * @return time, the record's completion time
+	 * Accessor method for field time
+	 * 
+	 * @return time - the record's completion time
 	 */
-	public int getTime() {
+	public int getTime() {//start getTime method
 		return time;
-	}//end getTime
+	}//end getTime method
 	
 	/**
 	 * Returns a String containing the completion time in a formatted string
-	 * @return
+	 * 
+	 * @return String - representing formatted time
 	 */
-	public String getFormattedTime() {
+	public String getFormattedTime() {//start getFormattedTime method
 		int tempTime = startTime - time;
 		int minutes = tempTime / (60 * 1000);
 		int seconds = (tempTime / 1000) % 60;
 		return String.format("%d:%02d", minutes, seconds);
-	}//end getFormattedTime
+	}//end getFormattedTime method
 	
 	/**
 	 * Determines if a TimeRecord object and this object are equal based on relevant 
 	 * data fields
+	 * 
 	 * @param other - a TimeRecord object
-	 * @return true if they are equal, false if not
+	 * @return boolean - true if they are equal, false if not
 	 */
 	public boolean equals(TimeRecord other) {//start equals method
 		return time == other.getTime();
@@ -81,6 +89,7 @@ public class TimeRecord implements Serializable {
 	
 	/**
 	 * Compares two TimeRecord objects
+	 * 
 	 * @param other - the other UntimedRecord
 	 * @return comparison
 	 */
@@ -108,8 +117,13 @@ public class TimeRecord implements Serializable {
 		
 	}//end compareTo method
 	
-	public String toString() {
+	/*
+	 * The String representation of the TimeRecord
+	 * 
+	 * @return String - representing the TimeRecord
+	 */
+	public String toString() {//start toString method
 		return playerName + " " + getFormattedTime() + " " + date;
-	}
+	}//end toString method
 
-}
+}//end TimedRecord class
